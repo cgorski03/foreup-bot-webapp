@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-teetimeapp-dev-131558-authRole",
+      "UnauthRoleArn": "arn:aws:iam::894030031134:role/amplify-teetimeapp-dev-131558-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::894030031134:role/amplify-teetimeapp-dev-131558-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-teetimeapp-dev-131558-deployment",
+      "UnauthRoleName": "amplify-teetimeapp-dev-131558-unauthRole",
+      "StackName": "amplify-teetimeapp-dev-131558",
+      "StackId": "arn:aws:cloudformation:us-east-1:894030031134:stack/amplify-teetimeapp-dev-131558/274b8510-a5ad-11ee-bdff-0a5d8e53f67d",
+      "AmplifyAppId": "d2oog65cbr379t"
+    }
+  }
+}

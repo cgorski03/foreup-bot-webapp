@@ -1,16 +1,12 @@
 import React from 'react'
-import Username from "../../components/login/fields/Username";
-import Password from "../../components/login/fields/Password";
-import LoginButton from "../../components/login/button/LoginButton";
+import LoginForm from '../../components/login/LoginForm';
 import "./login.css"
 
 const Login = () => {
-    return (
-        <div className = "textField">
-          <img src="/images/golf_bot_image.jpeg" className="appImage" alt=""/>
-          <Username className="usernameField"/>
-          <Password />
-          <LoginButton />
+  return (
+      //TODO will contain logic about isAuthenticated and shows form if not etc
+        <div>
+          <LoginForm />
         </div>
       );
 };

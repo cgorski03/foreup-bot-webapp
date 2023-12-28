@@ -1,0 +1,36 @@
+.loginField {
+  background-color: #21252b;
+  
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+  padding-right: 7px;
+  padding-left: 7px;
+  
+  border-radius: 7px;
+  
+  font-size: 15px;
+  outline: none;
+  
+  box-sizing: border-box;
+  width: 250px;
+  
+  margin-bottom: 18px;
+}
+
+.loginField:hover,
+.loginField:focus { 
+  background-color: #333842;
+}
+
+#passwordBox,
+#usernameBox {
+  color:#cccccc;
+  border: 1px solid #646a75;
+}
+
+#loginActionButton{
+  border: 1px solid #E7c343;
+  color:#E7c343;
+}
+
