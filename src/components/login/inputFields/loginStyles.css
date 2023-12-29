@@ -1,0 +1,57 @@
+.loginField {
+  background-color: #21252b;
+  
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+  padding-right: 7px;
+  padding-left: 7px;
+  
+  border-radius: 7px;
+  
+  font-size: 15px;
+  outline: none;
+  
+  box-sizing: border-box;
+  width: 250px;
+  
+  margin-bottom: 18px;
+}
+
+.loginField:hover,
+.loginField:focus { 
+  background-color: #333842;
+}
+
+#passwordBox,
+#usernameBox {
+  color:#cccccc;
+  border: 1px solid #646a75;
+}
+
+#loginActionButton {
+  border: 1px solid #E7c343;
+  color:#E7c343;
+}
+#loginActionButton:hover{
+  cursor:pointer;
+}
+#loginActionButton.loading {
+  /*This style takes precedence over the hover one*/
+  background-color: #21252b;
+}
+
+.spinner {
+  animation-name: spin;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
