@@ -1,12 +1,14 @@
 import './loginStyles.css'
+import { ReactComponent as Loader } from './loader.svg'
 
-const LoginButton = ( {onClick} ) => {
+const LoginButton = ( {onClick, loading} ) => {
+  
   return (
     <button 
-    className="loginField"
+    className={`loginField ${loading ? "loading" : ""}`}
     id="loginActionButton"
     onClick={onClick}
-    >Login</button>
+    >{!loading ? "Login" : <Loader className="spinner" />}</button>
   );
 };
 

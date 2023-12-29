@@ -29,8 +29,29 @@
   border: 1px solid #646a75;
 }
 
-#loginActionButton{
+#loginActionButton {
   border: 1px solid #E7c343;
   color:#E7c343;
 }
+#loginActionButton:hover{
+  cursor:pointer;
+}
+#loginActionButton.loading {
+  /*This style takes precedence over the hover one*/
+  background-color: #21252b;
+}
 
+.spinner {
+  animation-name: spin;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

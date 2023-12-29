@@ -7,5 +7,39 @@
       "service": "Cognito",
       "serviceType": "imported"
     }
+  },
+  "parameters": {
+    "AMPLIFY_auth_teetimeapp_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "teetimeapp"
+        }
+      ]
+    },
+    "AMPLIFY_auth_teetimeapp_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "teetimeapp"
+        }
+      ]
+    },
+    "AMPLIFY_auth_teetimeapp_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "teetimeapp"
+        }
+      ]
+    },
+    "AMPLIFY_auth_teetimeapp_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "teetimeapp"
+        }
+      ]
+    }
   }
 }

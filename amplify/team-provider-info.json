@@ -10,6 +10,16 @@
       "StackName": "amplify-teetimeapp-dev-131558",
       "StackId": "arn:aws:cloudformation:us-east-1:894030031134:stack/amplify-teetimeapp-dev-131558/274b8510-a5ad-11ee-bdff-0a5d8e53f67d",
       "AmplifyAppId": "d2oog65cbr379t"
+    },
+    "categories": {
+      "auth": {
+        "teetimeapp": {
+          "userPoolId": "us-east-1_IsUVuAfjW",
+          "userPoolName": "teetime-app-dev",
+          "webClientId": "7i2mnfro82ien6epe9n2ph0ue",
+          "nativeClientId": "7i2mnfro82ien6epe9n2ph0ue"
+        }
+      }
     }
   }
 }
