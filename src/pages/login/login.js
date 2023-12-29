@@ -1,39 +1,37 @@
-import {useState } from 'react'
 import LoginForm from '../../components/login/LoginForm';
-import { getCurrentUser } from 'aws-amplify/auth';
 import { useNavigate } from 'react-router-dom';
+import {TailSpin} from 'react-loader-spinner';
+import useAuth from '../../utils/hooks/useAuth';
+import { useEffect } from 'react'
 import "./login.css"
 
 const Login = () => {
   const navigate = useNavigate();
-  const checkAuthentication = async () => {
-    try {
-      await getCurrentUser();
-      navigate('/home');
-      setIsAuthenticated(true);
-    } catch (err) {
-      // The user is not signed in, they will see the login form
-      setIsAuthenticated(false);
-    }
-  }
-  const [isAuthenticated, setIsAuthenticated] = useState(checkAuthentication)
-
+  const isAuthenticated = useAuth();
   
   const handleOnAuthentication = () => {
-    //check the user's authentication again
-    navigate('/home');
+    navigate('/home')
   }
 
-  return (
-    <div >
-      { isAuthenticated ? '' : (
-        <LoginForm onAuthentication={handleOnAuthentication} />
-      )
+  useEffect(() => {
+    //watch for isAuthenticated to become true
+    if (isAuthenticated === true) {
+      navigate('/home')
+    }
+  }, [isAuthenticated, navigate]);
 
+  return (
+    <div>
+      {(isAuthenticated === null) ? <TailSpin
+        color="white"
+        width="40"
+        wrapperClass="mainLoginPageLoader"
+      />:
+      <LoginForm onAuthentication={handleOnAuthentication} /> 
       }
+      
     </div>
   );
-  
 };
 
 export default Login;

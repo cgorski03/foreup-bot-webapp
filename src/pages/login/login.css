@@ -9,4 +9,8 @@
     margin-top: 30vh;
     flex-direction: column;
 }  
-
+.mainLoginPageLoader { 
+    justify-content: center;
+    margin-top: 30vh;
+    animation-timing-function: ease-in;
+}
