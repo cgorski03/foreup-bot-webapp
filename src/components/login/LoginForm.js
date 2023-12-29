@@ -15,10 +15,9 @@ const LoginForm = ({onAuthentication}) => {
     async function attemptLogin() {
         try {
             setLoader(true);
-            const {isSignedIn, nextStep} = await signIn({username, password});
+            await signIn({username, password});
             setLoader(false);
             onAuthentication(); // call the parent callback function 
-            console.log(isSignedIn + nextStep)
             // testing const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
         } catch (error) {
             setLoader(false);
