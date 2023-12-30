@@ -36,7 +36,7 @@ const CourseSelect = () => {
           options={options}
           isSearchable={true}
           styles={selectStyles}
-          placeholder="Type your course here..."
+          placeholder="Where would you like to play?"
           />
           
       </div>

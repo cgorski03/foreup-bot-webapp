@@ -24,10 +24,10 @@ const selectStyles = {
     }),
     control: (provided, state) => ({
       ...provided, // Spread the provided styles here
-      padding: 12,
-      fontSize: 15,
+      padding: 10,
+      fontSize: 27,
       width: 700,
-      backgroundColor: '#21252b',
+      backgroundColor: '#1a1e22',
       border: 'none',
       /*
       border: '1px solid',
@@ -40,7 +40,8 @@ const selectStyles = {
       boxShadow: '0px 9px 19px 8px rgba(26,26,26,.5)',
       ':hover' : {
         cursor: 'text',
-        borderColor : '#646a75'
+      },
+      ':focus' : {
       },
     }),
     menu: (provided, state) => ({
