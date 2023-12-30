@@ -1,29 +1,31 @@
 import Select from 'react-select'
+import CourseLabel from './label/CourseLabel'
 import selectStyles  from './selectStyles';
 const CourseSelect = () => {
+  //sample hard-coded data that will eventually be an api request and a for loop
   const options = [
       {
-        value: "h_smith_richardson",
+        value: "H. Smith Richardson Golf Course",
         label: (
-          <div>
-            <label>H. Smith Richardson Golf Course</label>
-          </div>
+          <CourseLabel 
+            courseName="H. Smith Richardson Golf Course"
+            courseLocation="Fairfield, CT" />
         ),
       },
       {
-        value: "bethpage_black",
+        value: "Bethpage Black Golf Course",
         label: (
-          <div>
-            <label>Bethpage Black Golf Course</label>
-          </div>
+          <CourseLabel 
+            courseName="Bethpage Black Golf Course"
+            courseLocation="Farmingdale, NY" />
         ),
       },
       {
-        value: "bethpage_blue",
+        value: "Bethpage Blue Golf Course",
         label: (
-          <div>
-            <label>Bethpage Blue Golf Course</label>
-          </div>
+          <CourseLabel 
+            courseName="Bethpage Blue Golf Course"
+            courseLocation="Farmingdale, NY" />
         ),
       },
   ];   
