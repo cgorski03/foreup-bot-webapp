@@ -1,0 +1,8 @@
+#courseSelectionContainer{
+    justify-content: center;
+    width : 900px;
+    margin: auto;
+    display: flex;
+    margin-top: 30vh;
+
+}
