@@ -1,3 +1,15 @@
+:root {
+  /*Color Pallette*/
+  --primary-color: #21252b;
+  
+  --secondary-color-light: #646a75;
+  --secondary-color: #333842;
+  --secondary-color-dark: #1a1e22;
+  --accent-color: #E7c343;
+  --text-color: #cccccc;
+  --background-color: #21252b;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,7 +17,7 @@ body {
     sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #21252b;
+  background-color: var(--background-color);
 
 }
 

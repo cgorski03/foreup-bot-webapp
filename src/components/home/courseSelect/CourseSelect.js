@@ -1,7 +1,8 @@
 import Select from 'react-select'
-import CourseLabel from './label/CourseLabel'
 import selectStyles  from './selectStyles';
-const CourseSelect = () => {
+import CourseLabel from './label/CourseLabel'
+
+const CourseSelect = ({ onCourseSelection }) => {
   //sample hard-coded data that will eventually be an api request and a for loop
   const options = [
       {
@@ -26,16 +27,17 @@ const CourseSelect = () => {
           <CourseLabel 
             courseName="Bethpage Blue Golf Course"
             courseLocation="Farmingdale, NY" />
-        ),
-      },
-  ];   
-
+            ),
+          },
+        ];   
+        
   return (
       <div>
           <Select
           options={options}
           isSearchable={true}
           styles={selectStyles}
+          onChange={onCourseSelection}
           placeholder="Where would you like to play?"
           />
           

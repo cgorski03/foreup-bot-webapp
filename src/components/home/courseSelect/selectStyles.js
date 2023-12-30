@@ -15,23 +15,16 @@ const selectStyles = {
       padding: 12,
       fontSize: 15,
       width: 700,
-      backgroundColor: (state.isSelected || state.isFocused) ? '#333842' : '#21252b',
-      color: '#cccccc',
+      backgroundColor: (state.isSelected || state.isFocused) ? 'var(--secondary-color)' : 'var(--primary-color)',
       fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-      ':hover':{
-        backgroundColor: '#333842',
-      }
     }),
     control: (provided, state) => ({
       ...provided, // Spread the provided styles here
       padding: 10,
       fontSize: 27,
       width: 700,
-      backgroundColor: '#1a1e22',
+      backgroundColor: 'var(--secondary-color-dark)',
       border: 'none',
-      /*
-      border: '1px solid',
-      borderColor : ' #646a75 !important',*/
       overflow: 'hidden',
       borderTopLeftRadius : '7px',
       borderTopRightRadius : '7px',
@@ -46,7 +39,7 @@ const selectStyles = {
     }),
     menu: (provided, state) => ({
         ...provided,
-        backgroundColor : '#21252b',
+        backgroundColor : 'var(--primary-color)',
         boxShadow: '0px 9px 19px 8px rgba(26,26,26,.5)',
         marginTop: 0,
         marginBottom: 0,
@@ -67,12 +60,12 @@ const selectStyles = {
     
     input: (provided, state) => ({
         ...provided,
-        color: '#cccccc !important',
+        color: 'var(--text-color)',
         textAlign: 'center',
       }),
     singleValue: (provided, state) => ({
         ...provided,
-        color: '#cccccc !important',
+        color: 'var(--text-color)',
       }),
     indicatorContainer: (provided, state) => ({
         display:'none',
@@ -82,10 +75,6 @@ const selectStyles = {
       }),
     dropdownIndicator: (provided, state) => ({
         display: 'none',
-        /*
-        ...provided,
-        'color': '#646a75',
-        */
       }),
   };
   
