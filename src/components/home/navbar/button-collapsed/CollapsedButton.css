@@ -1,0 +1,15 @@
+.collapsedButtonStyling {
+    width : 100%;
+    height: 90px;
+    background-color: var(--secondary-color-dark);
+    border: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: var(--text-color);
+    font-size: 22px;
+}
+
+.collapsedButtonStyling:hover{
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
