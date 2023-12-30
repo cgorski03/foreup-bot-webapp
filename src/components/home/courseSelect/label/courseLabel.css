@@ -4,6 +4,7 @@
   }
   
   .course-name {
+    color: var(--text-color);
   }
   
   .location {

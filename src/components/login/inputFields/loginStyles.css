@@ -20,25 +20,25 @@
 
 .loginField:hover,
 .loginField:focus { 
-  background-color: #333842;
+  background-color: var(--secondary-color);
 }
 
 #passwordBox,
 #usernameBox {
-  color:#cccccc;
+  color: var(--text-color);
   border: 1px solid #646a75;
 }
 
 #loginActionButton {
-  border: 1px solid #E7c343;
-  color:#E7c343;
+  border: 1px solid var(--accent-color);
+  color:var(--accent-color);
 }
 #loginActionButton:hover{
   cursor:pointer;
 }
 #loginActionButton.loading {
   /*This style takes precedence over the hover one*/
-  background-color: #21252b;
+  background-color: var(--background-color);
 }
 
 .spinner {
