@@ -1,11 +1,15 @@
 import './CollapsedButton.css'
-const CollapsedButton = ({onClick, content, Current}) => {
-    console.log(content)
+const CollapsedButton = ({onClick, content, isExpanded}) => {
+
   return (
     <button
-        className="collapsedButtonStyling"
+        id="navButtonClickable"
         onClick={onClick}>
-            {content}
+            {!isExpanded ? <div className='collapsedIconStyling'>{content[0]}</div> : 
+            <div className='expandedButtonStyling'>
+              <div className='expandedIconStyling'>{content[0]}</div>
+              <div className='expandedTextStyling'>{content[1]}</div>
+            </div>}
     </ button>
   )
 }

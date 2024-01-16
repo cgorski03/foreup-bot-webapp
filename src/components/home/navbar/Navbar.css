@@ -2,7 +2,6 @@
     position: absolute;
     top: 15%;
     height: 70%;
-    width: 90px;
     
     background-color: var(--secondary-color-dark);
     box-shadow: 0px 9px 11px 8px rgba(26,26,26,.3);
@@ -12,6 +11,7 @@
     
     transition: width 0.3s ease;
 }
+
 #leftApplicationNavigationBar:hover{
  
 }
