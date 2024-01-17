@@ -1,5 +1,5 @@
 .loginField {
-  background-color: #21252b;
+  background-color: var(--primary-color);
   
   padding-top: 10px;
   padding-bottom: 10px;
@@ -35,6 +35,9 @@
 }
 #loginActionButton:hover{
   cursor:pointer;
+}
+#loginActionButton:active{
+  background-color: var(--primary-color);
 }
 #loginActionButton.loading {
   /*This style takes precedence over the hover one*/
