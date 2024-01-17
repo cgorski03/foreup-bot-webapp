@@ -1,17 +1,33 @@
 import './Navbar.css'
 import { IoMenu } from "react-icons/io5";
 import { IoMdHome } from "react-icons/io";
-import {useState} from 'react';
+import { IoIosSettings } from "react-icons/io";
+import { IoLogOut } from "react-icons/io5";
+import { useState } from 'react';
+import handleSignout from '../../../utils/authFunctions/handleSignOut';
 import CollapsedButton from './button-collapsed/CollapsedButton';
+import { useNavigate  } from 'react-router-dom';
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate(); 
+  
   const HandleExpandButtonClick = () =>{
     setIsExpanded(!isExpanded);
   }
   const HandleHomeButtonClick = () =>{
-    //This is temporary mock logic before real logic is implemented
-    alert("You are being redirected to the home page!");
+    navigate('/home');
+  }
+  const HandleSettingsButtonClick = () =>{
+    //The settings page does not exist yet
+    // navigate('/settings');
+    alert("The settings page has not been implemented yet")
+  }
+  
+  const HandleSignOutButtonClick = () => {
+    console.log("trying to sign out");
+    handleSignout();
+    window.location.reload(true);
   }
 
   return (
@@ -24,6 +40,16 @@ const Navbar = () => {
       <CollapsedButton 
         onClick={HandleHomeButtonClick}
         content={[<IoMdHome />, "Home"]}
+        isExpanded={isExpanded}
+        />
+      <CollapsedButton 
+        onClick={HandleSettingsButtonClick}
+        content={[<IoIosSettings />, "Settings"]}
+        isExpanded={isExpanded}
+        />
+      <CollapsedButton 
+        onClick={HandleSignOutButtonClick}
+        content={[<IoLogOut />, "Sign Out"]}
         isExpanded={isExpanded}
         />
     </div>
