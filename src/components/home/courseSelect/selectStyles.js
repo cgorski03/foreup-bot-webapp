@@ -16,6 +16,9 @@ const selectStyles = {
       fontSize: 15,
       width: 700,
       backgroundColor: (state.isSelected || state.isFocused) ? 'var(--secondary-color)' : 'var(--primary-color)',
+      ':active' : {
+        backgroundColor: 'rgba(99, 106, 117, .18)',
+      },
       fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
     }),
     control: (provided, state) => ({

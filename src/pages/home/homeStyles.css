@@ -1,8 +1,13 @@
 #courseSelectionContainer{
     justify-content: center;
-    width : 900px;
+    width : 700px;
     margin: auto;
     display: flex;
     margin-top: 20vh;
 
+}
+#homePageContainer{
+    display: flex;
+    height: 100vh;
+    align-items: center;
 }
