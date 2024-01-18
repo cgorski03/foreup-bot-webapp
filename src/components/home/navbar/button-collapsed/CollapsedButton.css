@@ -40,3 +40,7 @@
     background-color: rgba(99, 106, 117, .18);
     cursor: pointer;
 }
+#navButtonClickable:active{
+    background-color: var(--secondary-color-dark);
+    cursor: pointer;
+}
