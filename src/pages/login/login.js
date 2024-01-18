@@ -19,19 +19,24 @@ const Login = () => {
       navigate('/home')
     }
   }, [isAuthenticated, navigate]);
-
-  return (
-    <div>
-      {(isAuthenticated === null) ? <TailSpin
-        color="white"
-        width="40"
-        wrapperClass="mainLoginPageLoader"
-      />:
-      <LoginForm onAuthentication={handleOnAuthentication} /> 
-      }
-      
-    </div>
-  );
+  if(isAuthenticated === null){
+    return (
+      <div>
+        <TailSpin
+          color="white"
+          width="40"
+          wrapperClass="mainLoginPageLoader"
+        />
+      </div>
+    );
+  }else {
+    return (
+      <div>
+        <LoginForm onAuthentication={handleOnAuthentication} /> 
+      </div>
+    );
+    
+  }
 };
 
 export default Login;
