@@ -1,3 +1,4 @@
+import {TailSpin} from 'react-loader-spinner';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../utils/hooks/useAuth'
@@ -21,13 +22,25 @@ const Home = () => {
         setSelectedCourse(selectedOption.value);
         console.log(selectedCourse);  
     }
-    return(
-        <div id="homePageContainer">
-                <div id="courseSelectionContainer">
-                    <CourseSelect onCourseSelection={handleCourseSelection} />
+    if(isAuthenticated === null){
+      return (
+        <div>
+          <TailSpin
+            color="white"
+            width="40"
+            wrapperClass="mainLoginPageLoader"
+          />
         </div>
-                <Navbar />
-    </div>
+      );
+    }else {
+      return(
+        <div id="homePageContainer">
+          <Navbar />
+          <div id="courseSelectionContainer">
+              <CourseSelect onCourseSelection={handleCourseSelection} />
+          </div>
+        </div>
     )
+    }
 }
 export default Home;
