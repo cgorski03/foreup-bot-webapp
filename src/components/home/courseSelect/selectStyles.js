@@ -33,7 +33,7 @@ const selectStyles = {
       borderTopRightRadius : '7px',
       borderBottomRightRadius : '0px',
       borderBottomLeftRadius : '0px',
-      boxShadow: '0px 9px 19px 8px rgba(26,26,26,.5)',
+      boxShadow: '0px 9px 19px 8px rgba(26,26,26,.1)',
       ':hover' : {
         cursor: 'text',
       },
@@ -43,7 +43,7 @@ const selectStyles = {
     menu: (provided, state) => ({
         ...provided,
         backgroundColor : 'var(--primary-color)',
-        boxShadow: '0px 9px 19px 8px rgba(26,26,26,.5)',
+        boxShadow: '0px 9px 19px 8px rgba(26,26,26,.2)',
         marginTop: 0,
         marginBottom: 0,
         borderBottomLeftRadius:7,

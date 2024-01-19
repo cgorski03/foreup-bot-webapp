@@ -70,6 +70,7 @@ const CourseSelect = ( props: CourseSelectProps ) => {
             }
           }}
           placeholder="Where would you like to play?"
+          maxMenuHeight={207.5}
           />
           
       </div>

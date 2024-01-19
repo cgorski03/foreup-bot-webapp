@@ -10,18 +10,32 @@
     justify-content: center;
     height: 100vh;
 }
+#courseDetailsContainer{
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color);
+    background-color: var(--secondary-color-dark);
+    margin-top:30px;
+    height: 177.5px;
+    width: 100%;
+}
+
 #searchDetailsContainer {
+    box-shadow: 0px 9px 19px 8px rgba(26,26,26,.1);
     display: flex;
     flex-direction: row;
     background-color: var(--secondary-color-dark);
-    height: 300px;
     width: 100%;
-    margin-top:30px;
+    aspect-ratio: 2/1;
     border-radius: 3px;
 
 }
 
 #dateSelectContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
     box-sizing: border-box;
     width: calc(50% - 15px);
     height: calc(100% - 20px);
@@ -38,7 +52,12 @@
     height: 100%;
 }
 
-#startField{
+#startEndField{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    border-radius: 2px;
     margin-top: 10px;
     margin-left:10px;
     border: 1px solid var(--accent-color) ;
@@ -46,7 +65,12 @@
     height: calc(50% - 15px);
 }
 
-#endField{
+#playersContactField{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    border-radius: 2px;
     margin-top:5px;
     margin-left:10px;
     border: 1px solid var(--accent-color) ;
