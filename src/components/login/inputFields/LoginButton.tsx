@@ -1,8 +1,16 @@
 import './loginStyles.css'
+import React from 'react';
+//@ts-ignore
 import { ReactComponent as Loader } from './loader.svg'
 
-const LoginButton = ( {onClick, loading} ) => {
-  
+type LoginButtonProps = {
+  onClick: () => void;
+  loading: boolean;
+}
+
+const LoginButton = ( props: LoginButtonProps ) => {
+  const { onClick, loading } = props;
+
   return (
     <button 
     className={`loginField ${loading ? "loading" : ""}`}

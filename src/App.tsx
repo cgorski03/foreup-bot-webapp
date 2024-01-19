@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/home/home';
 import Login from './pages/login/login';
@@ -8,9 +9,7 @@ import config from './amplifyconfiguration.json';
 
 Amplify.configure(config);
 
-function App() {
-
-
+function App(): JSX.Element {
 
   return (
     <Router>

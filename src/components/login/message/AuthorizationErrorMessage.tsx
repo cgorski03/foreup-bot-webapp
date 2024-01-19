@@ -1,11 +1,17 @@
 import React from 'react'
 import './AuthorizationErrorMessage.css'
-const AuthorizationErrorMessage = ({ err }) => {
+
+type AuthorizationErrorMessageProps = {
+    error: string;
+}
+const AuthorizationErrorMessage = (props: AuthorizationErrorMessageProps) => {
+    const {error} = props; 
+    
     const parseLoginMessage = () => {
-        if(err === ""){
+        if(error === ""){
             return ""
         }
-        switch(err.message) {
+        switch(error) {
             case "username is required to signIn": 
                 return "Please provide a username and password";
 

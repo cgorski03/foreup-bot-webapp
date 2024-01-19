@@ -6,11 +6,17 @@ import PasswordField from './inputFields/PasswordField'
 import AuthorizationErrorMessage from './message/AuthorizationErrorMessage'
 import "./loginForm.css"
 
-const LoginForm = ({onAuthentication}) => {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
-    const [loading, setLoader] = useState(false);
-    const [loginErrorMessage, setLoginErrorMessage] = useState("");
+type LoginFormProps = {
+    onAuthentication:() => void;
+}
+const LoginForm = (props: LoginFormProps) => {
+    const {onAuthentication} = props;
+
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [loading, setLoader] = useState<boolean>(false);
+    const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
+    
     
     async function attemptLogin() {
         try {
@@ -19,22 +25,22 @@ const LoginForm = ({onAuthentication}) => {
             setLoader(false);
             onAuthentication(); // call the parent callback function 
             // testing const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
-        } catch (error) {
+        } catch (error:any) {
             setLoader(false);
-            setLoginErrorMessage(error)
+            setLoginErrorMessage(error.message);
         }
       }
 
-    const handleUsernameChange = (newUsername) => {
+    const handleUsernameChange = (newUsername:string) => {
         setUsername(newUsername);
     }
-    const handlePasswordChange = (newPassword) => {
+    const handlePasswordChange = (newPassword:string) => {
         setPassword(newPassword);
     }
     const handleLogin = () => {
         attemptLogin();
     }
-    const handleEnterKey = (event) => {
+    const handleEnterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if(event.key === 'Enter'){
           handleLogin();
         }else{
@@ -50,9 +56,10 @@ const LoginForm = ({onAuthentication}) => {
         <div className="textField" onKeyDown={handleEnterKey}>
             <img src="/images/golf_bot_image.jpeg" className="appImage" alt=""/>
             <UsernameField onChange={handleUsernameChange}/>
+
             <PasswordField onChange={handlePasswordChange}/>
             <LoginButton onClick={handleLogin} loading={loading}/>
-            <AuthorizationErrorMessage err={loginErrorMessage} />
+            <AuthorizationErrorMessage error={loginErrorMessage} />
         </div>
     )
 }
