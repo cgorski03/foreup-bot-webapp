@@ -1,6 +1,14 @@
+import React from 'react';
 import './courseLabel.css';
 
-const CourseLabel = ( {courseName, courseLocation} ) => {
+type CourseLabelProps = {
+  courseName: string;
+  courseLocation: string;
+}
+
+const CourseLabel = ( props: CourseLabelProps ) => {
+  const {courseName, courseLocation} = props;
+  
   return (
     <div className="label">
         <div className="course-name">{courseName}</div>

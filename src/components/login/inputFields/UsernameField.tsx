@@ -1,8 +1,13 @@
 import './loginStyles.css'
+import React, {ChangeEvent} from 'react';
 
-const UsernameField = ({ onChange }) => {
-  
-  const handleUserInput = (event) => {
+type UsernameFieldProps = {
+  onChange: (newUsername:string) => void;
+}
+
+const UsernameField = (props:UsernameFieldProps) => {
+  const {onChange} = props;
+  const handleUserInput = (event: ChangeEvent<HTMLInputElement>) => {
     //callback to parent function
     onChange(event.target.value)
   }

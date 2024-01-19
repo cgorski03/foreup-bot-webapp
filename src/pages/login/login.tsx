@@ -1,3 +1,4 @@
+import React from 'react';
 import LoginForm from '../../components/login/LoginForm';
 import { useNavigate } from 'react-router-dom';
 import {TailSpin} from 'react-loader-spinner';
@@ -5,11 +6,11 @@ import useAuth from '../../utils/hooks/useAuth';
 import { useEffect } from 'react'
 import "./login.css"
 
-const Login = () => {
+const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const isAuthenticated = useAuth();
   
-  const handleOnAuthentication = () => {
+  const handleOnAuthentication = (): void => {
     navigate('/home')
   }
 
@@ -19,6 +20,7 @@ const Login = () => {
       navigate('/home')
     }
   }, [isAuthenticated, navigate]);
+
   if(isAuthenticated === null){
     return (
       <div>

@@ -1,4 +1,5 @@
 import './Navbar.css'
+import React from 'react';
 import { IoMenu } from "react-icons/io5";
 import { IoMdHome } from "react-icons/io";
 import { IoIosSettings } from "react-icons/io";
@@ -27,29 +28,33 @@ const Navbar = () => {
   const HandleSignOutButtonClick = () => {
     console.log("trying to sign out");
     handleSignout();
-    window.location.reload(true);
+    window.location.reload();
   }
 
   return (
     <div id="leftApplicationNavigationBar" style={{width: !isExpanded ? 85 : 300}}>
       <CollapsedButton 
         onClick={HandleExpandButtonClick}
-        content={[<IoMenu />, ""]}
+        icon = {<IoMenu />}
+        content=""
         isExpanded={isExpanded}
         />
       <CollapsedButton 
         onClick={HandleHomeButtonClick}
-        content={[<IoMdHome />, "Home"]}
+        icon = {<IoMdHome />}
+        content="Home"
         isExpanded={isExpanded}
         />
       <CollapsedButton 
         onClick={HandleSettingsButtonClick}
-        content={[<IoIosSettings />, "Settings"]}
+        icon = {<IoIosSettings />}
+        content="Settings"
         isExpanded={isExpanded}
         />
       <CollapsedButton 
         onClick={HandleSignOutButtonClick}
-        content={[<IoLogOut />, "Sign Out"]}
+        icon={<IoLogOut />}
+        content="Sign Out"
         isExpanded={isExpanded}
         />
     </div>

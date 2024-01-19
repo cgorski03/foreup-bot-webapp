@@ -1,5 +1,7 @@
 import "./NotFound.css"
-const NotFound = () => {
+import React from "react";
+
+const NotFound = (): JSX.Element => {
   return (
     <div className="notFoundPageStyling">
       <img src="/images/golf_bot_image.jpeg" className="appImage" alt=""/>

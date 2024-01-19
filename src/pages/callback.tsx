@@ -1,8 +1,9 @@
+import React from 'react';
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAuth from '../utils/hooks/useAuth'
 
-const Callback = () => {
+const Callback: React.FC = () => {
     const navigate = useNavigate();
     const isAuthenticated = useAuth();
     useEffect (() => {
@@ -13,6 +14,10 @@ const Callback = () => {
           navigate('/home');
         }
     }, [navigate, isAuthenticated]);
+
+    return (
+      <div />
+    )
   };
   
   export default Callback;
