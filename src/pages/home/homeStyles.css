@@ -42,9 +42,6 @@
     margin-left: 10px;
     margin-right: 5px;
     margin-top: 10px;
-    border-radius: 2px;
-    border: 1px solid var(--accent-color) ;
-
 }
 #startEndTimeContainer { 
     display: flex;
