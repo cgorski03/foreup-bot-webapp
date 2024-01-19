@@ -42,6 +42,17 @@ const Home = () => {
           <Navbar />
           <div id="courseSelectionContainer">
               <CourseSelect onCourseSelection={handleCourseSelection} />
+              <div id="searchDetailsContainer">
+
+                <div id="dateSelectContainer">
+
+                </div>
+                <div id="startEndTimeContainer">
+                  <div id="startField" />
+                  <div id="endField" />
+
+                </div>
+              </div>
           </div>
         </div>
     )

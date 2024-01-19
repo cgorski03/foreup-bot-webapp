@@ -1,13 +1,55 @@
 #courseSelectionContainer{
-    justify-content: center;
     width : 700px;
-    margin: auto;
-    display: flex;
     margin-top: 20vh;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #homePageContainer{
-    display: flex;
+    display:flex;
+    justify-content: center;
     height: 100vh;
-    align-items: center;
+}
+#searchDetailsContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--secondary-color-dark);
+    height: 300px;
+    width: 100%;
+    margin-top:30px;
+    border-radius: 3px;
+
+}
+
+#dateSelectContainer {
+    box-sizing: border-box;
+    width: calc(50% - 15px);
+    height: calc(100% - 20px);
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 2px;
+    border: 1px solid var(--accent-color) ;
+
+}
+#startEndTimeContainer { 
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+#startField{
+    margin-top: 10px;
+    margin-left:10px;
+    border: 1px solid var(--accent-color) ;
+    width: calc(100% - 15px);
+    height: calc(50% - 15px);
+}
+
+#endField{
+    margin-top:5px;
+    margin-left:10px;
+    border: 1px solid var(--accent-color) ;
+    width: calc(100% - 15px);
+    height: calc(50% - 15px);
 }

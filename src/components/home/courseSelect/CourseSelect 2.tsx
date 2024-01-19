@@ -35,22 +35,6 @@ const options: Option[] = [
           courseLocation="Farmingdale, NY" />
           ),
         },
-    {
-      value: "Westchase Golf Club",
-      label: (
-        <CourseLabel 
-          courseName="Westchase Golf Club"
-          courseLocation="Tampa, FL" />
-          ),
-        },
-    {
-      value: "Mangrove Bay Golf Course",
-      label: (
-        <CourseLabel 
-          courseName="Mangrove Bay Golf Course"
-          courseLocation="St. Petersburg, FL" />
-          ),
-        },
       ];   
 
 const CourseSelect = ( props: CourseSelectProps ) => {
