@@ -1,25 +1,25 @@
 .loginField {
   background-color: var(--primary-color);
-  
+
   padding-top: 10px;
   padding-bottom: 10px;
-  
+
   padding-right: 7px;
   padding-left: 7px;
-  
+
   border-radius: 7px;
-  
+
   font-size: 15px;
   outline: none;
-  
+
   box-sizing: border-box;
   width: 250px;
-  
+
   margin-bottom: 18px;
 }
 
 .loginField:hover,
-.loginField:focus { 
+.loginField:focus {
   background-color: var(--secondary-color);
 }
 
@@ -31,12 +31,12 @@
 
 #loginActionButton {
   border: 1px solid var(--accent-color);
-  color:var(--accent-color);
+  color: var(--accent-color);
 }
-#loginActionButton:hover{
-  cursor:pointer;
+#loginActionButton:hover {
+  cursor: pointer;
 }
-#loginActionButton:active{
+#loginActionButton:active {
   background-color: var(--primary-color);
 }
 #loginActionButton.loading {
