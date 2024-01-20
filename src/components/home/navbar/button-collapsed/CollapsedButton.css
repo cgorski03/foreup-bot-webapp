@@ -1,46 +1,45 @@
-#navButtonClickable { 
-    width : 100%;
-    height: 70px;
-    background-color: var(--secondary-color-dark);
-    border: none;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    color: var(--text-color);
-    font-size: 30px;
-    transition: background-color 0.3s ease;
-    margin-left: auto;
+#navButtonClickable {
+  width: 100%;
+  height: 70px;
+  background-color: var(--secondary-color-dark);
+  border: none;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  color: var(--text-color);
+  font-size: 30px;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
 }
-.expandedButtonStyling{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.expandedButtonStyling {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .collapsedButtonStyling {
-
 }
 .collapsedIconStyling {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: auto;
-    left: 27.5px;
-    transform: translate(0, -50%);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: auto;
+  left: 27.5px;
+  transform: translate(0, -50%);
 }
 .expandedIconStyling {
-    display: flex;
-    flex-direction: column;
-    padding-left: 21.5px
+  display: flex;
+  flex-direction: column;
+  padding-left: 21.5px;
 }
 .expandedTextStyling {
-    font-size: 15px;
-    margin: auto;
+  font-size: 15px;
+  margin: auto;
 }
-#navButtonClickable:hover{
-    background-color: rgba(99, 106, 117, .18);
-    cursor: pointer;
+#navButtonClickable:hover {
+  background-color: rgba(99, 106, 117, 0.18);
+  cursor: pointer;
 }
-#navButtonClickable:active{
-    background-color: var(--secondary-color-dark);
-    cursor: pointer;
+#navButtonClickable:active {
+  background-color: var(--secondary-color-dark);
+  cursor: pointer;
 }

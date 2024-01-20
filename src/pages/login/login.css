@@ -1,16 +1,16 @@
 #webapp-main-image {
-    max-width: 130px;
-    max-height: 130px;
-    border-radius: 10px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30vh;
-    flex-direction: column;
-}  
-.mainLoginPageLoader { 
-    justify-content: center;
-    margin-top: 30vh;
-    animation-timing-function: ease-in;
+  max-width: 130px;
+  max-height: 130px;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30vh;
+  flex-direction: column;
+}
+.mainLoginPageLoader {
+  justify-content: center;
+  margin-top: 30vh;
+  animation-timing-function: ease-in;
 }

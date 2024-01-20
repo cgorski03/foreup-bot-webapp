@@ -1,26 +1,26 @@
-import React, {ChangeEvent} from 'react'
-import './loginStyles.css'
+import React, { ChangeEvent } from "react";
+import "./loginStyles.css";
 
 type PasswordFieldProps = {
-  onChange: (newPassword:string) => void;
-}
+  onChange: (newPassword: string) => void;
+};
 
 const passwordField = (props: PasswordFieldProps) => {
   const { onChange } = props;
-  
+
   const handleUserInput = (event: ChangeEvent<HTMLInputElement>) => {
     //callback to parent function
-    onChange(event.target.value)
-  }
+    onChange(event.target.value);
+  };
   return (
-      <input
+    <input
       type="password"
       className="loginField"
-      id="passwordBox" 
+      id="passwordBox"
       placeholder="Password"
       onChange={handleUserInput}
     />
-    );
+  );
 };
 
 export default passwordField;

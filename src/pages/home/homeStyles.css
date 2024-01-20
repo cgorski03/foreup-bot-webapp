@@ -1,79 +1,78 @@
-#courseSelectionContainer{
-    width : 700px;
-    margin-top: 20vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#courseSelectionContainer {
+  width: 700px;
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-#homePageContainer{
-    display:flex;
-    justify-content: center;
-    height: 100vh;
+#homePageContainer {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
 }
-#courseDetailsContainer{
-    display: flex;
-    justify-content: space-between;
-    color: var(--text-color);
-    background-color: var(--secondary-color-dark);
-    margin-top:30px;
-    height: 177.5px;
-    width: 100%;
+#courseDetailsContainer {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-color);
+  background-color: var(--secondary-color-dark);
+  margin-top: 30px;
+  height: 177.5px;
+  width: 100%;
 }
 
 #searchDetailsContainer {
-    box-shadow: 0px 9px 19px 8px rgba(26,26,26,.1);
-    display: flex;
-    flex-direction: row;
-    background-color: var(--secondary-color-dark);
-    width: 100%;
-    aspect-ratio: 2/1;
-    border-radius: 3px;
-
+  box-shadow: 0px 9px 19px 8px rgba(26, 26, 26, 0.1);
+  display: flex;
+  flex-direction: row;
+  background-color: var(--secondary-color-dark);
+  width: 100%;
+  aspect-ratio: 2/1;
+  border-radius: 3px;
 }
 
 #dateSelectContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-    box-sizing: border-box;
-    width: calc(50% - 15px);
-    height: calc(100% - 20px);
-    margin-left: 10px;
-    margin-right: 5px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  box-sizing: border-box;
+  width: calc(50% - 15px);
+  height: calc(100% - 20px);
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-top: 10px;
 }
-#startEndTimeContainer { 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 5px;
-    margin-right: 10px;
+#startEndTimeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 10px;
 
-    width: calc(50% - 15px);
-    height: calc(100% - 20px);
-}
-
-#startEndField{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-    border-radius: 2px;
-    border: 1px solid var(--accent-color) ;
-    width: 100%;
-    height: calc(50% - 5px);
+  width: calc(50% - 15px);
+  height: calc(100% - 20px);
 }
 
-#playersContactField{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-    border-radius: 2px;
-    border: 1px solid var(--accent-color) ;
-    width: 100%;
-    height: calc(50% - 5px);
+#startEndField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  border-radius: 2px;
+  border: 1px solid var(--accent-color);
+  width: 100%;
+  height: calc(50% - 5px);
+}
+
+#playersContactField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  border-radius: 2px;
+  border: 1px solid var(--accent-color);
+  width: 100%;
+  height: calc(50% - 5px);
 }

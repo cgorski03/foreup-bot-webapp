@@ -1,66 +1,54 @@
-/*.react-datepicker {
-    width: 100%;
-    height:100%;
-    background-color: var(--secondary-color-dark);
-}
-.react-datepicker__month-container {
-    background-color: var(--secondary-color-dark);
-    width: 100%;
-    height:100%;
-}
-.react-datepicker__month{
-    
-}
-.datePickerWrapperClass{
-    width:100% !important;
-    height:100% !important;
-}
-*/
-#calendarDatepickerComponentContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:100%;
-    height:100%;
-}
-
 .react-datepicker {
-    transform: scale(1.32);
-    background-color: var(--secondary-color-dark);
-    border: none;
-    border-radius: .1rem !important;
-
+  /*This is not a great solution to achieve the increased size of the 
+    datepicker but will work for now*/
+  transform: scale(1.32);
+  background-color: var(--secondary-color-dark);
+  border: none;
 }
 .react-datepicker__header {
-    background-color: var(--secondary-color-dark);
+  background-color: var(--secondary-color-dark);
 }
-.react-datepicker__navigation{
-    display: none;
+.react-datepicker__navigation {
+  /*Users will not be booking months in advance*/
+  display: none;
 }
 .react-datepicker__current-month {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .react-datepicker__day-name {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 .react-datepicker__day {
-    color: var(--text-color);
+  color: var(--text-color);
+  /* Initially set outline to be transparent to acheive opacity fade in */
+  outline: solid 1px transparent;
+  transition: outline 0.05s ease;
 }
 .react-datepicker__day:hover {
-    background-color: var(--secondary-color-light);
+  background-color: var(--secondary-color-dark);
+  border-radius: 3px;
+  outline-color: var(--accent-color);
 }
 
 .react-datepicker__day--disabled {
-    color: var(--secondary-color);
+  /*Ensure hover styles will not apply to disabled days*/
+  outline: none;
+  color: var(--secondary-color);
 }
-.react-datepicker__day--today{
-    font-weight: normal;
+
+.react-datepicker__day--today {
+  font-weight: normal;
 }
 
 .react-datepicker__day--selected {
-    transition: background-color .1s ease;
-    background-color: var(--accent-color) !important;
-    color: var(--secondary-color);
-    font-weight: bolder;
+  /*These styles are flagged !important so they overrule the hover styles*/
+  background-color: var(--accent-color) !important;
+  outline: none !important;
+
+  border-radius: 3px;
+  transition: background-color 0.1s ease;
+
+  color: var(--secondary-color);
+  font-weight: bolder;
 }
