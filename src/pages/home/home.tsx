@@ -25,16 +25,17 @@ const Home = () => {
       }, [isAuthenticated, navigate]);
 
     const handleCourseSelection = (selectedOption: string): void => {
-        setSelectedCourse(selectedOption);
-        // TODO 
-        //This will be logic to determine how far in advance the  user can search based upon the golf course for now, when you select a course it is 7 days
-        // Add 7 days to the current date
-        const futureDate = new Date();
-        futureDate.setDate(futureDate.getDate() + 7);
-        setCalendarEndDate(futureDate);
+      setSelectedCourse(selectedOption);
+      // TODO 
+      //This will be logic to determine how far in advance the  user can search based upon the golf course for now, when you select a course it is 7 days
+      // Add 7 days to the current date
+      const futureDate = new Date();
+      futureDate.setDate(futureDate.getDate() + 7);
+      setCalendarEndDate(futureDate);
     }
     const handleDateSelection = (date:Date): void => {
       setSelectedDate(date);
+      console.log(date)
     }
     
     if(isAuthenticated === null){

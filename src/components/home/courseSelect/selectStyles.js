@@ -49,6 +49,7 @@ const selectStyles = {
         borderBottomLeftRadius:7,
         borderBottomRightRadius:7,
         boxSizing: 'border-box',
+        
 
       }),
     menuList: (provided, state) => ({
@@ -57,7 +58,10 @@ const selectStyles = {
         paddingBottom : 0,
         borderBottomLeftRadius:7,
         borderBottomRightRadius:7,
-        
+        "::-webkit-scrollbar": {
+          width: "0px",
+          height: "0px",
+        },
       }),
     
     
