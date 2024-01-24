@@ -7,6 +7,7 @@ import CourseSelect from "../../components/home/courseSelect/CourseSelect";
 import Navbar from "../../components/home/navbar/Navbar";
 import Calendar from "../../components/home/calendar/Calendar";
 import TimePicker from "../../components/home/timePicker/TimePicker";
+import { PlayerSelect } from "../../components/home/players/PlayerSelect";
 import "./homeStyles.css";
 
 const Home = () => {
@@ -19,7 +20,7 @@ const Home = () => {
   //logic for the preset start time - based on sunrise? Might be overthinking that maybe just like 6 am haha
   const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("08:00");
-
+  const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
   //This is a secured page
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -49,6 +50,12 @@ const Home = () => {
     setSelectedEndTime(time);
     console.log(time);
   };
+  const handlePlayerSelectChange = (players: number): void =>  {
+    //Mock logic with console.log
+    setSelectedPlayerCount(players);
+    console.log(players);
+
+  }
 
   if (isAuthenticated === null) {
     return (
@@ -77,14 +84,16 @@ const Home = () => {
               />
             </div>
             <div id="startEndTimeContainer">
-              <div id="startEndField">
+              <div className="searchCriteriaContainer">
                 <TimePicker
                   onStartTimeChange={handleStartTimeSelection}
                   onEndTimeChange={handleEndTimeSelection}
                 />
+                <PlayerSelect
+                  onPlayerSelectChange={handlePlayerSelectChange}
+                />
               </div>
               <div id="playersContactField">
-                <p>Players + Contact Confirmation</p>
               </div>
             </div>
           </div>

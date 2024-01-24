@@ -1,0 +1,36 @@
+.playerCountSelectContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 154px;
+}
+.playerCountButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color-dark);
+
+  height: 35px;
+  width: 35px;
+  border-radius: 3px;
+
+  font-size: 16.9px;
+  text-align: center;
+  box-sizing: border-box;
+
+  color: var(--text-color);
+  border: 1px solid var(--secondary-color);
+}
+.playerCountButton:hover{
+  cursor: pointer;
+}
+.activePlayerCount{
+  border-color: var(--accent-color);
+  transition: border-color 0.2s ease;
+  /* background-color: var(--accent-color) !important;
+  transition: background-color 0.2s ease;
+
+  color: var(--secondary-color);
+  font-weight: bolder;
+  */ 
+}

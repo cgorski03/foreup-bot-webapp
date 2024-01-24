@@ -55,23 +55,15 @@
   height: calc(100% - 20px);
 }
 
-#startEndField {
+.searchCriteriaContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   color: var(--text-color);
   border-radius: 2px;
   width: 100%;
-  height: calc(50% - 5px);
+  height: 100%;
 }
 
-#playersContactField {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--text-color);
-  border-radius: 2px;
-  border: 1px solid var(--accent-color);
-  width: 100%;
-  height: calc(50% - 5px);
-}
+
