@@ -6,6 +6,7 @@ import useAuth from "../../utils/hooks/useAuth";
 import CourseSelect from "../../components/home/courseSelect/CourseSelect";
 import Navbar from "../../components/home/navbar/Navbar";
 import Calendar from "../../components/home/calendar/Calendar";
+import TimePicker from "../../components/home/timePicker/TimePicker";
 import "./homeStyles.css";
 
 const Home = () => {
@@ -15,6 +16,9 @@ const Home = () => {
   const [selectedCourse, setSelectedCourse] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [calendarEndDate, setCalendarEndDate] = useState<Date | null>(null);
+  //logic for the preset start time - based on sunrise? Might be overthinking that maybe just like 6 am haha
+  const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
+  const [selectedEndTime, setSelectedEndTime] = useState<string>("08:00");
 
   //This is a secured page
   useEffect(() => {
@@ -27,7 +31,6 @@ const Home = () => {
     setSelectedCourse(selectedOption);
     // TODO
     //This will be logic to determine how far in advance the  user can search based upon the golf course for now, when you select a course it is 7 days
-    // Add 7 days to the current date
     const futureDate = new Date();
     futureDate.setDate(futureDate.getDate() + 7);
     setCalendarEndDate(futureDate);
@@ -35,6 +38,16 @@ const Home = () => {
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
     console.log(date);
+  };
+  const handleStartTimeSelection = (time: string): void => {
+    //Mock logic with console.log
+    setSelectedStartTime(time);
+    console.log(time);
+  };
+  const handleEndTimeSelection = (time: string): void => {
+    //Mock logic with console.log
+    setSelectedEndTime(time);
+    console.log(time);
   };
 
   if (isAuthenticated === null) {
@@ -65,7 +78,10 @@ const Home = () => {
             </div>
             <div id="startEndTimeContainer">
               <div id="startEndField">
-                <p>Start/End Times</p>
+                <TimePicker
+                  onStartTimeChange={handleStartTimeSelection}
+                  onEndTimeChange={handleEndTimeSelection}
+                />
               </div>
               <div id="playersContactField">
                 <p>Players + Contact Confirmation</p>

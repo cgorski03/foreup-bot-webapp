@@ -61,7 +61,6 @@
   align-items: center;
   color: var(--text-color);
   border-radius: 2px;
-  border: 1px solid var(--accent-color);
   width: 100%;
   height: calc(50% - 5px);
 }
