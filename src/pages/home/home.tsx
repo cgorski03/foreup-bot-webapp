@@ -21,7 +21,7 @@ const Home = () => {
   const [calendarEndDate, setCalendarEndDate] = useState<Date | null>(null);
   //logic for the preset start time - based on sunrise? Might be overthinking that maybe just like 6 am haha
   const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
-  const [selectedEndTime, setSelectedEndTime] = useState<string>("08:00");
+  const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
 
   //This is a secured page
@@ -74,7 +74,7 @@ const Home = () => {
           <CourseSelect onCourseSelection={handleCourseSelection} />
           <div id="courseDetailsContainer">
             <p style={{ marginLeft: 20 }}>
-              Hello, {userInfo?.email}
+              Hello, {userInfo?.name}
             </p>
             <p>Course Length: 6704</p>
           </div>

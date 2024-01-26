@@ -9,9 +9,6 @@ const Callback = () => {
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/login");
-      console.log(
-        "Redirecting from callback to login because " + isAuthenticated
-      );
     } else {
       navigate("/home");
     }

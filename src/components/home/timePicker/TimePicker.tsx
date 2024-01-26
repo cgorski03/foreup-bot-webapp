@@ -28,20 +28,23 @@ const TimePicker = (props: TimePickerProps) => {
   };
 
   return (
-    <div className="timePickerContainer">
-      <input
-        className="timePickerInput startTimeInputBox"
-        type="time"
-        value={selectedStartTime}
-        onChange={handleStartTimeSelection}
-      />
-      -
-      <input
-        className="timePickerInput endTimeInputBox"
-        type="time"
-        value={selectedEndTime}
-        onChange={handleEndTimeSelection}
-      />
+    <div className="playerSelectComponentContainer">
+      <h1 className="inputFieldLabel">Time Range:</h1>
+      <div className="timePickerContainer">
+        <input
+          className="timePickerInput startTimeInputBox"
+          type="time"
+          value={selectedStartTime}
+          onChange={handleStartTimeSelection}
+        />
+        -
+        <input
+          className="timePickerInput endTimeInputBox"
+          type="time"
+          value={selectedEndTime}
+          onChange={handleEndTimeSelection}
+        />
+      </div>
     </div>
   );
 };

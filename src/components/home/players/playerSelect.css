@@ -35,3 +35,13 @@
   font-weight: bolder;
   */ 
 }
+.inputFieldLabel {
+  font-size: 14px;
+  font-weight: normal;
+}
+.playerSelectComponentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;  
+}
