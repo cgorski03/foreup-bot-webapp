@@ -1,15 +1,17 @@
 import "./Navbar.css";
-import React from "react";
+import React, { useContext } from "react";
 import { IoMenu } from "react-icons/io5";
 import { IoMdHome } from "react-icons/io";
 import { IoIosSettings } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { useState } from "react";
-import handleSignout from "../../../utils/authFunctions/handleSignOut";
+import { handleSignOut } from "../../../utils/authFunctions/handleSignOut";
 import CollapsedButton from "./button-collapsed/CollapsedButton";
 import { useNavigate } from "react-router-dom";
+import { UserInformationContext } from "../../../Contexts/UserContext";
 
 const Navbar = () => {
+  const { setUserInfo } = useContext(UserInformationContext);
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
 
@@ -27,7 +29,13 @@ const Navbar = () => {
 
   const HandleSignOutButtonClick = () => {
     console.log("trying to sign out");
-    handleSignout();
+    handleSignOut();
+    setUserInfo &&
+      setUserInfo({
+        name: undefined,
+        email: undefined,
+        email_verified: undefined,
+      });
     window.location.reload();
   };
 

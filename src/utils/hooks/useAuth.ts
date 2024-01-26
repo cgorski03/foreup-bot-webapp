@@ -12,7 +12,6 @@ const useAuth = (): boolean | null => {
         setIsAuthenticated(true);
       } catch (err) {
         // The user is not signed in
-        console.log(err);
         setIsAuthenticated(false);
       }
     };

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../utils/hooks/useAuth";
 
-const Callback: React.FC = () => {
+const Callback = () => {
   const navigate = useNavigate();
   const isAuthenticated = useAuth();
   useEffect(() => {

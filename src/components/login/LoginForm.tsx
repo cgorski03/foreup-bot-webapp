@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import { signIn } from "aws-amplify/auth";
+import React, { useState, useContext } from "react";
+import { signIn, fetchUserAttributes } from "aws-amplify/auth";
 import LoginButton from "./inputFields/LoginButton";
 import UsernameField from "./inputFields/UsernameField";
 import PasswordField from "./inputFields/PasswordField";
 import AuthorizationErrorMessage from "./message/AuthorizationErrorMessage";
 import "./loginForm.css";
+import { UserInformationContext } from "../../Contexts/UserContext";
 
 type LoginFormProps = {
   onAuthentication: () => void;
 };
 const LoginForm = (props: LoginFormProps) => {
   const { onAuthentication } = props;
-
+  const { setUserInfo } = useContext(UserInformationContext)
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoader] = useState<boolean>(false);
@@ -22,6 +23,13 @@ const LoginForm = (props: LoginFormProps) => {
       setLoader(true);
       await signIn({ username, password });
       setLoader(false);
+      const userAttributes = await fetchUserAttributes();
+      setUserInfo &&
+        setUserInfo({
+          name: userAttributes.name,
+          email: userAttributes.email,
+          email_verified: userAttributes.email_verified,
+        });
       onAuthentication(); // call the parent callback function
       // testing const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
     } catch (error: any) {

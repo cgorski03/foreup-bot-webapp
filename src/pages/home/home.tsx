@@ -1,6 +1,5 @@
-import React from "react";
 import { TailSpin } from "react-loader-spinner";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../utils/hooks/useAuth";
 import CourseSelect from "../../components/home/courseSelect/CourseSelect";
@@ -8,9 +7,12 @@ import Navbar from "../../components/home/navbar/Navbar";
 import Calendar from "../../components/home/calendar/Calendar";
 import TimePicker from "../../components/home/timePicker/TimePicker";
 import { PlayerSelect } from "../../components/home/players/PlayerSelect";
+import { UserInformationContext } from "../../Contexts/UserContext";
+
 import "./homeStyles.css";
 
 const Home = () => {
+  const { userInfo } = useContext(UserInformationContext)
   const navigate = useNavigate();
   const isAuthenticated = useAuth();
   //Initially blank, will have logic to show hide other info
@@ -21,6 +23,7 @@ const Home = () => {
   const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("08:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
+
   //This is a secured page
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -71,7 +74,7 @@ const Home = () => {
           <CourseSelect onCourseSelection={handleCourseSelection} />
           <div id="courseDetailsContainer">
             <p style={{ marginLeft: 20 }}>
-              placeholder course detail information
+              Hello, {userInfo?.email}
             </p>
             <p>Course Length: 6704</p>
           </div>
