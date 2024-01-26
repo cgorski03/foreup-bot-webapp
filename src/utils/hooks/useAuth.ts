@@ -1,5 +1,5 @@
-import { getCurrentUser } from 'aws-amplify/auth';
-import { useState, useEffect } from 'react'
+import { getCurrentUser } from "aws-amplify/auth";
+import { useState, useEffect } from "react";
 //The fact this isn't a hook in amplify is insane i miss auth0
 
 const useAuth = (): boolean | null => {
@@ -12,7 +12,7 @@ const useAuth = (): boolean | null => {
         setIsAuthenticated(true);
       } catch (err) {
         // The user is not signed in
-        console.log(err)
+        console.log(err);
         setIsAuthenticated(false);
       }
     };

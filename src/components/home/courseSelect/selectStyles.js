@@ -10,76 +10,79 @@ Hopefully, this will not be in my project for too long because I hate this libra
 I will make this component myself.
 */
 const selectStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      padding: 12,
-      fontSize: 15,
-      width: 700,
-      backgroundColor: (state.isSelected || state.isFocused) ? 'var(--secondary-color)' : 'var(--primary-color)',
-      ':active' : {
-        backgroundColor: 'rgba(99, 106, 117, .18)',
-      },
-      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-    }),
-    control: (provided, state) => ({
-      ...provided, // Spread the provided styles here
-      padding: 10,
-      fontSize: 27,
-      width: 700,
-      backgroundColor: 'var(--secondary-color-dark)',
-      border: 'none',
-      overflow: 'hidden',
-      borderTopLeftRadius : '7px',
-      borderTopRightRadius : '7px',
-      borderBottomRightRadius : '0px',
-      borderBottomLeftRadius : '0px',
-      boxShadow: '0px 9px 19px 8px rgba(26,26,26,.5)',
-      ':hover' : {
-        cursor: 'text',
-      },
-      ':focus' : {
-      },
-    }),
-    menu: (provided, state) => ({
-        ...provided,
-        backgroundColor : 'var(--primary-color)',
-        boxShadow: '0px 9px 19px 8px rgba(26,26,26,.5)',
-        marginTop: 0,
-        marginBottom: 0,
-        borderBottomLeftRadius:7,
-        borderBottomRightRadius:7,
-        boxSizing: 'border-box',
+  option: (provided, state) => ({
+    ...provided,
+    padding: 12,
+    fontSize: 15,
+    width: 700,
+    backgroundColor:
+      state.isSelected || state.isFocused
+        ? "var(--secondary-color)"
+        : "var(--primary-color)",
+    ":active": {
+      backgroundColor: "rgba(99, 106, 117, .18)",
+    },
+    fontFamily:
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  }),
+  control: (provided, state) => ({
+    ...provided, // Spread the provided styles here
+    padding: 10,
+    fontSize: 27,
+    width: 700,
+    backgroundColor: "var(--secondary-color-dark)",
+    border: "none",
+    overflow: "hidden",
+    borderTopLeftRadius: "7px",
+    borderTopRightRadius: "7px",
+    borderBottomRightRadius: "0px",
+    borderBottomLeftRadius: "0px",
+    boxShadow: "0px 9px 19px 8px rgba(26,26,26,.1)",
+    ":hover": {
+      cursor: "text",
+    },
+    ":focus": {},
+  }),
+  menu: (provided, state) => ({
+    ...provided,
+    backgroundColor: "var(--primary-color)",
+    boxShadow: "0px 9px 19px 8px rgba(26,26,26,.2)",
+    marginTop: 0,
+    marginBottom: 0,
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7,
+    boxSizing: "border-box",
+  }),
+  menuList: (provided, state) => ({
+    ...provided,
+    paddingTop: 0,
+    paddingBottom: 0,
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7,
+    "::-webkit-scrollbar": {
+      width: "0px",
+      height: "0px",
+    },
+  }),
 
-      }),
-    menuList: (provided, state) => ({
-        ...provided,
-        paddingTop : 0,
-        paddingBottom : 0,
-        borderBottomLeftRadius:7,
-        borderBottomRightRadius:7,
-        
-      }),
-    
-    
-    input: (provided, state) => ({
-        ...provided,
-        color: 'var(--text-color)',
-        textAlign: 'center',
-      }),
-    singleValue: (provided, state) => ({
-        ...provided,
-        color: 'var(--text-color)',
-      }),
-    indicatorContainer: (provided, state) => ({
-        display:'none',
-      }),
-    indicatorSeparator: (provided, state) => ({
-        display: 'none',
-      }),
-    dropdownIndicator: (provided, state) => ({
-        display: 'none',
-      }),
-  };
-  
-  export default selectStyles;
-  
+  input: (provided, state) => ({
+    ...provided,
+    color: "var(--text-color)",
+    textAlign: "center",
+  }),
+  singleValue: (provided, state) => ({
+    ...provided,
+    color: "var(--text-color)",
+  }),
+  indicatorContainer: (provided, state) => ({
+    display: "none",
+  }),
+  indicatorSeparator: (provided, state) => ({
+    display: "none",
+  }),
+  dropdownIndicator: (provided, state) => ({
+    display: "none",
+  }),
+};
+
+export default selectStyles;

@@ -1,16 +1,15 @@
 .label {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .course-name {
-    color: var(--text-color);
-  }
-  
-  .location {
-    font-size: 12px; /* Smaller font size for the location */
-    text-align: right;
-    margin-top: auto;
-    color: #666; /* Change color as needed */
-  }
-  
+  display: flex;
+  justify-content: space-between;
+}
+
+.course-name {
+  color: var(--text-color);
+}
+
+.location {
+  font-size: 12px; /* Smaller font size for the location */
+  text-align: right;
+  margin-top: auto;
+  color: #666; /* Change color as needed */
+}

@@ -1,0 +1,53 @@
+.react-datepicker {
+  /*This is not a great solution to achieve the increased size of the 
+    datepicker but will work for now*/
+  transform: scale(1.32);
+  background-color: var(--secondary-color-dark);
+  border: none;
+}
+.react-datepicker__header {
+  background-color: var(--secondary-color-dark);
+}
+.react-datepicker__navigation {
+  /*Users will not be booking months in advance*/
+  display: none;
+}
+.react-datepicker__current-month {
+  color: var(--text-color);
+}
+
+.react-datepicker__day-name {
+  color: var(--text-color);
+}
+.react-datepicker__day {
+  color: var(--text-color);
+  /* Initially set outline to be transparent to acheive opacity fade in */
+  border-radius: 3px !important;
+  outline: solid 1px transparent;
+  transition: outline 0.05s ease;
+}
+.react-datepicker__day:hover {
+  background-color: var(--secondary-color-dark);
+  outline-color: var(--accent-color);
+}
+
+.react-datepicker__day--disabled {
+  /*Ensure hover styles will not apply to disabled days*/
+  outline: none;
+  color: var(--secondary-color);
+}
+
+.react-datepicker__day--today {
+  font-weight: normal;
+}
+
+.react-datepicker__day--selected {
+  /*These styles are flagged !important so they overrule the hover styles*/
+  background-color: var(--accent-color) !important;
+  outline: none !important;
+
+  transition: background-color 0.1s ease;
+
+  color: var(--secondary-color);
+  font-weight: bolder;
+}
