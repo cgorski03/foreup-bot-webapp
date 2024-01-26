@@ -10,6 +10,7 @@ export const PlayerSelect = (props: PlayerSelectProps) => {
 
   const handleButtonClick = (buttonId: number) => {
     setSelectedPlayerCount(buttonId);
+    onPlayerSelectChange(buttonId);
   };
   return (
     <div className="playerCountSelectContainer">

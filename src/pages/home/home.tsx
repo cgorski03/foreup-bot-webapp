@@ -93,8 +93,7 @@ const Home = () => {
                   onPlayerSelectChange={handlePlayerSelectChange}
                 />
               </div>
-              <div id="playersContactField">
-              </div>
+              
             </div>
           </div>
         </div>

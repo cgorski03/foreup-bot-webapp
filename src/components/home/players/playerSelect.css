@@ -23,6 +23,7 @@
 }
 .playerCountButton:hover{
   cursor: pointer;
+
 }
 .activePlayerCount{
   border-color: var(--accent-color);
