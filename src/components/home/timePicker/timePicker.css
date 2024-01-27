@@ -37,7 +37,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   margin-right: 30px;
 }
 .timePickerInput:hover {
-  border-color: var(--secondary-color-light);
   cursor: text;
 }
 input[type="time"]::-webkit-datetime-edit-hour-field:focus,
