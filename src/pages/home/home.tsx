@@ -6,13 +6,15 @@ import CourseSelect from "../../components/home/courseSelect/CourseSelect";
 import Navbar from "../../components/home/navbar/Navbar";
 import Calendar from "../../components/home/calendar/Calendar";
 import TimePicker from "../../components/home/timePicker/TimePicker";
+import DropdownMenu from "../../components/home/dropdown/DropdownMenu";
 import { PlayerSelect } from "../../components/home/players/PlayerSelect";
 import { UserInformationContext } from "../../Contexts/UserContext";
 
 import "./homeStyles.css";
+import { labelValuePair } from "../../utils/types/labelValuePair";
 
 const Home = () => {
-  const { userInfo } = useContext(UserInformationContext)
+  const { userInfo } = useContext(UserInformationContext);
   const navigate = useNavigate();
   const isAuthenticated = useAuth();
   //Initially blank, will have logic to show hide other info
@@ -24,6 +26,9 @@ const Home = () => {
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
 
+  const contactMethods: labelValuePair[] = [
+    { label: userInfo?.email, value: "email" },
+  ];
   //This is a secured page
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -53,13 +58,14 @@ const Home = () => {
     setSelectedEndTime(time);
     console.log(time);
   };
-  const handlePlayerSelectChange = (players: number): void =>  {
+  const handlePlayerSelectChange = (players: number): void => {
     //Mock logic with console.log
     setSelectedPlayerCount(players);
     console.log(players);
-
-  }
-
+  };
+  const handleContactSelectChange = (option: labelValuePair): void => {
+    console.log(option.value);
+  };
   if (isAuthenticated === null) {
     return (
       <div>
@@ -73,12 +79,9 @@ const Home = () => {
         <div id="courseSelectionContainer">
           <CourseSelect onCourseSelection={handleCourseSelection} />
           <div id="courseDetailsContainer">
-            <p style={{ marginLeft: 20 }}>
-              Hello, {userInfo?.name}
-            </p>
+            <p style={{ marginLeft: 20 }}>Hello, {userInfo?.name}</p>
             <p>Course Length: 6704</p>
           </div>
-
           <div id="searchDetailsContainer">
             <div id="dateSelectContainer">
               <Calendar
@@ -92,11 +95,9 @@ const Home = () => {
                   onStartTimeChange={handleStartTimeSelection}
                   onEndTimeChange={handleEndTimeSelection}
                 />
-                <PlayerSelect
-                  onPlayerSelectChange={handlePlayerSelectChange}
-                />
+                <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
+                <DropdownMenu options={contactMethods} onSelect={handleContactSelectChange}/>
               </div>
-              
             </div>
           </div>
         </div>
