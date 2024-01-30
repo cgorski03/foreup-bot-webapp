@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from "react";
-import "./loginStyles.css";
 
 type PasswordFieldProps = {
   onChange: (newPassword: string) => void;

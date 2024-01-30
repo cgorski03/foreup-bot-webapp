@@ -67,3 +67,7 @@
 }
 
 
+.searchButtonHomePage {
+  background-color: var(--secondary-color-dark) !important;
+  margin: 0px;
+}
