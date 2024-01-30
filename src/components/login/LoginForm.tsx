@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { signIn, fetchUserAttributes } from "aws-amplify/auth";
-import LoginButton from "./inputFields/LoginButton";
 import UsernameField from "./inputFields/UsernameField";
 import PasswordField from "./inputFields/PasswordField";
 import AuthorizationErrorMessage from "./message/AuthorizationErrorMessage";
+import OutlinedButtonLoader from "../buttons/OutlinedButtonLoader"
 import "./loginForm.css";
 import { UserInformationContext } from "../../Contexts/UserContext";
 
@@ -64,7 +64,7 @@ const LoginForm = (props: LoginFormProps) => {
       <UsernameField onChange={handleUsernameChange} />
 
       <PasswordField onChange={handlePasswordChange} />
-      <LoginButton onClick={handleLogin} loading={loading} />
+      <OutlinedButtonLoader onClick={handleLogin} buttonText="Login" loading={loading} />
       <AuthorizationErrorMessage error={loginErrorMessage} />
     </div>
   );

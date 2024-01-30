@@ -6,7 +6,7 @@ import CourseSelect from "../../components/home/courseSelect/CourseSelect";
 import Navbar from "../../components/home/navbar/Navbar";
 import Calendar from "../../components/home/calendar/Calendar";
 import TimePicker from "../../components/home/timePicker/TimePicker";
-import DropdownMenu from "../../components/home/dropdown/DropdownMenu";
+import OutinedButtonLoader from "../../components/buttons/OutlinedButtonLoader";
 import { PlayerSelect } from "../../components/home/players/PlayerSelect";
 import { UserInformationContext } from "../../Contexts/UserContext";
 
@@ -25,10 +25,7 @@ const Home = () => {
   const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
-
-  const contactMethods: labelValuePair[] = [
-    { label: userInfo?.email, value: "email" },
-  ];
+  const [searchLoading, setSearchLoading] = useState<boolean>(false);
   //This is a secured page
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -63,8 +60,8 @@ const Home = () => {
     setSelectedPlayerCount(players);
     console.log(players);
   };
-  const handleContactSelectChange = (option: labelValuePair): void => {
-    console.log(option.value);
+  const handleSearchEvent = (): void => {
+    console.log("The user wants to start a search");
   };
   if (isAuthenticated === null) {
     return (
@@ -96,7 +93,12 @@ const Home = () => {
                   onEndTimeChange={handleEndTimeSelection}
                 />
                 <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
-                <DropdownMenu options={contactMethods} onSelect={handleContactSelectChange}/>
+                <OutinedButtonLoader
+                  classOverride="searchButtonHomePage"
+                  buttonText="Search"
+                  onClick={handleSearchEvent}
+                  loading={searchLoading}
+                />
               </div>
             </div>
           </div>
