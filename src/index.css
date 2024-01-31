@@ -1,13 +1,16 @@
 :root {
   /*Color Pallette*/
   --primary-color: #21252b;
-
   --secondary-color-light: #646a75;
   --secondary-color: #333842;
   --secondary-color-dark: #1a1e22;
   --accent-color: #e7c343;
   --text-color: #cccccc;
   --background-color: #21252b;
+  /*Border Settings*/
+  --border-radius-standard: 7px;
+
+  
 }
 
 body {

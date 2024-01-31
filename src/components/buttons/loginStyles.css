@@ -3,7 +3,7 @@
 
   padding: 10px 7px;
 
-  border-radius: 7px;
+  border-radius: var(--border-radius-standard);
 
   font-size: 15px;
   outline: none;
