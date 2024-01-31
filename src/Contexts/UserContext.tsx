@@ -4,6 +4,7 @@ export type UserInformation = {
   name: string | undefined;
   email: string | undefined;
   email_verified: string | undefined;
+  id_token: string | undefined
 };
 type UserContextType = {
   userInfo: UserInformation | null;
