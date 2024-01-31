@@ -3,7 +3,7 @@ import { signIn, fetchUserAttributes } from "aws-amplify/auth";
 import UsernameField from "./inputFields/UsernameField";
 import PasswordField from "./inputFields/PasswordField";
 import AuthorizationErrorMessage from "./message/AuthorizationErrorMessage";
-import OutlinedButtonLoader from "../buttons/OutlinedButtonLoader"
+import OutlinedButtonLoader from "../buttons/OutlinedButtonLoader";
 import "./loginForm.css";
 import { UserInformationContext } from "../../Contexts/UserContext";
 
@@ -12,7 +12,7 @@ type LoginFormProps = {
 };
 const LoginForm = (props: LoginFormProps) => {
   const { onAuthentication } = props;
-  const { setUserInfo } = useContext(UserInformationContext)
+  const { setUserInfo } = useContext(UserInformationContext);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoader] = useState<boolean>(false);
@@ -31,7 +31,6 @@ const LoginForm = (props: LoginFormProps) => {
           email_verified: userAttributes.email_verified,
         });
       onAuthentication(); // call the parent callback function
-      // testing const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
     } catch (error: any) {
       setLoader(false);
       setLoginErrorMessage(error.message);
@@ -60,11 +59,14 @@ const LoginForm = (props: LoginFormProps) => {
 
   return (
     <div className="textField" onKeyDown={handleEnterKey}>
-      <img src="/images/golf_bot_image.jpeg" className="appImage" alt="" />
+      <img src="/images/golf_bot_image.jpeg" className="appImage" alt="app logo" />
       <UsernameField onChange={handleUsernameChange} />
-
       <PasswordField onChange={handlePasswordChange} />
-      <OutlinedButtonLoader onClick={handleLogin} buttonText="Login" loading={loading} />
+      <OutlinedButtonLoader
+        onClick={handleLogin}
+        buttonText="Login"
+        loading={loading}
+      />
       <AuthorizationErrorMessage error={loginErrorMessage} />
     </div>
   );
