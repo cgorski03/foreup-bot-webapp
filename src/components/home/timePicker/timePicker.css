@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  color: var(--text-color);
   align-items: center;
 }
 input[type="time"]::-webkit-calendar-picker-indicator {
@@ -10,22 +11,13 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 .timePickerInput {
   background-color: var(--secondary-color-dark);
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-
-  padding-right: 7px;
-  padding-left: 7px;
-
-  border-radius: 4px;
-
+  padding: 10px 7px;
+  border-radius: var(--border-radius-standard);
   font-size: 15px;
   text-align: center;
-  outline: none;
-
+  outline:none;
   box-sizing: border-box;
   width: 100px;
-
   color: var(--text-color);
   border: 1px solid var(--secondary-color);
 }

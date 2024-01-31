@@ -12,20 +12,22 @@ import { UserInformationContext } from "../../Contexts/UserContext";
 
 import "./homeStyles.css";
 import { labelValuePair } from "../../utils/types/labelValuePair";
+import { SearchInfoForm } from "../../components/home/searchInformationForm/SearchInfoForm";
 
 const Home = () => {
   const { userInfo } = useContext(UserInformationContext);
   const navigate = useNavigate();
   const isAuthenticated = useAuth();
-  //Initially blank, will have logic to show hide other info
   const [selectedCourse, setSelectedCourse] = useState<string>("");
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [calendarEndDate, setCalendarEndDate] = useState<Date | null>(null);
-  //logic for the preset start time - based on sunrise? Might be overthinking that maybe just like 6 am haha
-  const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
-  const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
-  const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
-  const [searchLoading, setSearchLoading] = useState<boolean>(false);
+
+  const handleCourseSelection = (selectedOption: string): void => {
+    setSelectedCourse(selectedOption);
+    // TODO
+    const futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + 7);
+    setCalendarEndDate(futureDate);
+  };
   //This is a secured page
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -33,36 +35,6 @@ const Home = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleCourseSelection = (selectedOption: string): void => {
-    setSelectedCourse(selectedOption);
-    // TODO
-    //This will be logic to determine how far in advance the  user can search based upon the golf course for now, when you select a course it is 7 days
-    const futureDate = new Date();
-    futureDate.setDate(futureDate.getDate() + 7);
-    setCalendarEndDate(futureDate);
-  };
-  const handleDateSelection = (date: Date): void => {
-    setSelectedDate(date);
-    console.log(date);
-  };
-  const handleStartTimeSelection = (time: string): void => {
-    //Mock logic with console.log
-    setSelectedStartTime(time);
-    console.log(time);
-  };
-  const handleEndTimeSelection = (time: string): void => {
-    //Mock logic with console.log
-    setSelectedEndTime(time);
-    console.log(time);
-  };
-  const handlePlayerSelectChange = (players: number): void => {
-    //Mock logic with console.log
-    setSelectedPlayerCount(players);
-    console.log(players);
-  };
-  const handleSearchEvent = (): void => {
-    console.log("The user wants to start a search");
-  };
   if (isAuthenticated === null) {
     return (
       <div>
@@ -79,29 +51,7 @@ const Home = () => {
             <p style={{ marginLeft: 20 }}>Hello, {userInfo?.name}</p>
             <p>Course Length: 6704</p>
           </div>
-          <div id="searchDetailsContainer">
-            <div id="dateSelectContainer">
-              <Calendar
-                onSelectedDateChange={handleDateSelection}
-                courseEndDate={calendarEndDate}
-              />
-            </div>
-            <div id="startEndTimeContainer">
-              <div className="searchCriteriaContainer">
-                <TimePicker
-                  onStartTimeChange={handleStartTimeSelection}
-                  onEndTimeChange={handleEndTimeSelection}
-                />
-                <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
-                <OutinedButtonLoader
-                  classOverride="searchButtonHomePage"
-                  buttonText="Search"
-                  onClick={handleSearchEvent}
-                  loading={searchLoading}
-                />
-              </div>
-            </div>
-          </div>
+          <SearchInfoForm calendarEndDate={calendarEndDate} />
         </div>
       </div>
     );
