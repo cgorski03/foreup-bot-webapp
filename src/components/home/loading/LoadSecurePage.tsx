@@ -4,7 +4,6 @@ import { UserInformationContext } from "../../../Contexts/UserContext";
 import useAuth from "../../../utils/hooks/useAuth";
 import { fetchUserAttributes } from "aws-amplify/auth";
 import { getIdToken } from "../../../utils/authFunctions/getIdToken";
-import { getId } from "@aws-amplify/core";
 
 type LoadSecurePageProps = {
   onLoad: (result: boolean) => void;
