@@ -3,13 +3,13 @@ import Calendar from "../calendar/Calendar";
 import { PlayerSelect } from "../players/PlayerSelect";
 import TimePicker from "../timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
-import "./searchInformationForm.css"
+import "./searchInformationForm.css";
 
 type SearchInfoFormProps = {
   calendarEndDate: Date | null;
-}
+};
 export const SearchInfoForm = (props: SearchInfoFormProps) => {
-  const { calendarEndDate } = props; 
+  const { calendarEndDate } = props;
   //Initially blank, will have logic to show hide other info
   const [selectedCourse, setSelectedCourse] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -19,7 +19,6 @@ export const SearchInfoForm = (props: SearchInfoFormProps) => {
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
   const [searchLoading, setSearchLoading] = useState<boolean>(false);
 
-  
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
     console.log(date);

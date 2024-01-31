@@ -32,16 +32,17 @@
 
 .searchCriteriaContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   border-radius: 2px;
   width: 100%;
   height: 100%;
+  padding: 20px 0px;
 }
-
 
 .searchButtonHomePage {
   background-color: var(--secondary-color-dark) !important;
-  margin: 0px;
+  margin: 20px 0px 0px 0px;
 }

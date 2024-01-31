@@ -2,14 +2,12 @@
   background-color: var(--primary-color);
 
   padding: 10px 7px;
-
   border-radius: var(--border-radius-standard);
-
   font-size: 15px;
   outline: none;
-
   box-sizing: border-box;
   width: 250px;
+  max-height:39px;
 
   margin-bottom: 18px;
 }
