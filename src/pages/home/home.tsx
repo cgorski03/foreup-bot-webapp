@@ -1,23 +1,16 @@
-import { TailSpin } from "react-loader-spinner";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../utils/hooks/useAuth";
 import CourseSelect from "../../components/home/courseSelect/CourseSelect";
 import Navbar from "../../components/home/navbar/Navbar";
-import Calendar from "../../components/home/calendar/Calendar";
-import TimePicker from "../../components/home/timePicker/TimePicker";
-import OutinedButtonLoader from "../../components/buttons/OutlinedButtonLoader";
-import { PlayerSelect } from "../../components/home/players/PlayerSelect";
 import { UserInformationContext } from "../../Contexts/UserContext";
-
 import "./homeStyles.css";
-import { labelValuePair } from "../../utils/types/labelValuePair";
 import { SearchInfoForm } from "../../components/home/searchInformationForm/SearchInfoForm";
+import { LoadSecurePage } from "../../components/home/loading/LoadSecurePage";
 
 const Home = () => {
   const { userInfo } = useContext(UserInformationContext);
   const navigate = useNavigate();
-  const isAuthenticated = useAuth();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<string>("");
   const [calendarEndDate, setCalendarEndDate] = useState<Date | null>(null);
 
@@ -28,17 +21,15 @@ const Home = () => {
     futureDate.setDate(futureDate.getDate() + 7);
     setCalendarEndDate(futureDate);
   };
-  //This is a secured page
-  useEffect(() => {
-    if (isAuthenticated === false) {
-      navigate("/login");
-    }
-  }, [isAuthenticated, navigate]);
+
+  const handleLoadingResult = (result: boolean): void => {
+    result ? setIsAuthenticated(true) : navigate("/login");
+  };
 
   if (isAuthenticated === null) {
     return (
       <div>
-        <TailSpin color="white" width="40" wrapperClass="mainLoginPageLoader" />
+        <LoadSecurePage onLoad={handleLoadingResult} />
       </div>
     );
   } else {

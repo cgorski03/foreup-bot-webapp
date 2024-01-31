@@ -15,7 +15,6 @@ const useAuth = (): boolean | null => {
         setIsAuthenticated(false);
       }
     };
-
     checkAuthentication();
   }, []);
 

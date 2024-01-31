@@ -6,6 +6,7 @@ import AuthorizationErrorMessage from "./message/AuthorizationErrorMessage";
 import OutlinedButtonLoader from "../buttons/OutlinedButtonLoader";
 import "./loginForm.css";
 import { UserInformationContext } from "../../Contexts/UserContext";
+import { getIdToken } from "../../utils/authFunctions/getIdToken";
 
 type LoginFormProps = {
   onAuthentication: () => void;
@@ -29,6 +30,7 @@ const LoginForm = (props: LoginFormProps) => {
           name: userAttributes.name,
           email: userAttributes.email,
           email_verified: userAttributes.email_verified,
+          id_token: await getIdToken(),
         });
       onAuthentication(); // call the parent callback function
     } catch (error: any) {
@@ -59,7 +61,7 @@ const LoginForm = (props: LoginFormProps) => {
 
   return (
     <div className="textField" onKeyDown={handleEnterKey}>
-      <img src="/images/golf_bot_image.jpeg" className="appImage" alt="app logo" />
+      <img src="/images/golf_bot_image.jpeg" className="appImage" alt="app" />
       <UsernameField onChange={handleUsernameChange} />
       <PasswordField onChange={handlePasswordChange} />
       <OutlinedButtonLoader

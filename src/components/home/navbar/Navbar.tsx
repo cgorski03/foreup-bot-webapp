@@ -35,6 +35,7 @@ const Navbar = () => {
         name: undefined,
         email: undefined,
         email_verified: undefined,
+        id_token: undefined,
       });
     window.location.reload();
   };

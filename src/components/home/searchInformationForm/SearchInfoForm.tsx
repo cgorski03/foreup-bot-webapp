@@ -58,7 +58,7 @@ export const SearchInfoForm = (props: SearchInfoFormProps) => {
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <OutlinedButtonLoader
             classOverride="searchButtonHomePage"
-            buttonText="Search"
+            buttonText="Start Search"
             onClick={handleSearchEvent}
             loading={searchLoading}
           />
