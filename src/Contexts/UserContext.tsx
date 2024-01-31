@@ -4,13 +4,13 @@ export type UserInformation = {
   name: string | undefined;
   email: string | undefined;
   email_verified: string | undefined;
-  id_token: string | undefined
+  id_token: string | undefined;
 };
 type UserContextType = {
   userInfo: UserInformation | null;
-  setUserInfo: ((userInfo:UserInformation) => void) | null;
-}
+  setUserInfo: ((userInfo: UserInformation) => void) | null;
+};
 export const UserInformationContext = createContext<UserContextType>({
-  userInfo:null,
-  setUserInfo:null,
+  userInfo: null,
+  setUserInfo: null,
 });

@@ -24,14 +24,6 @@ const LoginForm = (props: LoginFormProps) => {
       setLoader(true);
       await signIn({ username, password });
       setLoader(false);
-      const userAttributes = await fetchUserAttributes();
-      setUserInfo &&
-        setUserInfo({
-          name: userAttributes.name,
-          email: userAttributes.email,
-          email_verified: userAttributes.email_verified,
-          id_token: await getIdToken(),
-        });
       onAuthentication(); // call the parent callback function
     } catch (error: any) {
       setLoader(false);

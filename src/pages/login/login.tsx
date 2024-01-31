@@ -13,7 +13,7 @@ const Login = () => {
   const { setUserInfo } = useContext(UserInformationContext);
 
   const handleOnAuthentication = () => {
-   navigate('/home')
+    navigate("/home");
   };
 
   useEffect(() => {
