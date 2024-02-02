@@ -7,7 +7,10 @@ import { useGetCourses } from "../../../utils/api/requests";
 import { TailSpin } from "react-loader-spinner";
 
 type CourseSelectProps = {
-  onCourseSelection: (selectedOption: number, courseBookingDays: number) => void;
+  onCourseSelection: (
+    selectedOption: number,
+    courseBookingDays: number
+  ) => void;
 };
 
 type Option = { value: number[]; label: JSX.Element };
@@ -15,10 +18,6 @@ type Option = { value: number[]; label: JSX.Element };
 const CourseSelect = (props: CourseSelectProps) => {
   const { onCourseSelection } = props;
   const { getCourses, isLoading, data } = useGetCourses();
-
-  useEffect(() => {
-    getCourses();
-  }, []);
 
   if (isLoading) {
     return (
@@ -41,7 +40,7 @@ const CourseSelect = (props: CourseSelectProps) => {
                   />
                 ),
               }))
-            : ([] as Option[])
+            : (getCourses(), [])
         }
         isSearchable={true}
         styles={selectStyles}

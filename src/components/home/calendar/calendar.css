@@ -35,8 +35,8 @@
 .react-datepicker__day--disabled {
   /*Ensure hover styles will not apply to disabled days*/
   outline: none;
-  border: none;
   color: var(--secondary-color);
+  border: none;
 }
 
 .react-datepicker__day--today {

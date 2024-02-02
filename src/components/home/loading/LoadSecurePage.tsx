@@ -21,7 +21,15 @@ export const LoadSecurePage = (props: LoadSecurePageProps) => {
   const { setUserInfo } = useContext(UserInformationContext);
 
   useEffect(() => {
+    //isAuthenticated will be null before async op finishes so have to check against t/f
+    if (isAuthenticated === false) {
+      // The user is not authenticated setting context is not needed
+      onLoad(false);
+      return;
+    }
+
     const setUserContext = async (): Promise<[boolean, Error?]> => {
+      //Set the user context based on the user info from auth api
       try {
         const userAttributes = await fetchUserAttributes();
         setUserInfo &&
@@ -36,10 +44,6 @@ export const LoadSecurePage = (props: LoadSecurePageProps) => {
         return [false, error];
       }
     };
-    //isAuthenticated will be null before async operation finishes so have to check against t/f
-    if (isAuthenticated === false) {
-      onLoad(false);
-    }
     if (isAuthenticated) {
       setUserContext().then(([success, error]) => onLoad(success, error));
     }
