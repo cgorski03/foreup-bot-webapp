@@ -1,19 +1,16 @@
-import React, { useState, useContext } from "react";
-import { signIn, fetchUserAttributes } from "aws-amplify/auth";
+import React, { useState } from "react";
+import { signIn } from "aws-amplify/auth";
 import UsernameField from "./inputFields/UsernameField";
 import PasswordField from "./inputFields/PasswordField";
 import AuthorizationErrorMessage from "./message/AuthorizationErrorMessage";
 import OutlinedButtonLoader from "../buttons/OutlinedButtonLoader";
 import "./loginForm.css";
-import { UserInformationContext } from "../../Contexts/UserContext";
-import { getIdToken } from "../../utils/authFunctions/getIdToken";
 
 type LoginFormProps = {
   onAuthentication: () => void;
 };
-const LoginForm = (props: LoginFormProps) => {
+export const LoginForm = (props: LoginFormProps) => {
   const { onAuthentication } = props;
-  const { setUserInfo } = useContext(UserInformationContext);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoader] = useState<boolean>(false);
@@ -40,6 +37,7 @@ const LoginForm = (props: LoginFormProps) => {
   const handleLogin = () => {
     attemptLogin();
   };
+
   const handleEnterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleLogin();
@@ -66,4 +64,3 @@ const LoginForm = (props: LoginFormProps) => {
   );
 };
 
-export default LoginForm;

@@ -11,10 +11,10 @@ const Home = () => {
   const { userInfo } = useContext(UserInformationContext);
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [selectedCourse, setSelectedCourse] = useState<string>("");
+  const [selectedCourse, setSelectedCourse] = useState<number|null>(null);
   const [calendarEndDate, setCalendarEndDate] = useState<Date | null>(null);
 
-  const handleCourseSelection = (selectedOption: string): void => {
+  const handleCourseSelection = (selectedOption: number): void => {
     setSelectedCourse(selectedOption);
     // TODO
     const futureDate = new Date();
@@ -22,7 +22,7 @@ const Home = () => {
     setCalendarEndDate(futureDate);
   };
 
-  const handleLoadingResult = (result: boolean): void => {
+  const handleLoadingResult = (result: boolean, error?: Error): void => {
     result ? setIsAuthenticated(true) : navigate("/login");
   };
 
