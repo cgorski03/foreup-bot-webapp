@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
-import LoginForm from "../../components/login/LoginForm";
+import React from "react";
+import { LoginForm } from "../../components/login/LoginForm";
 import { useNavigate } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 import useAuth from "../../utils/hooks/useAuth";
 import { useEffect } from "react";
 import "./login.css";
-import { UserInformationContext } from "../../Contexts/UserContext";
 
 const Login = () => {
   const navigate = useNavigate();
   const isAuthenticated = useAuth();
-  const { setUserInfo } = useContext(UserInformationContext);
 
   const handleOnAuthentication = () => {
     navigate("/home");

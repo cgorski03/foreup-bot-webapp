@@ -1,72 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
-//i cannot figure out how to make this stupid stylesheet typescript
 //@ts-ignore
 import selectStyles from "./selectStyles";
 import CourseLabel from "./label/CourseLabel";
+import { useGetCourses } from "../../../utils/api/requests";
+import { TailSpin } from "react-loader-spinner";
+
 type CourseSelectProps = {
-  onCourseSelection: (selectedOption: string) => void;
+  onCourseSelection: (selectedOption: number) => void;
 };
 
-type Option = { value: string; label: JSX.Element };
-
-const options: Option[] = [
-  {
-    value: "H. Smith Richardson Golf Course",
-    label: (
-      <CourseLabel
-        courseName="H. Smith Richardson Golf Course"
-        courseLocation="Fairfield, CT"
-      />
-    ),
-  },
-  {
-    value: "Bethpage Black Golf Course",
-    label: (
-      <CourseLabel
-        courseName="Bethpage Black Golf Course"
-        courseLocation="Farmingdale, NY"
-      />
-    ),
-  },
-  {
-    value: "Bethpage Blue Golf Course",
-    label: (
-      <CourseLabel
-        courseName="Bethpage Blue Golf Course"
-        courseLocation="Farmingdale, NY"
-      />
-    ),
-  },
-  {
-    value: "Westchase Golf Club",
-    label: (
-      <CourseLabel
-        courseName="Westchase Golf Club"
-        courseLocation="Tampa, FL"
-      />
-    ),
-  },
-  {
-    value: "Mangrove Bay Golf Course",
-    label: (
-      <CourseLabel
-        courseName="Mangrove Bay Golf Course"
-        courseLocation="St. Petersburg, FL"
-      />
-    ),
-  },
-];
+type Option = { value: number; label: JSX.Element };
 
 const CourseSelect = (props: CourseSelectProps) => {
-  //sample hard-coded data that will eventually be an api request and a for loop
-  // these should be interfaced
   const { onCourseSelection } = props;
+  const { getCourses, isLoading, data } = useGetCourses();
 
+  useEffect(() => {
+    getCourses();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div>
+        <TailSpin color="white" width="40" wrapperClass="mainLoginPageLoader" />
+      </div>
+    );
+  }
   return (
     <div>
       <Select
-        options={options}
+        options={
+          data
+            ? data.map((course) => ({
+                value: course.course_id,
+                label: (
+                  <CourseLabel
+                    courseName={course.courseName}
+                    courseLocation={course.courseLocation}
+                  />
+                ),
+              }))
+            : ([] as Option[])
+        }
         isSearchable={true}
         styles={selectStyles}
         onChange={(option: Option | null) => {
