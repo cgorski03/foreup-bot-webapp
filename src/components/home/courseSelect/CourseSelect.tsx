@@ -7,10 +7,10 @@ import { useGetCourses } from "../../../utils/api/requests";
 import { TailSpin } from "react-loader-spinner";
 
 type CourseSelectProps = {
-  onCourseSelection: (selectedOption: number) => void;
+  onCourseSelection: (selectedOption: number, courseBookingDays: number) => void;
 };
 
-type Option = { value: number; label: JSX.Element };
+type Option = { value: number[]; label: JSX.Element };
 
 const CourseSelect = (props: CourseSelectProps) => {
   const { onCourseSelection } = props;
@@ -33,7 +33,7 @@ const CourseSelect = (props: CourseSelectProps) => {
         options={
           data
             ? data.map((course) => ({
-                value: course.course_id,
+                value: [course.course_id, course.maxBookingDays],
                 label: (
                   <CourseLabel
                     courseName={course.courseName}
@@ -47,7 +47,7 @@ const CourseSelect = (props: CourseSelectProps) => {
         styles={selectStyles}
         onChange={(option: Option | null) => {
           if (option != null) {
-            onCourseSelection(option.value);
+            onCourseSelection(option.value[0], option.value[1]);
           }
         }}
         placeholder="Where would you like to play?"

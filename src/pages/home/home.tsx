@@ -14,11 +14,10 @@ const Home = () => {
   const [selectedCourse, setSelectedCourse] = useState<number|null>(null);
   const [calendarEndDate, setCalendarEndDate] = useState<Date | null>(null);
 
-  const handleCourseSelection = (selectedOption: number): void => {
-    setSelectedCourse(selectedOption);
-    // TODO
+  const handleCourseSelection = (selectedCourseId: number, courseBookingDays: number): void => {
+    setSelectedCourse(selectedCourseId);
     const futureDate = new Date();
-    futureDate.setDate(futureDate.getDate() + 7);
+    futureDate.setDate(futureDate.getDate() + courseBookingDays);
     setCalendarEndDate(futureDate);
   };
 

@@ -10,4 +10,3 @@ export const useGetCourses = () => {
   
   return { getCourses, isLoading, data, responseCode }
 };
-
