@@ -11,6 +11,10 @@
   background-color: var(--secondary-color-dark);
   cursor: pointer;
 }
+.navHeaderButton:active {
+  background-color: var(--header-background-color);
+  cursor: default;
+}
 .labelContainer {
   display: flex;
   flex-direction: column;
