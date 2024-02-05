@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/home";
+import Search from "./pages/search/Search";
 import Login from "./pages/login/login";
 import Callback from "./pages/callback";
 import NotFound from "./pages/notfound/NotFound";
@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Callback />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/search" element={<Search />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

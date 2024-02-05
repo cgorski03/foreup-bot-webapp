@@ -25,7 +25,7 @@
   /* Initially set outline to be transparent to acheive opacity fade in */
   border-radius: 3px !important;
   outline: solid 1px transparent;
-  transition: outline 0.05s ease;
+  transition: outline 0.2s ease;
 }
 .react-datepicker__day:hover {
   background-color: var(--secondary-color-dark);

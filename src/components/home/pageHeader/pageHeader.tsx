@@ -7,14 +7,17 @@ import { useSignOut } from "../../../utils/authFunctions/useSignOut";
 
 export const PageHeader = () => {
   const [selectedButton, setSelectedButton] = useState<number>(0);
+  const { logOut } = useSignOut();
   const handleNavButtonClick = (buttonValue: number) => {
-    setSelectedButton(buttonValue);
-    if(buttonValue === 3){
-      useSignOut().then((result) => {
-        if(!result){
-          console.log("Error signing out")
+    if (buttonValue === 3) {
+      logOut().then((success) => {
+        if (!success) {
+          console.log("Error signing out");
         }
-      })
+      });
+    } else {
+      // handle sign out action
+      setSelectedButton(buttonValue);
     }
   };
 
@@ -45,7 +48,6 @@ export const PageHeader = () => {
         handleButtonClick={handleNavButtonClick}
         isSelectedPage={selectedButton === 3}
       />
-      
     </div>
   );
 };
