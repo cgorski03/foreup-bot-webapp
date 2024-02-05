@@ -16,7 +16,9 @@
   color: var(--text-color);
   font-weight: normal;
 }
-
+.react-datepicker__day--keyboard-selected {
+  background-color: var(--secondary-color-dark);
+}
 .react-datepicker__day-name {
   color: var(--text-color);
 }

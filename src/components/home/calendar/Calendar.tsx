@@ -11,7 +11,9 @@ type CalendarProps = {
 const Calendar = (props: CalendarProps) => {
   const { onSelectedDateChange, courseEndDate } = props;
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-
+  if(courseEndDate  && selectedDate > courseEndDate){
+    setSelectedDate(new Date());
+  }
   return (
     <div>
       <DatePicker

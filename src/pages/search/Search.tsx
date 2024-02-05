@@ -1,9 +1,8 @@
+import "./searchStyles.css";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CourseSelect from "../../components/home/courseSelect/CourseSelect";
 import { UserInformationContext } from "../../Contexts/UserContext";
-
-import "./homeStyles.css";
 import { SearchInfoForm } from "../../components/home/searchInformationForm/SearchInfoForm";
 import { LoadSecurePage } from "../../components/home/loading/LoadSecurePage";
 import { PageHeader } from "../../components/home/pageHeader/pageHeader";
@@ -44,10 +43,7 @@ const Home = () => {
         <PageHeader />
         <div id="courseSelectionContainer">
           <CourseSelect onCourseSelection={handleCourseSelection} />
-          <div id="courseDetailsContainer">
-            <p style={{ marginLeft: 20 }}>Hello, {userInfo?.name}</p>
-            <p>Course Length: 6704</p>
-          </div>
+          <div className="dividerLineDiv"/>
           <SearchInfoForm calendarEndDate={calendarEndDate} />
         </div>
       </div>
