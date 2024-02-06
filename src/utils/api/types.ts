@@ -4,3 +4,7 @@ export type GolfCourse = {
   courseLocation: string;
   maxBookingDays: number;
 }
+
+export type CreateSearchInput = {
+  
+}

@@ -10,7 +10,7 @@ const Callback = () => {
     if (!isAuthenticated) {
       navigate("/login");
     } else {
-      navigate("/home");
+      navigate("/search");
     }
   }, [navigate, isAuthenticated]);
 
