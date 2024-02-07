@@ -27,7 +27,7 @@ export function useFetch<T>({ endpoint, method }: UseFetchProps) {
   // we are assigning the generic type T to our data value here
   const [data, setData] = useState<T | null>(null);
   const commonFetch = async ({ input }: CommonFetch) => {
-
+    setIsLoading(true);
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method,
       headers: {

@@ -4,7 +4,7 @@ import "./timePicker.css";
 type TimePickerProps = {
   onTimeChange: (timeID:number, time: string) => void;
 };
-const TimePicker = (props: TimePickerProps) => {
+export const TimePicker = (props: TimePickerProps) => {
   const { onTimeChange } = props;
   const [selectedStartTime, setSelectedStartTime] = useState<string>("06:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
@@ -47,5 +47,3 @@ const TimePicker = (props: TimePickerProps) => {
     </div>
   );
 };
-
-export default TimePicker;

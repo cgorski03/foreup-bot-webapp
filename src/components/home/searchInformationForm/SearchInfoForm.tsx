@@ -1,41 +1,51 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import "./searchInformationForm.css";
 import Calendar from "../calendar/Calendar";
 import { PlayerSelect } from "../players/PlayerSelect";
-import TimePicker from "../timePicker/TimePicker";
+import { TimePicker } from "../timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
-import "./searchInformationForm.css";
-import { GolfCourse } from "../../../utils/api/types";
+import { GolfCourse, CreateSearchInput } from "../../../utils/api/types";
+import { useCreateSearch } from "../../../utils/api/requests";
+import { create } from "domain";
 
 type SearchInfoFormProps = {
   course: GolfCourse | null;
 };
 export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
-  //Initially blank, will have logic to show hide other info
-  const [selectedCourse, setSelectedCourse] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  //logic for the preset start time - based on sunrise? Might be overthinking that maybe just like 6 am haha
   const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
-  const [searchLoading, setSearchLoading] = useState<boolean>(false);
-
+  const { createSearch, isLoading, data} = useCreateSearch();
+  
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
-    console.log(date);
   };
   const handleTimeChange = (timeID: number, time: string): void => {
-    //Mock logic with console.log
     timeID ? setSelectedEndTime(time) : setSelectedStartTime(time);
-    console.log(time);
   };
 
   const handlePlayerSelectChange = (players: number): void => {
     //Mock logic with console.log
     setSelectedPlayerCount(players);
-    console.log(players);
   };
-  const handleSearchEvent = (): void => {
-    console.log("The user wants to start a search");
+  const handleSearchEvent = async () => {
+    if (course) {
+      const search: CreateSearchInput = {
+        course_id: course?.course_id,
+        date: selectedDate
+          .toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+          .replace(/\//g, "-"),
+        players: selectedPlayerCount,
+        startTime: selectedStartTime,
+        endTime: selectedEndTime,
+      };
+      await createSearch(search);
+    }
   };
   return (
     <div id="searchDetailsContainer">
@@ -61,7 +71,7 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
             classOverride="searchButtonHomePage"
             buttonText="Start Search"
             onClick={handleSearchEvent}
-            loading={searchLoading}
+            loading={isLoading}
           />
         </div>
       </div>
