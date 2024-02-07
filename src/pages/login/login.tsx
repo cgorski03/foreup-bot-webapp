@@ -11,13 +11,13 @@ const Login = () => {
   const isAuthenticated = useAuth();
 
   const handleOnAuthentication = () => {
-    navigate("/home");
+    navigate("/search");
   };
 
   useEffect(() => {
     //watch for isAuthenticated to become true
     if (isAuthenticated === true) {
-      navigate("/home");
+      navigate("/search");
     }
   }, [isAuthenticated, navigate]);
 

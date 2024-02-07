@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 //@ts-ignore
 import selectStyles from "./selectStyles";
 import CourseLabel from "./label/CourseLabel";
 import { useGetCourses } from "../../../utils/api/requests";
 import { TailSpin } from "react-loader-spinner";
-
+import { GolfCourse } from "../../../utils/api/types";
 type CourseSelectProps = {
-  onCourseSelection: (
-    selectedOption: number,
-    courseBookingDays: number
-  ) => void;
+  onCourseSelection: (course: GolfCourse) => void;
 };
 
-type Option = { value: number[]; label: JSX.Element };
+type Option = { value: GolfCourse; label: JSX.Element };
 
 const CourseSelect = (props: CourseSelectProps) => {
   const { onCourseSelection } = props;
@@ -22,7 +19,7 @@ const CourseSelect = (props: CourseSelectProps) => {
   if (isLoading) {
     return (
       <div>
-        <TailSpin color="white" width="40" wrapperClass="mainLoginPageLoader" />
+        <TailSpin color="white" width="40" />
       </div>
     );
   }
@@ -32,7 +29,7 @@ const CourseSelect = (props: CourseSelectProps) => {
         options={
           data
             ? data.map((course) => ({
-                value: [course.course_id, course.maxBookingDays],
+                value: course,
                 label: (
                   <CourseLabel
                     courseName={course.courseName}
@@ -46,7 +43,7 @@ const CourseSelect = (props: CourseSelectProps) => {
         styles={selectStyles}
         onChange={(option: Option | null) => {
           if (option != null) {
-            onCourseSelection(option.value[0], option.value[1]);
+            onCourseSelection(option.value);
           }
         }}
         placeholder="Where would you like to play?"

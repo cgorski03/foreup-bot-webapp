@@ -45,7 +45,7 @@ export const LoadSecurePage = (props: LoadSecurePageProps) => {
       }
     };
     if (isAuthenticated) {
-      setUserContext().then(([success, error]) => onLoad(success, error));
+      setUserContext().then(([success, error]) => onLoad(true, error));
     }
   }, [isAuthenticated, onLoad, setUserInfo]);
 

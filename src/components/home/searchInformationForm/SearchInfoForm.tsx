@@ -1,66 +1,77 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import "./searchInformationForm.css";
 import Calendar from "../calendar/Calendar";
 import { PlayerSelect } from "../players/PlayerSelect";
-import TimePicker from "../timePicker/TimePicker";
+import { TimePicker } from "../timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
-import "./searchInformationForm.css";
+import { GolfCourse, CreateSearchInput } from "../../../utils/api/types";
+import { useCreateSearch } from "../../../utils/api/requests";
+import { create } from "domain";
 
 type SearchInfoFormProps = {
-  calendarEndDate: Date | null;
+  course: GolfCourse | null;
 };
-export const SearchInfoForm = (props: SearchInfoFormProps) => {
-  const { calendarEndDate } = props;
-  //Initially blank, will have logic to show hide other info
-  const [selectedCourse, setSelectedCourse] = useState<string>("");
+export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  //logic for the preset start time - based on sunrise? Might be overthinking that maybe just like 6 am haha
   const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
-  const [searchLoading, setSearchLoading] = useState<boolean>(false);
-
+  const { createSearch, isLoading, data} = useCreateSearch();
+  
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
-    console.log(date);
   };
-  const handleStartTimeSelection = (time: string): void => {
-    //Mock logic with console.log
-    setSelectedStartTime(time);
-    console.log(time);
+  const handleTimeChange = (timeID: number, time: string): void => {
+    timeID ? setSelectedEndTime(time) : setSelectedStartTime(time);
   };
-  const handleEndTimeSelection = (time: string): void => {
-    //Mock logic with console.log
-    setSelectedEndTime(time);
-    console.log(time);
-  };
+
   const handlePlayerSelectChange = (players: number): void => {
     //Mock logic with console.log
     setSelectedPlayerCount(players);
-    console.log(players);
   };
-  const handleSearchEvent = (): void => {
-    console.log("The user wants to start a search");
+  const handleSearchEvent = async () => {
+    if (course) {
+      const search: CreateSearchInput = {
+        course_id: course?.course_id,
+        date: selectedDate
+          .toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+          .replace(/\//g, "-"),
+        players: selectedPlayerCount,
+        startTime: selectedStartTime,
+        endTime: selectedEndTime,
+      };
+      await createSearch(search);
+    }
   };
   return (
     <div id="searchDetailsContainer">
       <div className="halfWidthInfoBlock leftHalfInfoBlock">
         <Calendar
           onSelectedDateChange={handleDateSelection}
-          courseEndDate={calendarEndDate}
+          courseEndDate={
+            course
+              ? new Date(
+                  new Date().setDate(
+                    new Date().getDate() + course.maxBookingDays
+                  )
+                )
+              : null
+          }
         />
       </div>
       <div className="halfWidthInfoBlock rightHalfInfoBlock">
         <div className="searchCriteriaContainer">
-          <TimePicker
-            onStartTimeChange={handleStartTimeSelection}
-            onEndTimeChange={handleEndTimeSelection}
-          />
+          <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <OutlinedButtonLoader
             classOverride="searchButtonHomePage"
             buttonText="Start Search"
             onClick={handleSearchEvent}
-            loading={searchLoading}
+            loading={isLoading}
           />
         </div>
       </div>

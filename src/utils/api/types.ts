@@ -3,4 +3,12 @@ export type GolfCourse = {
   courseName: string;
   courseLocation: string;
   maxBookingDays: number;
-}
+};
+
+export type CreateSearchInput = {
+  course_id: number;
+  date: string;
+  players: number;
+  startTime: string;
+  endTime: string;
+};
