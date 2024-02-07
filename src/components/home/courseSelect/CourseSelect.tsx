@@ -19,7 +19,7 @@ const CourseSelect = (props: CourseSelectProps) => {
   if (isLoading) {
     return (
       <div>
-        <TailSpin color="white" width="40" />
+        <TailSpin color="white" width="10" />
       </div>
     );
   }
