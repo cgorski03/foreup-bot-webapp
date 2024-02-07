@@ -6,5 +6,8 @@ export type GolfCourse = {
 }
 
 export type CreateSearchInput = {
-  
+  date: string;
+  players: number;
+  startTime: string;
+  endTime: string;
 }

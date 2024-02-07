@@ -4,12 +4,12 @@ import { PlayerSelect } from "../players/PlayerSelect";
 import TimePicker from "../timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
 import "./searchInformationForm.css";
+import { GolfCourse } from "../../../utils/api/types";
 
 type SearchInfoFormProps = {
-  calendarEndDate: Date | null;
+  course: GolfCourse | null;
 };
-export const SearchInfoForm = (props: SearchInfoFormProps) => {
-  const { calendarEndDate } = props;
+export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
   //Initially blank, will have logic to show hide other info
   const [selectedCourse, setSelectedCourse] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -23,16 +23,12 @@ export const SearchInfoForm = (props: SearchInfoFormProps) => {
     setSelectedDate(date);
     console.log(date);
   };
-  const handleStartTimeSelection = (time: string): void => {
+  const handleTimeChange = (timeID: number, time: string): void => {
     //Mock logic with console.log
-    setSelectedStartTime(time);
+    timeID ? setSelectedEndTime(time) : setSelectedStartTime(time);
     console.log(time);
   };
-  const handleEndTimeSelection = (time: string): void => {
-    //Mock logic with console.log
-    setSelectedEndTime(time);
-    console.log(time);
-  };
+
   const handlePlayerSelectChange = (players: number): void => {
     //Mock logic with console.log
     setSelectedPlayerCount(players);
@@ -46,15 +42,20 @@ export const SearchInfoForm = (props: SearchInfoFormProps) => {
       <div className="halfWidthInfoBlock leftHalfInfoBlock">
         <Calendar
           onSelectedDateChange={handleDateSelection}
-          courseEndDate={calendarEndDate}
+          courseEndDate={
+            course
+              ? new Date(
+                  new Date().setDate(
+                    new Date().getDate() + course.maxBookingDays
+                  )
+                )
+              : null
+          }
         />
       </div>
       <div className="halfWidthInfoBlock rightHalfInfoBlock">
         <div className="searchCriteriaContainer">
-          <TimePicker
-            onStartTimeChange={handleStartTimeSelection}
-            onEndTimeChange={handleEndTimeSelection}
-          />
+          <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <OutlinedButtonLoader
             classOverride="searchButtonHomePage"

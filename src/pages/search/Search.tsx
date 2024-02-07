@@ -1,30 +1,18 @@
 import "./searchStyles.css";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CourseSelect from "../../components/home/courseSelect/CourseSelect";
-import { UserInformationContext } from "../../Contexts/UserContext";
 import { SearchInfoForm } from "../../components/home/searchInformationForm/SearchInfoForm";
 import { LoadSecurePage } from "../../components/home/loading/LoadSecurePage";
 import { PageHeader } from "../../components/home/pageHeader/pageHeader";
-
+import { GolfCourse } from "../../utils/api/types";
 const Home = () => {
-  const { userInfo } = useContext(UserInformationContext);
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
-  const [calendarEndDate, setCalendarEndDate] = useState<Date | null>(null);
+  const [selectedCourse, setSelectedCourse] = useState<GolfCourse | null>(null);
 
-  const handleCourseSelection = (
-    selectedCourseId: number,
-    courseBookingDays: number
-  ): void => {
-    setSelectedCourse(selectedCourseId);
-    const futureDate = new Date();
-    futureDate.setDate(futureDate.getDate() + courseBookingDays);
-    //avoid unnecessary re-renders
-    if (futureDate !== calendarEndDate) {
-      setCalendarEndDate(futureDate);
-    }
+  const handleCourseSelection = (course: GolfCourse): void => {
+      setSelectedCourse(course);
   };
 
   const handleLoadingResult = (result: boolean, error?: Error): void => {
@@ -42,9 +30,9 @@ const Home = () => {
       <div id="homePageContainer">
         <PageHeader />
         <div id="courseSelectionContainer">
-          <CourseSelect onCourseSelection={handleCourseSelection} />
+          <CourseSelect onCourseSelection={handleCourseSelection} /> 
           <div className="dividerLineDiv"/>
-          <SearchInfoForm calendarEndDate={calendarEndDate} />
+          <SearchInfoForm course={selectedCourse} />
         </div>
       </div>
     );

@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import "./timePicker.css";
 
 type TimePickerProps = {
-  onStartTimeChange: (time: string) => void;
-  onEndTimeChange: (time: string) => void;
+  onTimeChange: (timeID:number, time: string) => void;
 };
 const TimePicker = (props: TimePickerProps) => {
-  const { onStartTimeChange, onEndTimeChange } = props;
+  const { onTimeChange } = props;
   const [selectedStartTime, setSelectedStartTime] = useState<string>("06:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
 
@@ -16,7 +15,7 @@ const TimePicker = (props: TimePickerProps) => {
     //notify the parent component
     //will prevent constant rerendering of dom by not having the state attached
     setSelectedStartTime(time.target.value);
-    onStartTimeChange(time.target.value);
+    onTimeChange(0, time.target.value);
   };
   const handleEndTimeSelection = (
     time: React.ChangeEvent<HTMLInputElement>
@@ -24,7 +23,7 @@ const TimePicker = (props: TimePickerProps) => {
     //notify the parent component
     //will prevent constant rerendering of dom by not having the state attached
     setSelectedEndTime(time.target.value);
-    onEndTimeChange(time.target.value);
+    onTimeChange(1, time.target.value);
   };
 
   return (
