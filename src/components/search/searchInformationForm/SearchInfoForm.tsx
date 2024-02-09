@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./searchInformationForm.css";
-import Calendar from "../calendar/Calendar";
-import { PlayerSelect } from "../players/PlayerSelect";
-import { TimePicker } from "../timePicker/TimePicker";
+import Calendar from "./calendar/Calendar";
+import { PlayerSelect } from "./players/PlayerSelect";
+import { TimePicker } from "./timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
 import { GolfCourse, CreateSearchInput } from "../../../utils/api/types";
 import { useCreateSearch } from "../../../utils/api/requests";
