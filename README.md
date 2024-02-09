@@ -1,6 +1,6 @@
 # Tee Time Finder Web App
 
-Welcome to my Tee Time Finder Web App repository! This web app simplifies the process of securing sought-after tee times at popular golf courses. Whether you're a golf enthusiast or a casual player, this platform aims to provide you with an intuitive and efficient experience for discovering and booking tee times. This is just the front end of the application.
+Welcome to my Tee Time Finder Web App repository! This web app simplifies the process of securing sought-after tee times at popular golf courses. Whether you're a golf enthusiast or a casual player, this platform aims to provide you with an intuitive and efficient experience for discovering tee times. This is just the front end of the application.
 
 ## Features
 
