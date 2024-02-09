@@ -3,7 +3,7 @@ import { IoLogOut } from "react-icons/io5";
 import "./pageHeader.css";
 import { PageLabel } from "./pageLabel/PageLabel";
 import { useNavigate } from "react-router-dom";
-import { useSignOut } from "../../../utils/hooks/useSignOut";
+import { useSignOut } from "../../utils/hooks/useSignOut";
 
 export const PageHeader = () => {
   const [selectedButton, setSelectedButton] = useState<number>(0);

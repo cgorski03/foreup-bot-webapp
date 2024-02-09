@@ -1,10 +1,10 @@
 import "./searchStyles.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CourseSelect from "../../components/home/courseSelect/CourseSelect";
-import { SearchInfoForm } from "../../components/home/searchInformationForm/SearchInfoForm";
-import { LoadSecurePage } from "../../components/home/loading/LoadSecurePage";
-import { PageHeader } from "../../components/home/pageHeader/pageHeader";
+import CourseSelect from "../../components/search/courseSelect/CourseSelect";
+import { SearchInfoForm } from "../../components/search/searchInformationForm/SearchInfoForm";
+import { LoadSecurePage } from "../../components/search/loading/LoadSecurePage";
+import { PageHeader } from "../../components/pageHeader/pageHeader";
 import { GolfCourse } from "../../utils/api/types";
 const Home = () => {
   const navigate = useNavigate();
