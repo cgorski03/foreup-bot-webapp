@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import CourseSelect from "../../components/search/courseSelect/CourseSelect";
 import { SearchInfoForm } from "../../components/search/searchInformationForm/SearchInfoForm";
 import { LoadSecurePage } from "../../components/search/loading/LoadSecurePage";
-import { PageHeader } from "../../components/pageHeader/pageHeader";
 import { GolfCourse } from "../../utils/api/types";
 export const Search = () => {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ export const Search = () => {
   };
 
   const handleLoadingResult = (result: boolean, error?: Error): void => {
-    result ? setIsAuthenticated(true) : navigate("/login");
+    result ? setIsAuthenticated(true) : console.log(error);
   };
 
   if (isAuthenticated === null) {

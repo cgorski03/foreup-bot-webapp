@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { UserInformationContext } from "../../../Contexts/UserContext";
-import useAuth from "../../../utils/hooks/useAuth";
+import { useAuth } from "../../../utils/hooks/useAuth";
 import { fetchUserAttributes } from "aws-amplify/auth";
 import { getIdToken } from "../../../utils/authFunctions/getIdToken";
 /**
