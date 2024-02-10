@@ -31,7 +31,8 @@ export const LoadSecurePage = (props: LoadSecurePageProps) => {
     const setUserContext = async (): Promise<[boolean, Error?]> => {
       //Set the user context based on the user info from auth api
       try {
-        const userAttributes = await fetchUserAttributes();
+        const userAttributes = await fetchUserAttributes(); 
+        console.log(userAttributes);
         setUserInfo &&
           setUserInfo({
             name: userAttributes.name,

@@ -1,12 +1,12 @@
-import "./searchStyles.css";
 import React, { useState } from "react";
+import "./searchStyles.css";
 import { useNavigate } from "react-router-dom";
 import CourseSelect from "../../components/search/courseSelect/CourseSelect";
 import { SearchInfoForm } from "../../components/search/searchInformationForm/SearchInfoForm";
 import { LoadSecurePage } from "../../components/search/loading/LoadSecurePage";
 import { PageHeader } from "../../components/pageHeader/pageHeader";
 import { GolfCourse } from "../../utils/api/types";
-const Home = () => {
+export const Search = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<GolfCourse | null>(null);
@@ -28,7 +28,6 @@ const Home = () => {
   } else {
     return (
       <div id="homePageContainer">
-        <PageHeader />
         <div id="courseSelectionContainer">
           <CourseSelect onCourseSelection={handleCourseSelection} /> 
           <div className="dividerLineDiv"/>
@@ -38,4 +37,3 @@ const Home = () => {
     );
   }
 };
-export default Home;
