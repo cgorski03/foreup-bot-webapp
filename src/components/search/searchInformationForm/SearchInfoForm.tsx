@@ -6,7 +6,6 @@ import { TimePicker } from "./timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
 import { GolfCourse, CreateSearchInput } from "../../../utils/api/types";
 import { useCreateSearch } from "../../../utils/api/requests";
-import { create } from "domain";
 
 type SearchInfoFormProps = {
   course: GolfCourse | null;
@@ -33,6 +32,7 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
     if (course) {
       const search: CreateSearchInput = {
         course_id: course?.course_id,
+        courseName: course?.courseName,
         date: selectedDate
           .toLocaleDateString("en-US", {
             year: "numeric",
@@ -45,6 +45,7 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
         endTime: selectedEndTime,
       };
       await createSearch(search);
+      console.log(data);
     }
   };
   return (

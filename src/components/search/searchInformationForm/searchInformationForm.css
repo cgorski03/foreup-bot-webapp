@@ -44,5 +44,5 @@
 
 .searchButtonHomePage {
   background-color: var(--secondary-color-dark) !important;
-  margin: 20px 0px 0px 0px;
+  margin: 20px 0px 8px 0px !important;
 }

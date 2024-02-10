@@ -8,6 +8,7 @@ import { useSignOut } from "../../utils/hooks/useSignOut";
 export const PageHeader = () => {
   const [selectedButton, setSelectedButton] = useState<number>(0);
   const { logOut } = useSignOut();
+  const navigate = useNavigate()
   const handleNavButtonClick = (buttonValue: number) => {
     if (buttonValue === 3) {
       logOut().then((success) => {
@@ -18,6 +19,19 @@ export const PageHeader = () => {
     } else {
       // handle sign out action
       setSelectedButton(buttonValue);
+      switch (buttonValue){
+        case 0:
+          navigate('/search');
+          break;
+        case 1:
+          navigate('/dashboard');
+          break;
+        case 2:
+          navigate('/settings');
+          break;
+        default:
+          break;
+      }
     }
   };
 
