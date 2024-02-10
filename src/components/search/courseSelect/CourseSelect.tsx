@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Select from "react-select";
 //@ts-ignore
 import selectStyles from "./selectStyles";
 import CourseLabel from "./label/CourseLabel";
 import { useGetCourses } from "../../../utils/api/requests";
-import { TailSpin } from "react-loader-spinner";
 import { GolfCourse } from "../../../utils/api/types";
+
 type CourseSelectProps = {
   onCourseSelection: (course: GolfCourse) => void;
 };
@@ -19,7 +19,12 @@ const CourseSelect = (props: CourseSelectProps) => {
   if (isLoading) {
     return (
       <div>
-        <TailSpin color="white" width="10" />
+        <Select
+          isSearchable={true}
+          styles={selectStyles}
+          placeholder="Where would you like to play?"
+          maxMenuHeight={207.5}
+        />
       </div>
     );
   }
