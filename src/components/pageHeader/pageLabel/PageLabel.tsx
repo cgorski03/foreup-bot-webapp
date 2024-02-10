@@ -12,9 +12,7 @@ export const PageLabel = (props: PageLabelProps) => {
   return (
     <div className="labelContainer">
       <button
-        onClick={
-          isSelectedPage ? () => {} : () => handleButtonClick(buttonValue)
-        }
+        onClick={() => handleButtonClick(buttonValue)}
         className={"navHeaderButton"}>
         {buttonLabel}
       </button>
