@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Login from "./pages/login/login";
 import { Dashboard } from "./pages/dashboard/Dashboard";
 import { Settings } from "./pages/settings/Settings";

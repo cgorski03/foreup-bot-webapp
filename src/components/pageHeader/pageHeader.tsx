@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { IoLogOut } from "react-icons/io5";
 import "./pageHeader.css";
 import { PageLabel } from "./pageLabel/PageLabel";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSignOut } from "../../utils/hooks/useSignOut";
 
 export const PageHeader = () => {
   const [selectedButton, setSelectedButton] = useState<number>(0);
   const { logOut } = useSignOut();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  if(location.pathname === "/login"){
+    return null;
+  }
   const handleNavButtonClick = (buttonValue: number) => {
     if (buttonValue === 3) {
       logOut().then((success) => {
@@ -42,25 +46,25 @@ export const PageHeader = () => {
         buttonLabel="Search"
         buttonValue={0}
         handleButtonClick={handleNavButtonClick}
-        isSelectedPage={selectedButton === 0}
+        isSelectedPage={location.pathname === "/search"}
       />
       <PageLabel
         buttonLabel="Dashboard"
         buttonValue={1}
         handleButtonClick={handleNavButtonClick}
-        isSelectedPage={selectedButton === 1}
+        isSelectedPage={location.pathname === "/dashboard"}
       />
       <PageLabel
         buttonLabel="Settings"
         buttonValue={2}
         handleButtonClick={handleNavButtonClick}
-        isSelectedPage={selectedButton === 2}
+        isSelectedPage={location.pathname === "/settings"}
       />
       <PageLabel
         buttonLabel={<IoLogOut />}
         buttonValue={3}
         handleButtonClick={handleNavButtonClick}
-        isSelectedPage={selectedButton === 3}
+        isSelectedPage={location.pathname === ""}
       />
     </div>
   );
