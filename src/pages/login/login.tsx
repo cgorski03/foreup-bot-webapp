@@ -13,7 +13,7 @@ const Login = () => {
   };
   const handleLoadingResult = (result: boolean, error?: Error): void => {
 
-    result ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    result ? handleOnAuthentication() : setIsAuthenticated(false);
   };
 
   if (isAuthenticated === null) {

@@ -15,7 +15,7 @@ export const Search = () => {
   };
 
   const handleLoadingResult = (result: boolean, error?: Error): void => {
-    result ? setIsAuthenticated(true) : console.log(error);
+    result ? setIsAuthenticated(true) : navigate('/login');
   };
 
   if (isAuthenticated === null) {

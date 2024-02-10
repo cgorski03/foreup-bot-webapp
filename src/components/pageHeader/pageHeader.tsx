@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { IoLogOut } from "react-icons/io5";
 import "./pageHeader.css";
 import { PageLabel } from "./pageLabel/PageLabel";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSignOut } from "../../utils/hooks/useSignOut";
+import { UserInformationContext } from "../../Contexts/UserContext";
 
 export const PageHeader = () => {
-  const [selectedButton, setSelectedButton] = useState<number>(0);
+  const { userInfo }  = useContext(UserInformationContext);
   const { logOut } = useSignOut();
   const navigate = useNavigate();
   const location = useLocation();
-  if(location.pathname === "/login"){
+  if(!userInfo){
     return null;
   }
   const handleNavButtonClick = (buttonValue: number) => {
@@ -21,8 +22,6 @@ export const PageHeader = () => {
         }
       });
     } else {
-      // handle sign out action
-      setSelectedButton(buttonValue);
       switch (buttonValue){
         case 0:
           navigate('/search');
