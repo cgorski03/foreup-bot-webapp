@@ -16,7 +16,7 @@ Welcome to my Tee Time Finder Web App repository! This web app simplifies the pr
 
 ## Technologies Used
 
-- **React:** The frontend is developed using the React framework. This enables a smooth and responsive UI.
+- **React:** The frontend is developed using the React Javascript framework.
 
 - **AWS Cognito:** Ensures secure and scalable user authentication.
 
