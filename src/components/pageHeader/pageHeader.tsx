@@ -11,7 +11,7 @@ export const PageHeader = () => {
   const { logOut } = useSignOut();
   const navigate = useNavigate();
   const location = useLocation();
-  if(!userInfo){
+  if(!userInfo?.email){
     return null;
   }
   const handleNavButtonClick = (buttonValue: number) => {
