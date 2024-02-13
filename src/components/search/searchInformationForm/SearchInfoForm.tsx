@@ -6,6 +6,7 @@ import { TimePicker } from "./timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
 import { GolfCourse, CreateSearchInput } from "../../../utils/api/types";
 import { useCreateSearch } from "../../../utils/api/requests";
+import {StartSearchErrorMessage} from "../../login/message/ErrorMessage";
 
 type SearchInfoFormProps = {
   course: GolfCourse | null;
@@ -15,7 +16,8 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
   const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
-  const { createSearch, isLoading, data} = useCreateSearch();
+  const [error, setError] = useState<string>("");
+  const { createSearch, isLoading, response} = useCreateSearch();
   
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
@@ -29,7 +31,7 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
     setSelectedPlayerCount(players);
   };
   const handleSearchEvent = async () => {
-    if (course) {
+    if (course && selectedStartTime < selectedEndTime) {
       const search: CreateSearchInput = {
         course_id: course?.course_id,
         courseName: course?.courseName,
@@ -45,11 +47,16 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
         endTime: selectedEndTime,
       };
       await createSearch(search);
-      console.log(data);
+      if(!response || Math.floor(response / 100) === 2){
+        //api request error case
+        setError("requestError");
+      }
+    } else {
+      !course ? setError("noCourse"): setError("startTooLate");
     }
   };
   return (
-    <div id="searchDetailsContainer">
+    <div id="searchDetailsContainer" onClick={() => error? setError("") : null}>
       <div className="halfWidthInfoBlock leftHalfInfoBlock">
         <Calendar
           onSelectedDateChange={handleDateSelection}
@@ -68,6 +75,7 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
         <div className="searchCriteriaContainer">
           <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
+          <StartSearchErrorMessage error={error}/>
           <OutlinedButtonLoader
             classOverride="searchButtonHomePage"
             buttonText="Start Search"
