@@ -24,7 +24,6 @@
   
 }
 .rightHalfInfoBlock {
-  justify-content: space-between;
   margin-left: 5px;
   margin-right: 10px;
 
@@ -44,5 +43,5 @@
 
 .searchButtonHomePage {
   background-color: var(--secondary-color-dark) !important;
-  margin: 20px 0px 8px 0px !important;
+  margin: 0px 0px 8px 0px !important;
 }

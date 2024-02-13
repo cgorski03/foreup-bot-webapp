@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { signIn } from "aws-amplify/auth";
 import UsernameField from "./inputFields/UsernameField";
 import PasswordField from "./inputFields/PasswordField";
-import AuthorizationErrorMessage from "./message/AuthorizationErrorMessage";
+import { AuthorizationErrorMessage } from "./message/ErrorMessage";
 import OutlinedButtonLoader from "../buttons/OutlinedButtonLoader";
 import "./loginForm.css";
 
@@ -63,4 +63,3 @@ export const LoginForm = (props: LoginFormProps) => {
     </div>
   );
 };
-
