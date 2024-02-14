@@ -1,7 +1,10 @@
-import React from 'react'
-
+import React from "react";
+import { SearchesTable } from "../../components/dashboard/SearchesTable";
+import "./dashboard.css";
 export const Dashboard = () => {
   return (
-    <div>This will be the dashboard page</div>
-  )
-}
+    <div className="dashboardPageContainer">
+      <SearchesTable />
+    </div>
+  );
+};

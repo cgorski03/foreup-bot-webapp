@@ -1,0 +1,43 @@
+.searchTableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 900px;
+  margin-top: 200px;
+  background-color: var(--secondary-color-dark);
+  border-radius: var(--border-radius-standard);
+}
+.searchTableTitle {
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 0px;
+}
+.searchTable {
+  width: 100%;
+  margin: 20px 0px 0px 0px;
+  padding: 0px 20px 0px 20px;
+  text-align: center;
+  border-spacing: 0;
+}
+.searchTable thead {
+}
+.searchTable th {
+  color: var(--text-color);
+  font-weight: normal;
+  padding: 10px 7px;
+  border-bottom: 1px solid var(--secondary-color-light);
+}
+.searchTable tbody {
+  margin-top: 1px;
+}
+.searchTable thead tr {
+  background-color: var(--secondary-color-dark);
+}
+.searchTable tr {
+  background-color: var(--secondary-color-light);
+  height: 40px;
+  border-radius: 13px;
+}
+.searchTable tr:hover {
+}
