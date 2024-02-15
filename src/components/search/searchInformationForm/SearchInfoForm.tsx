@@ -6,7 +6,7 @@ import { TimePicker } from "./timePicker/TimePicker";
 import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
 import { GolfCourse, CreateSearchInput } from "../../../utils/api/types";
 import { useCreateSearch } from "../../../utils/api/requests";
-import {StartSearchErrorMessage} from "../../login/message/ErrorMessage";
+import { StartSearchErrorMessage } from "../../login/message/ErrorMessage";
 
 type SearchInfoFormProps = {
   course: GolfCourse | null;
@@ -17,8 +17,8 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
   const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
   const [error, setError] = useState<string>("");
-  const { createSearch, isLoading, response} = useCreateSearch();
-  
+  const { createSearch, isLoading, response } = useCreateSearch();
+
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
   };
@@ -27,7 +27,6 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
   };
 
   const handlePlayerSelectChange = (players: number): void => {
-    //Mock logic with console.log
     setSelectedPlayerCount(players);
   };
   const handleSearchEvent = async () => {
@@ -47,16 +46,18 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
         endTime: selectedEndTime,
       };
       await createSearch(search);
-      if(!response || Math.floor(response / 100) === 2){
+      if (!response || Math.floor(response / 100) === 2) {
         //api request error case
         setError("requestError");
       }
     } else {
-      !course ? setError("noCourse"): setError("startTooLate");
+      !course ? setError("noCourse") : setError("startTooLate");
     }
   };
   return (
-    <div id="searchDetailsContainer" onClick={() => error? setError("") : null}>
+    <div
+      id="searchDetailsContainer"
+      onClick={() => (error ? setError("") : null)}>
       <div className="halfWidthInfoBlock leftHalfInfoBlock">
         <Calendar
           onSelectedDateChange={handleDateSelection}
@@ -75,7 +76,7 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
         <div className="searchCriteriaContainer">
           <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
-          <StartSearchErrorMessage error={error}/>
+          <StartSearchErrorMessage error={error} />
           <OutlinedButtonLoader
             classOverride="searchButtonHomePage"
             buttonText="Start Search"

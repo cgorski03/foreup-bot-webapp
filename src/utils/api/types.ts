@@ -13,3 +13,14 @@ export type CreateSearchInput = {
   startTime: string;
   endTime: string;
 };
+
+export type UserSearchInfo = {
+  active: boolean;
+  search_id: number;
+  courseName: string;
+  date: string;
+  players: number;
+  startTime: string;
+  endTime: string;
+  runTime: string;
+};
