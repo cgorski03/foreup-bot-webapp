@@ -15,6 +15,16 @@ export const SearchesTable = () => {
       endTime: "10:00",
       runTime: "10h",
     },
+    {
+      active: false,
+      search_id: 12,
+      courseName: "Bethpage Black Golf Course",
+      date: "2022-01-01",
+      players: 4,
+      startTime: "08:00",
+      endTime: "10:00",
+      runTime: "13h",
+    },
   ];
 
   return (
@@ -22,7 +32,7 @@ export const SearchesTable = () => {
       <table className="searchTable">
         <thead>
           <tr>
-            <th>Active</th>
+            <th></th>
             <th>Course Name</th>
             <th>Date</th>
             <th>Players</th>

@@ -30,28 +30,29 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
     setSelectedPlayerCount(players);
   };
   const handleSearchEvent = async () => {
-    if (course && selectedStartTime < selectedEndTime) {
-      const search: CreateSearchInput = {
-        course_id: course?.course_id,
-        courseName: course?.courseName,
-        date: selectedDate
-          .toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-          })
-          .replace(/\//g, "-"),
-        players: selectedPlayerCount,
-        startTime: selectedStartTime,
-        endTime: selectedEndTime,
-      };
-      await createSearch(search);
-      if (!response || Math.floor(response / 100) === 2) {
-        //api request error case
-        setError("requestError");
-      }
-    } else {
+    if (!course || selectedStartTime > selectedEndTime) {
+      //early return if not all conditions are complete
       !course ? setError("noCourse") : setError("startTooLate");
+      return;
+    }
+    const search: CreateSearchInput = {
+      course_id: course?.course_id,
+      courseName: course?.courseName,
+      date: selectedDate
+        .toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/\//g, "-"),
+      players: selectedPlayerCount,
+      startTime: selectedStartTime,
+      endTime: selectedEndTime,
+    };
+    await createSearch(search);
+    if (!response || Math.floor(response / 100) === 2) {
+      //api request error case
+      setError("requestError");
     }
   };
   return (
