@@ -5,9 +5,10 @@
   border-radius: 0.72rem;
   border: 0.06rem solid var(--secondary-color);
   box-shadow: rgba(204, 204, 204, 0.02) 0 3px 8px;
-  transition: box-shadow 0.2s linear;
+  transition: box-shadow 0.1s linear;
 }
 .teeTimeSearch:hover {
+  box-shadow: rgba(231, 209, 67, 0.2) 0 3px 8px;
   cursor: pointer;
 }
 .teeTimeSearch td {
