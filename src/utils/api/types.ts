@@ -16,7 +16,7 @@ export type CreateSearchInput = {
 
 export type UserSearchInfo = {
   active: boolean;
-  search_id: number;
+  search_id: string;
   courseName: string;
   date: string;
   players: number;

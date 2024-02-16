@@ -2,30 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 65vmax;
+  width: 1000px;
   height: 80rem;
   margin-top: 10rem;
   border-radius: var(--border-radius-standard);
 }
-.searchTableTitle {
-  color: var(--text-color);
+.searchCardHeader {
+  display: flex;
 }
-.searchTable {
-  width: 100%;
-  margin: 0;
-  padding: 0 1rem 0 1rem;
-  border-spacing: 0 1em;
-}
-
-.searchTable thead tr {
-  text-align: left;
-  font-size: 0.8rem;
-}
-.searchTable th {
-  color: var(--text-color);
-  font-weight: normal;
-  padding: 0 0 0.8rem 0.16rem;
-}
-.searchTable tbody {
-  padding-top: 200px;
+.startTimeLabel {
 }
