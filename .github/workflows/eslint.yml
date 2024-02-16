@@ -22,4 +22,4 @@ jobs:
     - name: install eslint
       run: npm install eslint
     - name: lint
-      run: npx eslint .
+      run: npx eslint "**/*.ts" "**/*.tsx" "**/*.js" "**/*.jsx"
