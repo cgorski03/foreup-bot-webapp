@@ -9,8 +9,13 @@ export const SearchCard = ({ search }: SearchCardProps) => {
   return (
     <div className="searchCardContainer">
       <div className="searchCardHeader">
-        <h1 className="searchTitle">{search.courseName}</h1>
-        <div className="headerDetailsContainer">
+        <div className="headerLabelContainer">
+          <p>LAST ACTIVE</p>
+          <p>
+            <span className="activeDot" />2 minutes ago
+          </p>
+        </div>
+        <div className="headerRightJustified">
           <div className="headerLabelContainer">
             <p>SEARCH INITIATED</p>
             <p>{search.runTime}</p>
@@ -22,10 +27,30 @@ export const SearchCard = ({ search }: SearchCardProps) => {
         </div>
       </div>
       <div className="searchCardBody">
-        <img
-          src="https://golf-pass.brightspotcdn.com/84/d7/100e740f29027022c74a55eeb9f1/75692.jpg"
-          className="golfCourseImagePreview"
-        />
+        <div className="imageTitleContainer">
+          <h1 className="searchTitle">{search.courseName}</h1>
+          <img
+            alt="decorative image of the golf course"
+            src="https://golf-pass.brightspotcdn.com/84/d7/100e740f29027022c74a55eeb9f1/75692.jpg"
+            className="golfCourseImagePreview"
+          />
+        </div>
+        <div className="searchCardParameters">
+          <div className="headerLabelContainer">
+            <p>DATE</p>
+            <p>{search.date}</p>
+          </div>
+          <div className="headerLabelContainer">
+            <p>TIME RANGE</p>
+            <p>
+              {search.startTime} - {search.endTime}
+            </p>
+          </div>
+          <div className="headerLabelContainer">
+            <p>PLAYERS</p>
+            <p>{search.players}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
