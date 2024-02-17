@@ -1,4 +1,4 @@
-.loginField {
+.inputField {
   background-color: var(--primary-color);
 
   padding: 10px 7px;
@@ -7,34 +7,33 @@
   outline: none;
   box-sizing: border-box;
   width: 250px;
-  max-height:39px;
+  max-height: 39px;
 
   margin-bottom: 18px;
 }
 
-.loginField:hover,
-.loginField:focus {
+.inputField:hover,
+.inputField:focus {
   background-color: var(--secondary-color);
 }
 
-#passwordBox,
-#usernameBox {
+input.inputField {
   color: var(--text-color);
   border: 1px solid var(--secondary-color-light);
 }
 
-#loginActionButton {
+button.inputField {
   border: 1px solid var(--accent-color);
   color: var(--accent-color);
 }
-#loginActionButton:hover {
+button.inputField:hover {
   cursor: pointer;
 }
-#loginActionButton.loading {
+button.inputField.loading {
   /*This style takes precedence over the hover one*/
   background-color: var(--background-color);
 }
-#loginActionButton:active {
+button.inputField:active {
   background-color: var(--primary-color);
 }
 

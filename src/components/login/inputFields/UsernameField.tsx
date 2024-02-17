@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent } from 'react';
 
 type UsernameFieldProps = {
   onChange: (newUsername: string) => void;
@@ -14,8 +14,7 @@ const UsernameField = (props: UsernameFieldProps) => {
   return (
     <input
       type="text"
-      className="loginField"
-      id="usernameBox"
+      className="inputField"
       placeholder="Username"
       onChange={handleUserInput}
     />

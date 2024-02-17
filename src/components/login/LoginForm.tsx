@@ -3,7 +3,7 @@ import { signIn } from 'aws-amplify/auth';
 import UsernameField from './inputFields/UsernameField';
 import PasswordField from './inputFields/PasswordField';
 import { AuthorizationErrorMessage } from './message/ErrorMessage';
-import OutlinedButtonLoader from '../buttons/OutlinedButtonLoader';
+import { OutlinedButtonLoader } from '../buttons/OutlinedButtonLoader';
 import './loginForm.css';
 
 type LoginFormProps = {

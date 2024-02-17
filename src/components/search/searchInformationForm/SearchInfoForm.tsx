@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import "./searchInformationForm.css";
-import Calendar from "./calendar/Calendar";
-import { PlayerSelect } from "./players/PlayerSelect";
-import { TimePicker } from "./timePicker/TimePicker";
-import OutlinedButtonLoader from "../../buttons/OutlinedButtonLoader";
-import { GolfCourse, CreateSearchInput } from "../../../utils/api/types";
-import { useCreateSearch } from "../../../utils/api/requests";
-import { StartSearchErrorMessage } from "../../login/message/ErrorMessage";
+import React, { useState } from 'react';
+import './searchInformationForm.css';
+import Calendar from './calendar/Calendar';
+import { PlayerSelect } from './players/PlayerSelect';
+import { TimePicker } from './timePicker/TimePicker';
+import { OutlinedButtonLoader } from '../../buttons/OutlinedButtonLoader';
+import { GolfCourse, CreateSearchInput } from '../../../utils/api/types';
+import { useCreateSearch } from '../../../utils/api/requests';
+import { StartSearchErrorMessage } from '../../login/message/ErrorMessage';
 
 type SearchInfoFormProps = {
   course: GolfCourse | null;
 };
 export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [selectedStartTime, setSelectedStartTime] = useState<string>("08:00");
-  const [selectedEndTime, setSelectedEndTime] = useState<string>("22:00");
+  const [selectedStartTime, setSelectedStartTime] = useState<string>('08:00');
+  const [selectedEndTime, setSelectedEndTime] = useState<string>('22:00');
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
   const { createSearch, isLoading, response } = useCreateSearch();
 
   const handleDateSelection = (date: Date): void => {
@@ -32,19 +32,19 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
   const handleSearchEvent = async () => {
     if (!course || selectedStartTime > selectedEndTime) {
       //early return if not all conditions are complete
-      !course ? setError("noCourse") : setError("startTooLate");
+      !course ? setError('noCourse') : setError('startTooLate');
       return;
     }
     const search: CreateSearchInput = {
       course_id: course?.course_id,
       courseName: course?.courseName,
       date: selectedDate
-        .toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
+        .toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
         })
-        .replace(/\//g, "-"),
+        .replace(/\//g, '-'),
       players: selectedPlayerCount,
       startTime: selectedStartTime,
       endTime: selectedEndTime,
@@ -52,13 +52,13 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
     await createSearch(search);
     if (!response || Math.floor(response / 100) === 2) {
       //api request error case
-      setError("requestError");
+      setError('requestError');
     }
   };
   return (
     <div
       id="searchDetailsContainer"
-      onClick={() => (error ? setError("") : null)}>
+      onClick={() => (error ? setError('') : null)}>
       <div className="halfWidthInfoBlock leftHalfInfoBlock">
         <Calendar
           onSelectedDateChange={handleDateSelection}
