@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { signIn } from "aws-amplify/auth";
-import UsernameField from "./inputFields/UsernameField";
-import PasswordField from "./inputFields/PasswordField";
-import { AuthorizationErrorMessage } from "./message/ErrorMessage";
-import OutlinedButtonLoader from "../buttons/OutlinedButtonLoader";
-import "./loginForm.css";
+import React, { useState } from 'react';
+import { signIn } from 'aws-amplify/auth';
+import UsernameField from './inputFields/UsernameField';
+import PasswordField from './inputFields/PasswordField';
+import { AuthorizationErrorMessage } from './message/ErrorMessage';
+import OutlinedButtonLoader from '../buttons/OutlinedButtonLoader';
+import './loginForm.css';
 
 type LoginFormProps = {
   onAuthentication: () => void;
 };
 export const LoginForm = (props: LoginFormProps) => {
   const { onAuthentication } = props;
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [loading, setLoader] = useState<boolean>(false);
-  const [loginErrorMessage, setLoginErrorMessage] = useState<string>("");
+  const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
 
   async function attemptLogin() {
     try {
@@ -39,12 +39,12 @@ export const LoginForm = (props: LoginFormProps) => {
   };
 
   const handleEnterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       handleLogin();
     } else {
       // rerender the error message blank if the user is typing
-      if (loginErrorMessage !== "") {
-        setLoginErrorMessage("");
+      if (loginErrorMessage !== '') {
+        setLoginErrorMessage('');
       }
     }
   };

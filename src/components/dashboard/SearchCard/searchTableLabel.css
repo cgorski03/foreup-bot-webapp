@@ -77,9 +77,9 @@
 }
 .searchCardParameters > .headerLabelContainer {
   /* Want a larger margin between these elementes */
-  margin: 0 3.2rem;
+  margin: 0 2.8rem;
 }
 .searchCardParameters > .headerLabelContainer:last-child {
-  /* Want a consistent margin on the last element0 */
-  margin: 0 1.2rem 0 3.2rem;
+  /* Want a consistent margin on the last element to line up with the padding above */
+  margin: 0 1.2rem 0 2.8rem;
 }

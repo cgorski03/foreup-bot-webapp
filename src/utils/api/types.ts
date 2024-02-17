@@ -22,5 +22,6 @@ export type UserSearchInfo = {
   players: number;
   startTime: string;
   endTime: string;
-  runTime: string;
+  searchInitiated: string;
+  lastSearchCheck: string;
 };
