@@ -2,35 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 800px;
-  height: 900px;
-  margin-top: 200px;
+  width: 1000px;
+  height: 80rem;
+  margin-top: 10rem;
   border-radius: var(--border-radius-standard);
 }
-.searchTableTitle {
-  color: var(--text-color);
-  margin-bottom: 0px;
+.searchCardHeader {
+  display: flex;
 }
-.searchTable {
-  width: 100%;
-  margin: 20px 0px 0px 0px;
-  padding: 0px 20px 0px 20px;
-  border-spacing: 0;
-}
-.searchTable thead tr {
-  text-align: left;
-  font-size: small;
-}
-.searchTable th {
-  color: var(--text-color);
-  font-weight: normal;
-}
-.searchTable tbody {
-  margin-top: 1px;
-}
-.searchTable tr {
-  height: 40px;
-  border-radius: 13px;
-}
-.searchTable tr:hover {
+.startTimeLabel {
 }

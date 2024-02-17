@@ -1,0 +1,85 @@
+.searchCardContainer {
+  width: 100%;
+  border-radius: 0.8rem;
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.searchCardHeader {
+  border-radius: 0.8rem 0.8rem 0 0;
+  align-items: center;
+  background-color: var(--header-background-color);
+  color: var(--secondary-color-light);
+}
+.searchTitle {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 18px;
+  height: 2.8rem;
+  align-items: center;
+  margin: 0 1.2rem;
+  padding: 0 0.24rem;
+}
+.headerRightJustified {
+  display: flex;
+  margin-left: auto;
+}
+.headerLabelContainer {
+  margin: 0 1.2rem;
+  padding: 1.6rem 0;
+}
+.activeDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  margin-right: 0.8rem;
+}
+.headerLabelContainer p:first-child {
+  /* This is the styling for the label of what the stat is  */
+  font-size: small;
+  font-weight: bold;
+  margin: 0;
+}
+.headerLabelContainer p:last-child {
+  /* This is the stylign for the stat itself */
+  font-size: normal;
+  font-weight: bold;
+  margin: 0.24rem 0 0 0;
+}
+.searchCardBody {
+  height: 18rem;
+  display: flex;
+  flex-direction: row;
+}
+.golfCourseImagePreview {
+  max-height: 14rem;
+  max-width: 21.24rem;
+  border-radius: 0.8rem;
+  margin: 0 1.2rem 1.2rem 1.2rem;
+}
+.imageTitleContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+}
+.searchCardParameters {
+  color: var(--text-color);
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.searchCardParameters > .headerLabelContainer {
+  /* Want a larger margin between these elementes */
+  margin: 0 3.2rem;
+}
+.searchCardParameters > .headerLabelContainer:last-child {
+  /* Want a consistent margin on the last element0 */
+  margin: 0 1.2rem 0 3.2rem;
+}
