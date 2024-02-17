@@ -6,6 +6,8 @@ import {
   convertTo12Hour,
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
+import { FaCalendar, FaClock } from 'react-icons/fa';
+import { MdPerson } from 'react-icons/md';
 
 type SearchCardProps = {
   search: UserSearchInfo;
@@ -30,18 +32,26 @@ export const SearchCard = ({ search }: SearchCardProps) => {
         </div>
         <div className="searchCardParameters">
           <div className="headerLabelContainer">
-            <p>DATE</p>
+            <p>
+              <FaCalendar className="labelIcon" /> DATE
+            </p>
             <p>{expandDate({ date: search.date, dayOfWeek: true })}</p>
           </div>
           <div className="headerLabelContainer">
-            <p>TIME RANGE</p>
+            <p>
+              <FaClock className="labelIcon" />
+              TIME RANGE
+            </p>
             <p>
               {convertTo12Hour(search.startTime)} -{' '}
               {convertTo12Hour(search.endTime)}
             </p>
           </div>
           <div className="headerLabelContainer">
-            <p>PLAYERS</p>
+            <p>
+              <MdPerson className="" />
+              PLAYERS
+            </p>
             <p>{search.players}</p>
           </div>
         </div>

@@ -43,9 +43,15 @@
 }
 .headerLabelContainer p:first-child {
   /* This is the styling for the label of what the stat is  */
+  display: flex;
+  align-items: center;
   font-size: small;
   font-weight: bold;
   margin: 0;
+}
+.labelIcon {
+  font-size: 90%;
+  margin-right: 0.2rem;
 }
 .headerLabelContainer p:last-child {
   /* This is the stylign for the stat itself */
