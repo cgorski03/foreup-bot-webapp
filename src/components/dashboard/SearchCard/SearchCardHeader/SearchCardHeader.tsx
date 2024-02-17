@@ -17,7 +17,8 @@ export const SearchCardHeader = (props: SearchHeaderProps) => {
       <div className="headerLabelContainer">
         <p>{active ? 'LAST ACTIVE' : 'SEARCH CONCLUDED'}</p>
         <p>
-          <span className="activeDot" />
+          {/* ensures a red dot for an inactive search */}
+          <span className={`activeDot ${active ? '' : 'inactiveSearch'}`} />
           {active
             ? getElapsedTime(lastSearchCheck)
             : expandDate({ date: lastSearchCheck, time: true })}

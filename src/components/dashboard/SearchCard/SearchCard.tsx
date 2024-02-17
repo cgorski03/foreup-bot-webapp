@@ -2,7 +2,10 @@ import React from 'react';
 import './searchTableLabel.css';
 import { UserSearchInfo } from '../../../utils/api/types';
 import { SearchCardHeader } from './SearchCardHeader/SearchCardHeader';
-import { expandDate } from '../../../utils/dateExpansion/datetimeFunctions';
+import {
+  convertTo12Hour,
+  expandDate,
+} from '../../../utils/dateExpansion/datetimeFunctions';
 
 type SearchCardProps = {
   search: UserSearchInfo;
@@ -33,7 +36,8 @@ export const SearchCard = ({ search }: SearchCardProps) => {
           <div className="headerLabelContainer">
             <p>TIME RANGE</p>
             <p>
-              {search.startTime} - {search.endTime}
+              {convertTo12Hour(search.startTime)} -{' '}
+              {convertTo12Hour(search.endTime)}
             </p>
           </div>
           <div className="headerLabelContainer">

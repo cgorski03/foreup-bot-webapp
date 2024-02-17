@@ -9,12 +9,12 @@ export const SearchesList = () => {
       active: true,
       search_id: '1707440738566',
       courseName: 'H. Smith Richardson Golf Course',
-      date: '2022-01-01',
+      date: '2024-02-10',
       players: 4,
-      startTime: '8:00 AM',
-      endTime: '10:00 PM',
+      startTime: '08:00',
+      endTime: '22:00',
       searchInitiated: '2024-02-03T23:52:00',
-      lastSearchCheck: '2024-02-09T10:52:00',
+      lastSearchCheck: '2024-02-17T13:28:00',
     },
   ];
 
