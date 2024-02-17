@@ -15,13 +15,13 @@ export type CreateSearchInput = {
 };
 
 export type UserSearchInfo = {
-  active: boolean;
-  search_id: string;
-  courseName: string;
   date: string;
+  active: boolean;
+  ID: string;
   players: number;
-  startTime: string;
-  endTime: string;
+  courseName: string;
+  start: string;
+  end: string;
   searchInitiated: string;
-  lastSearchCheck: string;
+  heartbeat: string;
 };

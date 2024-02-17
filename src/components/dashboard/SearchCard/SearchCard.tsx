@@ -21,9 +21,9 @@ export const SearchCard = ({ search }: SearchCardProps) => {
     <div className="searchCardContainer">
       <SearchCardHeader
         active={search.active}
-        lastSearchCheck={search.lastSearchCheck}
+        lastSearchCheck={search.heartbeat}
         searchInitiated={search.searchInitiated}
-        search_id={search.search_id}
+        search_id={search.ID}
       />
       <div className="searchCardBody">
         <div className="imageTitleContainer">
@@ -48,8 +48,7 @@ export const SearchCard = ({ search }: SearchCardProps) => {
                 TIME RANGE
               </p>
               <p>
-                {convertTo12Hour(search.startTime)} -{' '}
-                {convertTo12Hour(search.endTime)}
+                {convertTo12Hour(search.start)} - {convertTo12Hour(search.end)}
               </p>
             </div>
             <div className="headerLabelContainer">
