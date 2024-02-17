@@ -1,54 +1,77 @@
 import React from 'react';
 import './searchTableLabel.css';
 import { UserSearchInfo } from '../../../utils/api/types';
+import { SearchCardHeader } from './SearchCardHeader/SearchCardHeader';
+import {
+  convertTo12Hour,
+  expandDate,
+} from '../../../utils/dateExpansion/datetimeFunctions';
+import { FaCalendar, FaClock } from 'react-icons/fa';
+import { MdPerson } from 'react-icons/md';
+import { OutlinedButtonLoader } from '../../buttons/OutlinedButtonLoader';
+import { useGetCourses } from '../../../utils/api/requests';
 
 type SearchCardProps = {
   search: UserSearchInfo;
 };
 export const SearchCard = ({ search }: SearchCardProps) => {
+  const { isLoading } = useGetCourses();
+  const handleSeachCancel = (): void => {};
   return (
     <div className="searchCardContainer">
-      <div className="searchCardHeader">
-        <div className="headerLabelContainer">
-          <p>LAST ACTIVE</p>
-          <p>
-            <span className="activeDot" />2 minutes ago
-          </p>
-        </div>
-        <div className="headerRightJustified">
-          <div className="headerLabelContainer">
-            <p>SEARCH INITIATED</p>
-            <p>{search.runTime}</p>
-          </div>
-          <div className="headerLabelContainer">
-            <p>ID #</p>
-            <p>{search.search_id}</p>
-          </div>
-        </div>
-      </div>
+      <SearchCardHeader
+        active={search.active}
+        lastSearchCheck={search.heartbeat}
+        searchInitiated={search.searchInitiated}
+        search_id={search.ID}
+      />
       <div className="searchCardBody">
         <div className="imageTitleContainer">
           <h1 className="searchTitle">{search.courseName}</h1>
           <img
-            alt="decorative image of the golf course"
+            alt={search.courseName}
             src="https://golf-pass.brightspotcdn.com/84/d7/100e740f29027022c74a55eeb9f1/75692.jpg"
             className="golfCourseImagePreview"
           />
         </div>
-        <div className="searchCardParameters">
-          <div className="headerLabelContainer">
-            <p>DATE</p>
-            <p>{search.date}</p>
+        <div className="rightHalfCardBody">
+          <div className="searchCardParameters">
+            <div className="headerLabelContainer">
+              <p>
+                <FaCalendar className="labelIcon" /> DATE
+              </p>
+              <p>{expandDate({ date: search.date, dayOfWeek: true })}</p>
+            </div>
+            <div className="headerLabelContainer">
+              <p>
+                <FaClock className="labelIcon" />
+                TIME RANGE
+              </p>
+              <p>
+                {convertTo12Hour(search.start)} - {convertTo12Hour(search.end)}
+              </p>
+            </div>
+            <div className="headerLabelContainer">
+              <p>
+                <MdPerson className="" />
+                PLAYERS
+              </p>
+              <p>{search.players}</p>
+            </div>
           </div>
-          <div className="headerLabelContainer">
-            <p>TIME RANGE</p>
-            <p>
-              {search.startTime} - {search.endTime}
-            </p>
-          </div>
-          <div className="headerLabelContainer">
-            <p>PLAYERS</p>
-            <p>{search.players}</p>
+          <div className="searchActionsContainer">
+            <OutlinedButtonLoader
+              classOverride="editSearchButton"
+              buttonText="Edit"
+              onClick={handleSeachCancel}
+              loading={isLoading}
+            />
+            <OutlinedButtonLoader
+              classOverride="cancelSearchButton"
+              buttonText="Cancel"
+              onClick={handleSeachCancel}
+              loading={isLoading}
+            />
           </div>
         </div>
       </div>

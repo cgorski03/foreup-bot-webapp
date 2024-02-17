@@ -4,6 +4,7 @@
   box-shadow:
     rgba(0, 0, 0, 0.19) 0px 10px 20px,
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  margin-bottom: 2rem;
 }
 .searchCardHeader {
   border-radius: 0.8rem 0.8rem 0 0;
@@ -33,16 +34,26 @@
 .activeDot {
   display: inline-block;
   width: 10px;
+
   height: 10px;
   background-color: green;
   border-radius: 50%;
   margin-right: 0.8rem;
 }
+.activeDot.inactiveSearch {
+  background-color: red;
+}
 .headerLabelContainer p:first-child {
   /* This is the styling for the label of what the stat is  */
+  display: flex;
+  align-items: center;
   font-size: small;
   font-weight: bold;
   margin: 0;
+}
+.labelIcon {
+  font-size: 90%;
+  margin-right: 0.2rem;
 }
 .headerLabelContainer p:last-child {
   /* This is the stylign for the stat itself */
@@ -67,19 +78,55 @@
   height: 100%;
   justify-content: flex-end;
 }
+.rightHalfCardBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rightHalfCardBody > div {
+  display: flex;
+  width: 100%;
+}
 .searchCardParameters {
   color: var(--text-color);
   width: 100%;
   height: 30%;
-  display: flex;
-  flex-direction: row;
   justify-content: flex-end;
 }
 .searchCardParameters > .headerLabelContainer {
   /* Want a larger margin between these elementes */
-  margin: 0 3.2rem;
+  margin: 0 2.8rem;
 }
 .searchCardParameters > .headerLabelContainer:last-child {
-  /* Want a consistent margin on the last element0 */
-  margin: 0 1.2rem 0 3.2rem;
+  /* Want a consistent margin on the last element to line up with the padding above */
+  margin: 0 1.2rem 0 2.8rem;
+}
+.searchActionsContainer {
+  justify-content: flex-end;
+}
+.searchActionsContainer > .inputField,
+.searchActionsContainer > .inputField:focus {
+  background-color: var(--background-color);
+  font-weight: bold;
+  margin: 1.2rem;
+  width: 10rem;
+  transition: box-shadow 0.2s linear;
+}
+
+.searchActionsContainer > .editSearchButton {
+  border: 0.12rem solid var(--secondary-color);
+  color: var(--secondary-color-light);
+}
+.searchActionsContainer > .cancelSearchButton {
+  border: 0.12rem solid firebrick;
+  color: firebrick;
+}
+.searchActionsContainer > .cancelSearchButton:hover,
+.searchActionsContainer > .editSearchButton:hover {
+  background-color: var(--background-color);
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }

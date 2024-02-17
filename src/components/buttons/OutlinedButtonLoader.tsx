@@ -1,26 +1,23 @@
-import React from "react";
-import "./loginStyles.css"
+import React from 'react';
+import './loginStyles.css';
 //@ts-ignore
-import { ReactComponent as Loader } from "../login/inputFields/loader.svg"
+import { ReactComponent as Loader } from '../login/inputFields/loader.svg';
 
-type LoginButtonProps = {
+type OutlinedButtonLoaderProps = {
   onClick: () => void;
   classOverride?: string;
   buttonText: string;
   loading: boolean;
 };
 
-const LoginButton = (props: LoginButtonProps) => {
+export const OutlinedButtonLoader = (props: OutlinedButtonLoaderProps) => {
   const { onClick, classOverride, buttonText, loading } = props;
 
   return (
     <button
-      className={`loginField ${loading ? "loading" : ""} ${classOverride ? classOverride: ""}`}
-      id="loginActionButton"
+      className={`inputField ${loading ? 'loading' : ''} ${classOverride ? classOverride : ''}`}
       onClick={onClick}>
       {!loading ? buttonText : <Loader className="spinner" />}
     </button>
   );
 };
-
-export default LoginButton;

@@ -2,26 +2,25 @@ import React from 'react';
 import { UserSearchInfo } from '../../utils/api/types';
 import './searchTable.css';
 import { SearchCard } from './SearchCard/SearchCard';
+import { useGetSearches } from '../../utils/api/requests';
+//@ts-ignore
+import { ReactComponent as Loader } from '../login/inputFields/loader.svg';
 export const SearchesList = () => {
   //Mock logic, will be an API call
-  const searches: UserSearchInfo[] = [
-    {
-      active: true,
-      search_id: '1707440738566',
-      courseName: 'H. Smith Richardson Golf Course',
-      date: '2022-01-01',
-      players: 4,
-      startTime: '08:00',
-      endTime: '10:00',
-      runTime: 'February 16th, 2:54 PM',
-    },
-  ];
+  const { getSearches, isLoading, data } = useGetSearches();
 
+  if (isLoading) {
+    return (
+      <div>
+        <Loader className="spinner" />
+      </div>
+    );
+  }
   return (
     <div className="searchTableContainer">
-      {searches.map((search) => (
-        <SearchCard search={search} />
-      ))}
+      {data
+        ? data.map((search) => <SearchCard search={search} />)
+        : (getSearches(), [])}
     </div>
   );
 };
