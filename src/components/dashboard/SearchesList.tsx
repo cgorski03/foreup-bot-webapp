@@ -1,5 +1,4 @@
 import React from 'react';
-import { UserSearchInfo } from '../../utils/api/types';
 import './searchTable.css';
 import { SearchCard } from './SearchCard/SearchCard';
 import { useGetSearches } from '../../utils/api/requests';

@@ -22,7 +22,10 @@ export const useGetSearches = () => {
 
   const getSearches = (input?: undefined) => commonFetch({ input });
 
-  return { getSearches, isLoading, data, response };
+  const forceSearches = (input?: undefined) =>
+    commonFetch({ input, cacheOverride: true });
+
+  return { getSearches, forceSearches, isLoading, data, response };
 };
 
 export const useCreateSearch = () => {

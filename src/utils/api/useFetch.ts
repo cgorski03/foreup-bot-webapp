@@ -10,6 +10,7 @@ type UseFetchProps = {
 
 type CommonFetch = {
   input?: { [index: string]: any };
+  cacheOverride?: boolean;
 };
 
 export function useFetch<T>({ endpoint, method }: UseFetchProps) {
@@ -21,11 +22,15 @@ export function useFetch<T>({ endpoint, method }: UseFetchProps) {
   const [data, setData] = useState<T | null>(null);
   const [response, setResponse] = useState<number | null>(null);
 
-  const commonFetch = async ({ input }: CommonFetch) => {
+  const commonFetch = async ({ input, cacheOverride }: CommonFetch) => {
     const endpointUrl: string = `${BASE_URL}${endpoint}`;
     setIsLoading(true);
-    // Check if the data is already in the session storage
-    if (method === 'GET' && sessionStorage.getItem(endpointUrl)) {
+    // Check if the data is already in the session storage and that this is not a forced refresh
+    if (
+      method === 'GET' &&
+      sessionStorage.getItem(endpointUrl) &&
+      !cacheOverride
+    ) {
       // If yes, set data to the value
       const cachedData = sessionStorage.getItem(endpointUrl);
       cachedData && setData(JSON.parse(cachedData));
