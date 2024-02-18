@@ -9,13 +9,20 @@ import {
 import { FaCalendar, FaClock } from 'react-icons/fa';
 import { MdPerson } from 'react-icons/md';
 import { OutlinedButtonLoader } from '../../buttons/OutlinedButtonLoader';
-import { useGetCourses } from '../../../utils/api/requests';
 
 type SearchCardProps = {
   search: UserSearchInfo;
 };
 export const SearchCard = ({ search }: SearchCardProps) => {
-  const { isLoading } = useGetCourses();
+  console.log(
+    search.active +
+      ' ' +
+      search.date +
+      ' ' +
+      expandDate({ date: search.date, dayOfWeek: true })
+  );
+  // mock isLoading until the delete search functionality is actually implemented
+  const isLoading: boolean = false;
   const handleSeachCancel = (): void => {};
   return (
     <div className="searchCardContainer">
@@ -53,7 +60,7 @@ export const SearchCard = ({ search }: SearchCardProps) => {
             </div>
             <div className="headerLabelContainer">
               <p>
-                <MdPerson className="" />
+                <MdPerson style={{ margin: '0' }} />
                 PLAYERS
               </p>
               <p>{search.players}</p>

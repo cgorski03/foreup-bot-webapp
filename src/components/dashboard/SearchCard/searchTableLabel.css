@@ -95,13 +95,17 @@
   height: 30%;
   justify-content: flex-end;
 }
-.searchCardParameters > .headerLabelContainer {
+.searchCardParameters > .headerLabelContainer:first-child {
   /* Want a larger margin between these elementes */
-  margin: 0 2.8rem;
+  width: 45%;
+}
+.searchCardParameters > .headerLabelContainer:nth-child(2) {
+  /* Want a larger margin between these elementes */
+  width: 30%;
 }
 .searchCardParameters > .headerLabelContainer:last-child {
   /* Want a consistent margin on the last element to line up with the padding above */
-  margin: 0 1.2rem 0 2.8rem;
+  margin: 0 1.2rem 0 0;
 }
 .searchActionsContainer {
   justify-content: flex-end;
