@@ -3,24 +3,18 @@ function getOrdinalSuffix(day: number) {
   const relevantDigits = day > 10 && day < 14 ? 0 : day % 10;
   return day + (suffixes[relevantDigits] || suffixes[0]);
 }
+
 export function expandDate(options: {
   date: string;
   dayOfWeek?: boolean;
   time?: boolean;
 }): string {
-  const dateObject = new Date(options.date);
-
-  const dayOfWeekOptions: Intl.DateTimeFormatOptions = options.dayOfWeek
-    ? { weekday: 'long' }
-    : {};
-
-  const timeOptions: Intl.DateTimeFormatOptions = options.time
-    ? { hour: 'numeric', minute: 'numeric', hour12: true }
-    : {};
-
+  const dateObject = new Date(options.date + (options.time ? 'Z' : ' '));
   const formattedDate = dateObject.toLocaleString('en-US', {
-    ...dayOfWeekOptions,
-    ...timeOptions,
+    ...(options.dayOfWeek ? { weekday: 'long' } : {}),
+    ...(options.time
+      ? { hour: 'numeric', minute: 'numeric', hour12: true }
+      : {}),
     month: 'long',
     day: 'numeric',
   });
@@ -33,7 +27,7 @@ export function expandDate(options: {
 
 export function getElapsedTime(lastActive: string): string {
   const currentDate: Date = new Date();
-  const inputDate: Date = new Date(lastActive);
+  const inputDate: Date = new Date(lastActive + 'Z');
 
   const timeDifference = currentDate.getTime() - inputDate.getTime();
 

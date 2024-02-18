@@ -50,7 +50,8 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
       endTime: selectedEndTime,
     };
     await createSearch(search);
-    if (!response || Math.floor(response / 100) === 2) {
+    if (response && Math.floor(response / 100) !== 2) {
+      console.log(response);
       //api request error case
       setError('requestError');
     }
