@@ -14,13 +14,6 @@ type SearchCardProps = {
   search: UserSearchInfo;
 };
 export const SearchCard = ({ search }: SearchCardProps) => {
-  console.log(
-    search.active +
-      ' ' +
-      search.date +
-      ' ' +
-      expandDate({ date: search.date, dayOfWeek: true })
-  );
   // mock isLoading until the delete search functionality is actually implemented
   const isLoading: boolean = false;
   const handleSeachCancel = (): void => {};
