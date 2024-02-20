@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "./calendar.css";
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './calendar.css';
 
 type CalendarProps = {
   onSelectedDateChange: (date: Date) => void;
   courseEndDate: Date | null;
 };
 
-const Calendar = (props: CalendarProps) => {
+function Calendar(props: CalendarProps) {
   const { onSelectedDateChange, courseEndDate } = props;
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  if(courseEndDate  && selectedDate > courseEndDate){
+  if (courseEndDate && selectedDate > courseEndDate) {
     setSelectedDate(new Date());
   }
   return (
@@ -31,6 +31,6 @@ const Calendar = (props: CalendarProps) => {
       />
     </div>
   );
-};
+}
 
 export default Calendar;

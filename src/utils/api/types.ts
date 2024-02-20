@@ -3,6 +3,7 @@ export type GolfCourse = {
   courseName: string;
   courseLocation: string;
   maxBookingDays: number;
+  image: string;
 };
 
 export type CreateSearchInput = {

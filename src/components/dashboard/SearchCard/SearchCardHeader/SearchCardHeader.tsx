@@ -4,14 +4,16 @@ import {
   getElapsedTime,
 } from '../../../../utils/dateExpansion/datetimeFunctions';
 import '../searchTableLabel.css';
+
 type SearchHeaderProps = {
   active: boolean;
   lastSearchCheck: string;
   searchInitiated: string;
-  search_id: string;
+  searchId: string;
 };
-export const SearchCardHeader = (props: SearchHeaderProps) => {
-  const { active, lastSearchCheck, searchInitiated, search_id } = props;
+
+export function SearchCardHeader(props: SearchHeaderProps) {
+  const { active, lastSearchCheck, searchInitiated, searchId } = props;
   return (
     <div className="searchCardHeader">
       <div className="headerLabelContainer">
@@ -31,9 +33,11 @@ export const SearchCardHeader = (props: SearchHeaderProps) => {
         </div>
         <div className="headerLabelContainer">
           <p>ID #</p>
-          <p>{search_id}</p>
+          <p>{searchId}</p>
         </div>
       </div>
     </div>
   );
-};
+}
+
+export default SearchCardHeader;

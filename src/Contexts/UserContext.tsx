@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 export type UserInformation = {
   name: string | undefined;
@@ -8,9 +8,9 @@ export type UserInformation = {
 };
 type UserContextType = {
   userInfo: UserInformation | null;
-  setUserInfo: ((userInfo: UserInformation) => void) | null;
+  setUserInfo: (userInfo: UserInformation) => void;
 };
 export const UserInformationContext = createContext<UserContextType>({
   userInfo: null,
-  setUserInfo: null,
+  setUserInfo: () => {},
 });

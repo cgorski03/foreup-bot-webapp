@@ -1,12 +1,12 @@
-import React from "react";
-import "./courseLabel.css";
+import React from 'react';
+import './courseLabel.css';
 
 type CourseLabelProps = {
   courseName: string;
   courseLocation: string;
 };
 
-const CourseLabel = (props: CourseLabelProps) => {
+function CourseLabel(props: CourseLabelProps) {
   const { courseName, courseLocation } = props;
 
   return (
@@ -15,6 +15,6 @@ const CourseLabel = (props: CourseLabelProps) => {
       <div className="location">{courseLocation}</div>
     </div>
   );
-};
+}
 
 export default CourseLabel;

@@ -1,5 +1,5 @@
-import "./pageLabel.css";
-import React from "react";
+import './pageLabel.css';
+import React from 'react';
 
 type PageLabelProps = {
   handleButtonClick: (value: number) => void;
@@ -7,21 +7,22 @@ type PageLabelProps = {
   buttonLabel: string | JSX.Element;
   buttonValue: number;
 };
-export const PageLabel = (props: PageLabelProps) => {
+function PageLabel(props: PageLabelProps) {
   const { handleButtonClick, isSelectedPage, buttonLabel, buttonValue } = props;
   return (
     <div className="labelContainer">
       <button
+        type="submit"
         onClick={() => handleButtonClick(buttonValue)}
-        className={"navHeaderButton"}>
+        className="navHeaderButton"
+      >
         {buttonLabel}
       </button>
       <div
-        className={
-          "currentPageUnderline " +
-          (isSelectedPage ? "selectedPageUnderline" : "")
-        }
+        className={`currentPageUnderline ${isSelectedPage ? 'selectedPageUnderline' : ''}`}
       />
     </div>
   );
-};
+}
+
+export default PageLabel;

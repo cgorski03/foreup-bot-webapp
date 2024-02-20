@@ -1,19 +1,19 @@
 import React from 'react';
 import './searchTableLabel.css';
+import { FaCalendar, FaClock } from 'react-icons/fa';
+import { MdPerson } from 'react-icons/md';
 import { UserSearchInfo } from '../../../utils/api/types';
 import { SearchCardHeader } from './SearchCardHeader/SearchCardHeader';
 import {
   convertTo12Hour,
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
-import { FaCalendar, FaClock } from 'react-icons/fa';
-import { MdPerson } from 'react-icons/md';
-import { OutlinedButtonLoader } from '../../buttons/OutlinedButtonLoader';
+import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 
 type SearchCardProps = {
   search: UserSearchInfo;
 };
-export const SearchCard = ({ search }: SearchCardProps) => {
+function SearchCard({ search }: SearchCardProps) {
   // mock isLoading until the delete search functionality is actually implemented
   const isLoading: boolean = false;
   const handleSeachCancel = (): void => {};
@@ -23,7 +23,7 @@ export const SearchCard = ({ search }: SearchCardProps) => {
         active={search.active}
         lastSearchCheck={search.heartbeat}
         searchInitiated={search.searchInitiated}
-        search_id={search.ID}
+        searchId={search.ID}
       />
       <div className="searchCardBody">
         <div className="imageTitleContainer">
@@ -38,7 +38,8 @@ export const SearchCard = ({ search }: SearchCardProps) => {
           <div className="searchCardParameters">
             <div className="headerLabelContainer">
               <p>
-                <FaCalendar className="labelIcon" /> DATE
+                <FaCalendar className="labelIcon" />
+                DATE
               </p>
               <p>{expandDate({ date: search.date, dayOfWeek: true })}</p>
             </div>
@@ -48,7 +49,9 @@ export const SearchCard = ({ search }: SearchCardProps) => {
                 TIME RANGE
               </p>
               <p>
-                {convertTo12Hour(search.start)} - {convertTo12Hour(search.end)}
+                {convertTo12Hour(search.start)}
+                -
+                {convertTo12Hour(search.end)}
               </p>
             </div>
             <div className="headerLabelContainer">
@@ -77,4 +80,6 @@ export const SearchCard = ({ search }: SearchCardProps) => {
       </div>
     </div>
   );
-};
+}
+
+export default SearchCard;

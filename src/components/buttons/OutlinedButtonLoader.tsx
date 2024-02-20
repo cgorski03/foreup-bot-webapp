@@ -1,6 +1,6 @@
 import React from 'react';
 import './loginStyles.css';
-//@ts-ignore
+// @ts-ignore
 import { ReactComponent as Loader } from '../login/inputFields/loader.svg';
 
 type OutlinedButtonLoaderProps = {
@@ -9,15 +9,22 @@ type OutlinedButtonLoaderProps = {
   buttonText: string;
   loading: boolean;
 };
-
-export const OutlinedButtonLoader = (props: OutlinedButtonLoaderProps) => {
+function OutlinedButtonLoader(props: OutlinedButtonLoaderProps) {
   const { onClick, classOverride, buttonText, loading } = props;
 
   return (
     <button
-      className={`inputField ${loading ? 'loading' : ''} ${classOverride ? classOverride : ''}`}
-      onClick={onClick}>
+      type="button"
+      className={`inputField ${loading ? 'loading' : ''} ${classOverride}`}
+      onClick={onClick}
+    >
       {!loading ? buttonText : <Loader className="spinner" />}
     </button>
   );
+}
+
+OutlinedButtonLoader.defaultProps = {
+  classOverride: '',
 };
+
+export default OutlinedButtonLoader;

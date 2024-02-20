@@ -1,11 +1,12 @@
 import React from 'react';
 import './searchTable.css';
-import { SearchCard } from './SearchCard/SearchCard';
+import SearchCard from './SearchCard/SearchCard';
 import { useGetSearches } from '../../utils/api/requests';
-//@ts-ignore
+// @ts-ignore
 import { ReactComponent as Loader } from '../login/inputFields/loader.svg';
-export const SearchesList = () => {
-  //Mock logic, will be an API call
+
+function SearchesTable() {
+  // Mock logic, will be an API call
   const { getSearches, isLoading, data } = useGetSearches();
 
   if (isLoading) {
@@ -22,4 +23,5 @@ export const SearchesList = () => {
         : (getSearches(), [])}
     </div>
   );
-};
+}
+export default SearchesTable;

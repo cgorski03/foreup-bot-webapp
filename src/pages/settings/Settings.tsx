@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export const Settings = () => {
-  return (
-    <div>Settings</div>
-  )
+function Settings() {
+  return <div>Settings</div>;
 }
+export default Settings;

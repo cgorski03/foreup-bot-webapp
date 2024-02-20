@@ -18,16 +18,14 @@ export function expandDate(options: {
     month: 'long',
     day: 'numeric',
   });
-  const formattedDateWithSuffix = formattedDate.replace(/\d+/, (day) =>
-    getOrdinalSuffix(parseInt(day, 10))
-  );
+  const formattedDateWithSuffix = formattedDate.replace(/\d+/, (day) => getOrdinalSuffix(parseInt(day, 10)));
   // remove the at in the date object that is returned
   return formattedDateWithSuffix.replace(' at', '');
 }
 
 export function getElapsedTime(lastActive: string): string {
   const currentDate: Date = new Date();
-  const inputDate: Date = new Date(lastActive + 'Z');
+  const inputDate: Date = new Date(`${lastActive}Z`);
 
   const timeDifference = currentDate.getTime() - inputDate.getTime();
 
