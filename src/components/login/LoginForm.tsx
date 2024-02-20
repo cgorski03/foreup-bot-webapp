@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { signIn } from 'aws-amplify/auth';
-import UsernameField from './inputFields/UsernameField';
-import PasswordField from './inputFields/PasswordField';
+import TextInputField from './inputFields/TextInputField';
 import { AuthorizationErrorMessage } from './message/ErrorMessage';
-import { OutlinedButtonLoader } from '../buttons/OutlinedButtonLoader';
+import OutlinedButtonLoader from '../buttons/OutlinedButtonLoader';
 import './loginForm.css';
 
 type LoginFormProps = {
   onAuthentication: () => void;
 };
-export const LoginForm = (props: LoginFormProps) => {
+function LoginForm(props: LoginFormProps) {
   const { onAuthentication } = props;
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -27,33 +26,35 @@ export const LoginForm = (props: LoginFormProps) => {
       setLoginErrorMessage(error.message);
     }
   }
-
   const handleUsernameChange = (newUsername: string) => {
     setUsername(newUsername);
+    setLoginErrorMessage('');
   };
   const handlePasswordChange = (newPassword: string) => {
+    setLoginErrorMessage('');
     setPassword(newPassword);
   };
   const handleLogin = () => {
     attemptLogin();
   };
 
-  const handleEnterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleLogin();
-    } else {
-      // rerender the error message blank if the user is typing
-      if (loginErrorMessage !== '') {
-        setLoginErrorMessage('');
-      }
-    }
-  };
-
   return (
-    <div className="textField" onKeyDown={handleEnterKey}>
-      <img src="/images/golf_bot_image.jpeg" className="appImage" alt="app" />
-      <UsernameField onChange={handleUsernameChange} />
-      <PasswordField onChange={handlePasswordChange} />
+    <div className="textField">
+      <img
+        src="/images/golf_bot_image.jpeg"
+        className="appImage"
+        alt="app"
+      />
+      <TextInputField
+        onChange={handleUsernameChange}
+        placeholder="Username"
+        loginPress={handleLogin}
+      />
+      <TextInputField
+        onChange={handlePasswordChange}
+        placeholder="Password"
+        loginPress={handleLogin}
+      />
       <OutlinedButtonLoader
         onClick={handleLogin}
         buttonText="Login"
@@ -62,4 +63,6 @@ export const LoginForm = (props: LoginFormProps) => {
       <AuthorizationErrorMessage error={loginErrorMessage} />
     </div>
   );
-};
+}
+
+export default LoginForm;

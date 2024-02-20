@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SearchesList } from '../../components/dashboard/SearchesList';
-import { LoadSecurePage } from '../../components/search/loading/LoadSecurePage';
+import SearchesTable from '../../components/dashboard/SearchesTable';
+import LoadSecurePage from '../../components/search/loading/LoadSecurePage';
 import './dashboard.css';
-export const Dashboard = () => {
+
+function Dashboard() {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const handleLoadingResult = (result: boolean, error?: Error): void => {
-    result ? setIsAuthenticated(true) : navigate('/login');
+    if (result) {
+      setIsAuthenticated(true);
+    } else {
+      console.log(error);
+      navigate('/login');
+    }
   };
   if (isAuthenticated === null) {
     return (
@@ -18,7 +24,9 @@ export const Dashboard = () => {
   }
   return (
     <div className="dashboardPageContainer">
-      <SearchesList />
+      <SearchesTable />
     </div>
   );
-};
+}
+
+export default Dashboard;

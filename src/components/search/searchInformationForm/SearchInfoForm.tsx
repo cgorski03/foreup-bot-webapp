@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './searchInformationForm.css';
 import Calendar from './calendar/Calendar';
-import { PlayerSelect } from './players/PlayerSelect';
-import { TimePicker } from './timePicker/TimePicker';
-import { OutlinedButtonLoader } from '../../buttons/OutlinedButtonLoader';
+import PlayerSelect from './players/PlayerSelect';
+import TimePicker from './timePicker/TimePicker';
+import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 import { GolfCourse, CreateSearchInput } from '../../../utils/api/types';
 import { useCreateSearch } from '../../../utils/api/requests';
 import { StartSearchErrorMessage } from '../../login/message/ErrorMessage';
@@ -11,28 +11,39 @@ import { StartSearchErrorMessage } from '../../login/message/ErrorMessage';
 type SearchInfoFormProps = {
   course: GolfCourse | null;
 };
-export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
+
+function SearchInfoForm({ course }: SearchInfoFormProps) {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedStartTime, setSelectedStartTime] = useState<string>('08:00');
   const [selectedEndTime, setSelectedEndTime] = useState<string>('22:00');
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
   const [error, setError] = useState<string>('');
-  const { createSearch, isLoading, response } = useCreateSearch();
+  const { createSearch, isLoading, responseCode } = useCreateSearch();
 
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
   };
   const handleTimeChange = (timeID: number, time: string): void => {
-    timeID ? setSelectedEndTime(time) : setSelectedStartTime(time);
+    // start time will have timeid of 0
+    if (!timeID) {
+      setSelectedStartTime(time);
+    } else {
+      setSelectedEndTime(time);
+    }
   };
 
   const handlePlayerSelectChange = (players: number): void => {
     setSelectedPlayerCount(players);
   };
+
   const handleSearchEvent = async () => {
     if (!course || selectedStartTime > selectedEndTime) {
-      //early return if not all conditions are complete
-      !course ? setError('noCourse') : setError('startTooLate');
+      // early return if not all conditions are complete
+      if (!course) {
+        setError('noCourse');
+      } else {
+        setError('startTooLate');
+      }
       return;
     }
     const search: CreateSearchInput = {
@@ -50,26 +61,25 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
       endTime: selectedEndTime,
     };
     await createSearch(search);
-    if (response && Math.floor(response / 100) !== 2) {
-      console.log(response);
-      //api request error case
+    if (responseCode && Math.floor(responseCode / 100) !== 2) {
+      console.log(responseCode);
+      // api request error case
       setError('requestError');
     }
   };
+
   return (
-    <div
-      id="searchDetailsContainer"
-      onClick={() => (error ? setError('') : null)}>
+    <div id="searchDetailsContainer">
       <div className="halfWidthInfoBlock leftHalfInfoBlock">
         <Calendar
           onSelectedDateChange={handleDateSelection}
           courseEndDate={
             course
               ? new Date(
-                  new Date().setDate(
-                    new Date().getDate() + course.maxBookingDays
-                  )
-                )
+                new Date().setDate(
+                  new Date().getDate() + course.maxBookingDays,
+                ),
+              )
               : null
           }
         />
@@ -89,4 +99,6 @@ export const SearchInfoForm = ({ course }: SearchInfoFormProps) => {
       </div>
     </div>
   );
-};
+}
+
+export default SearchInfoForm;

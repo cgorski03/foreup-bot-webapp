@@ -10,27 +10,35 @@ type UseFetchProps = {
 
 type CommonFetch = {
   input?: { [index: string]: any };
+  cacheOverride?: boolean;
 };
 
-export function useFetch<T>({ endpoint, method }: UseFetchProps) {
+function useFetch<T>({ endpoint, method }: UseFetchProps) {
   const DEFAULT_FETCH_HEADERS = {
     Authorization: useContext(UserInformationContext).userInfo?.id_token || '',
   };
   const [isLoading, setIsLoading] = useState(false);
   // we are assigning the generic type T to our data value here
   const [data, setData] = useState<T | null>(null);
-  const [response, setResponse] = useState<number | null>(null);
+  const [responseCode, setResponseCode] = useState<number | null>(null);
 
-  const commonFetch = async ({ input }: CommonFetch) => {
+  const commonFetch = async ({ input, cacheOverride }: CommonFetch) => {
     const endpointUrl: string = `${BASE_URL}${endpoint}`;
     setIsLoading(true);
-    // Check if the data is already in the session storage
-    if (method === 'GET' && sessionStorage.getItem(endpointUrl)) {
+    // Check if the data is already in the session storage and that this is not a forced refresh
+    if (
+      method === 'GET'
+      && sessionStorage.getItem(endpointUrl)
+      && !cacheOverride
+    ) {
       // If yes, set data to the value
       const cachedData = sessionStorage.getItem(endpointUrl);
-      cachedData && setData(JSON.parse(cachedData));
-      setResponse(200);
-      setIsLoading(false);
+      // This has to be ugly because linter isn't recognizing initial conditional
+      if (cachedData) {
+        setData(JSON.parse(cachedData));
+        setResponseCode(200);
+        setIsLoading(false);
+      }
     } else {
       // Else, fetch
       const response = await fetch(endpointUrl, {
@@ -40,14 +48,18 @@ export function useFetch<T>({ endpoint, method }: UseFetchProps) {
         },
         body: JSON.stringify(input),
       });
-      const data = await response.json();
+      const responseData = await response.json();
       // Set the session storage
-      sessionStorage.setItem(endpointUrl, JSON.stringify(data));
+      if (method === 'GET') {
+        sessionStorage.setItem(endpointUrl, JSON.stringify(responseData));
+      }
       setIsLoading(false);
-      setResponse(response.status);
-      setData(data);
+      setResponseCode(response.status);
+      setData(responseData);
     }
   };
 
-  return { isLoading, commonFetch, data, response };
+  return { isLoading, commonFetch, data, responseCode };
 }
+
+export default useFetch;

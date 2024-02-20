@@ -1,8 +1,8 @@
-import { getCurrentUser } from "aws-amplify/auth";
-import { useState, useEffect } from "react";
-//The fact this isn't a hook in amplify is insane i miss auth0
+import { getCurrentUser } from 'aws-amplify/auth';
+import { useState, useEffect } from 'react';
+// The fact this isn't a hook in amplify is insane i miss auth0
 
-export const useAuth = (): boolean | null => {
+const useAuth = (): boolean | null => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -21,3 +21,4 @@ export const useAuth = (): boolean | null => {
   return isAuthenticated;
 };
 
+export default useAuth;

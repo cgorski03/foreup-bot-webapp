@@ -1,10 +1,10 @@
-import React from "react";
-import Select from "react-select";
-//@ts-ignore
-import selectStyles from "./selectStyles";
-import CourseLabel from "./label/CourseLabel";
-import { useGetCourses } from "../../../utils/api/requests";
-import { GolfCourse } from "../../../utils/api/types";
+import React from 'react';
+import Select from 'react-select';
+// @ts-ignore
+import selectStyles from './selectStyles';
+import CourseLabel from './label/CourseLabel';
+import { useGetCourses } from '../../../utils/api/requests';
+import { GolfCourse } from '../../../utils/api/types';
 
 type CourseSelectProps = {
   onCourseSelection: (course: GolfCourse) => void;
@@ -12,7 +12,7 @@ type CourseSelectProps = {
 
 type Option = { value: GolfCourse; label: JSX.Element };
 
-const CourseSelect = (props: CourseSelectProps) => {
+function CourseSelect(props: CourseSelectProps) {
   const { onCourseSelection } = props;
   const { getCourses, isLoading, data } = useGetCourses();
 
@@ -20,7 +20,7 @@ const CourseSelect = (props: CourseSelectProps) => {
     return (
       <div>
         <Select
-          isSearchable={true}
+          isSearchable
           styles={selectStyles}
           placeholder="Where would you like to play?"
           maxMenuHeight={207.5}
@@ -34,17 +34,17 @@ const CourseSelect = (props: CourseSelectProps) => {
         options={
           data
             ? data.map((course) => ({
-                value: course,
-                label: (
-                  <CourseLabel
-                    courseName={course.courseName}
-                    courseLocation={course.courseLocation}
-                  />
-                ),
-              }))
+              value: course,
+              label: (
+                <CourseLabel
+                  courseName={course.courseName}
+                  courseLocation={course.courseLocation}
+                />
+              ),
+            }))
             : (getCourses(), [])
         }
-        isSearchable={true}
+        isSearchable
         styles={selectStyles}
         onChange={(option: Option | null) => {
           if (option != null) {
@@ -56,6 +56,6 @@ const CourseSelect = (props: CourseSelectProps) => {
       />
     </div>
   );
-};
+}
 
 export default CourseSelect;
