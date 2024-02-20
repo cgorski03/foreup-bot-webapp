@@ -48,14 +48,14 @@ function useFetch<T>({ endpoint, method }: UseFetchProps) {
         },
         body: JSON.stringify(input),
       });
-      await response.json();
+      const responseData = await response.json();
       // Set the session storage
       if (method === 'GET') {
-        sessionStorage.setItem(endpointUrl, JSON.stringify(data));
+        sessionStorage.setItem(endpointUrl, JSON.stringify(responseData));
       }
       setIsLoading(false);
       setResponseCode(response.status);
-      setData(data);
+      setData(responseData);
     }
   };
 
