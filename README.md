@@ -16,7 +16,6 @@ Welcome to my Tee Time Finder Web App repository! This web app simplifies the pr
 
 ## Technologies Used
 
-- **React:** The frontend is developed using the React Javascript framework.
 
 - **AWS Cognito:** Ensures secure and scalable user authentication.
 
@@ -25,6 +24,12 @@ Welcome to my Tee Time Finder Web App repository! This web app simplifies the pr
 - **CloudWatch Rules and Lambda:** Orchestrates tee time searches, ensuring seamless execution and reliability.
 
 - **DynamoDB:** DynamoDB is used for robust and efficient tracking of user searches.
+
+## Codebase
+
+- **React:** The frontend is developed using the React Javascript framework.
+
+- **Airbnb Style Guide:** The codebase conforms with the eslint-airbnb-typescript style guide
 
 ## License
 
