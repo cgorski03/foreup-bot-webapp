@@ -6,6 +6,8 @@ export type GolfCourse = {
   image: string;
 };
 
+export type GolfCourseCollection = Record<number, GolfCourse>;
+
 export type CreateSearchInput = {
   course_id: number;
   courseName: string;

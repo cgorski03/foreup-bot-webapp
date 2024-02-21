@@ -14,9 +14,9 @@ type Option = { value: GolfCourse; label: JSX.Element };
 
 function CourseSelect(props: CourseSelectProps) {
   const { onCourseSelection } = props;
-  const { getCourses, isLoading, data } = useGetCourses();
+  const { getCourses, coursesLoading, courses } = useGetCourses();
 
-  if (isLoading) {
+  if (coursesLoading) {
     return (
       <div>
         <Select
@@ -32,8 +32,8 @@ function CourseSelect(props: CourseSelectProps) {
     <div>
       <Select
         options={
-          data
-            ? data.map((course) => ({
+          courses
+            ? Object.values(courses).map((course) => ({
               value: course,
               label: (
                 <CourseLabel

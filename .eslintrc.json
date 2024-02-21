@@ -33,5 +33,5 @@
     ],
     "one-expression-per-line": 0
   },
-  "ignorePatterns": ["amplify/*"]
+  "ignorePatterns": ["amplify/*", "*.js"]
 }

@@ -1,15 +1,19 @@
 import React from 'react';
 import './searchTable.css';
-import SearchCard from './SearchCard/SearchCard';
-import { useGetSearches } from '../../utils/api/requests';
+import { useGetSearches, useGetCourses } from '../../utils/api/requests';
 // @ts-ignore
 import { ReactComponent as Loader } from '../login/inputFields/loader.svg';
 
 function SearchesTable() {
   // Mock logic, will be an API call
-  const { getSearches, isLoading, data } = useGetSearches();
+  const { getSearches, searchesLoading, searches } = useGetSearches();
+  const { courses } = useGetCourses();
+  const renderSearchCards = (): JSX.Element => {
+    console.log(courses);
+    return <div>dfkslj</div>;
+  };
 
-  if (isLoading) {
+  if (searchesLoading) {
     return (
       <div>
         <Loader className="spinner" />
@@ -18,9 +22,7 @@ function SearchesTable() {
   }
   return (
     <div className="searchTableContainer">
-      {data
-        ? data.map((search) => <SearchCard search={search} />)
-        : (getSearches(), [])}
+      {searches ? renderSearchCards() : (getSearches(), [])}
     </div>
   );
 }
