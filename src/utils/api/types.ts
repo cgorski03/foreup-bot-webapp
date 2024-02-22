@@ -6,6 +6,8 @@ export type GolfCourse = {
   image: string;
 };
 
+export type GolfCourseCollection = Record<number, GolfCourse>;
+
 export type CreateSearchInput = {
   course_id: number;
   courseName: string;
@@ -25,4 +27,5 @@ export type UserSearchInfo = {
   end: string;
   searchInitiated: string;
   heartbeat: string;
+  course_id: number;
 };

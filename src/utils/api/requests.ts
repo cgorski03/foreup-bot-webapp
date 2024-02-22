@@ -1,19 +1,25 @@
-import { CreateSearchInput, GolfCourse, UserSearchInfo } from './types';
+import { CreateSearchInput, GolfCourseCollection, UserSearchInfo } from './types';
 import useFetch from './useFetch';
 
 export const useGetCourses = () => {
-  const { commonFetch, isLoading, data, responseCode } = useFetch<GolfCourse[]>({
+  const { commonFetch,
+    isLoading: coursesLoading,
+    data: courses,
+    responseCode } = useFetch<GolfCourseCollection>({
     endpoint: '/courses',
     method: 'GET',
   });
 
   const getCourses = (input?: undefined) => commonFetch({ input });
 
-  return { getCourses, isLoading, data, responseCode };
+  return { getCourses, coursesLoading, courses, responseCode };
 };
 
 export const useGetSearches = () => {
-  const { commonFetch, isLoading, data, responseCode } = useFetch<UserSearchInfo[]>(
+  const { commonFetch,
+    isLoading: searchesLoading,
+    data: searches,
+    responseCode } = useFetch<UserSearchInfo[]>(
     {
       endpoint: '/search',
       method: 'GET',
@@ -24,7 +30,7 @@ export const useGetSearches = () => {
 
   const forceSearches = (input?: undefined) => commonFetch({ input, cacheOverride: true });
 
-  return { getSearches, forceSearches, isLoading, data, responseCode };
+  return { getSearches, forceSearches, searchesLoading, searches, responseCode };
 };
 
 export const useCreateSearch = () => {
