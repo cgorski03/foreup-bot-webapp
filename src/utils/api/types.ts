@@ -27,4 +27,5 @@ export type UserSearchInfo = {
   end: string;
   searchInitiated: string;
   heartbeat: string;
+  course_id: number;
 };

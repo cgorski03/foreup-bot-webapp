@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './searchTable.css';
 import { useGetSearches, useGetCourses } from '../../utils/api/requests';
 // @ts-ignore
 import { ReactComponent as Loader } from '../login/inputFields/loader.svg';
+import SearchCard from './SearchCard/SearchCard';
 
 function SearchesTable() {
-  // Mock logic, will be an API call
   const { getSearches, searchesLoading, searches } = useGetSearches();
-  const { courses } = useGetCourses();
-  const renderSearchCards = (): JSX.Element => {
-    console.log(courses);
-    return <div>dfkslj</div>;
-  };
+  const { getCourses, coursesLoading, courses } = useGetCourses();
 
-  if (searchesLoading) {
+  useEffect(() => {
+    getCourses();
+    getSearches();
+  }, []);
+
+  if (searchesLoading || coursesLoading) {
     return (
       <div>
         <Loader className="spinner" />
@@ -22,7 +23,17 @@ function SearchesTable() {
   }
   return (
     <div className="searchTableContainer">
-      {searches ? renderSearchCards() : (getSearches(), [])}
+      {searches && courses ? (
+        searches.map((search) => (
+          <SearchCard
+            key={search.course_id}
+            search={search}
+            image={courses[search.course_id].image}
+          />
+        ))
+      ) : (
+        <h1>Error Loading </h1>
+      )}
     </div>
   );
 }

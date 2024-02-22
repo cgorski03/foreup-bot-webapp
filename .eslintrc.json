@@ -31,7 +31,10 @@
         "ExportDeclaration": { "multiline": true, "minProperties": 5 }
       }
     ],
-    "one-expression-per-line": 0
+    "one-expression-per-line": 0,
+    "indent": "off",
+    "typescript-eslint/indent": "off",
+    "react/jsx-indent": "off" // conflicting with prettier
   },
   "ignorePatterns": ["amplify/*", "*.js"]
 }

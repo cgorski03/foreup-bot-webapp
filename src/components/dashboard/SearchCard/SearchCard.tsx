@@ -12,8 +12,9 @@ import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 
 type SearchCardProps = {
   search: UserSearchInfo;
+  image: string;
 };
-function SearchCard({ search }: SearchCardProps) {
+function SearchCard({ search, image }: SearchCardProps) {
   // mock isLoading until the delete search functionality is actually implemented
   const isLoading: boolean = false;
   const handleSeachCancel = (): void => {};
@@ -30,7 +31,7 @@ function SearchCard({ search }: SearchCardProps) {
           <h1 className="searchTitle">{search.courseName}</h1>
           <img
             alt={search.courseName}
-            src="https://golf-pass.brightspotcdn.com/84/d7/100e740f29027022c74a55eeb9f1/75692.jpg"
+            src={image}
             className="golfCourseImagePreview"
           />
         </div>
