@@ -1,4 +1,4 @@
-import { CreateSearchInput, GolfCourseCollection, UserSearchInfo } from './types';
+import type { CreateSearchInput, GolfCourseCollection, UserSearchInfo, DeleteSearchInput } from './types';
 import useFetch from './useFetch';
 
 export const useGetCourses = () => {
@@ -41,4 +41,14 @@ export const useCreateSearch = () => {
   const createSearch = (input: CreateSearchInput) => commonFetch({ input });
 
   return { createSearch, isLoading, data, responseCode };
+};
+
+export const useDeleteSearch = () => {
+  const { commonFetch, isLoading: deleteLoading, data, responseCode } = useFetch<string>({
+    endpoint: '/search',
+    method: 'DELETE',
+  });
+  const deleteSearch = (input: DeleteSearchInput) => commonFetch({ input });
+
+  return { deleteSearch, deleteLoading, data, responseCode };
 };

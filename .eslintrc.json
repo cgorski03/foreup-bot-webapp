@@ -28,7 +28,7 @@
     "object-curly-newline": [
       "error",
       {
-        "ExportDeclaration": { "multiline": true, "minProperties": 5 }
+        "ExportDeclaration": { "multiline": true, "minProperties": 4 }
       }
     ],
     "one-expression-per-line": 0,
