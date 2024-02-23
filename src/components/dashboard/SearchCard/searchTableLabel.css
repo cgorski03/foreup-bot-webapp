@@ -67,8 +67,9 @@
   flex-direction: row;
 }
 .golfCourseImagePreview {
-  max-height: 14rem;
-  max-width: 21.24rem;
+  height: 14rem;
+  width: 21.24rem;
+  overflow: hidden;
   border-radius: 0.8rem;
   margin: 0 1.2rem 1.2rem 1.2rem;
 }

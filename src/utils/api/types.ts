@@ -17,6 +17,10 @@ export type CreateSearchInput = {
   endTime: string;
 };
 
+export type DeleteSearchInput = {
+  search_id: string;
+};
+
 export type UserSearchInfo = {
   date: string;
   active: boolean;
