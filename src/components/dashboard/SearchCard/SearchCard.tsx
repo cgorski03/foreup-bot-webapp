@@ -9,7 +9,7 @@ import {
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
 import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
-import { useDeleteSearch } from '../../../utils/api/requests';
+import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
 
 type SearchCardProps = {
   search: UserSearchInfo;
@@ -19,18 +19,22 @@ type SearchCardProps = {
 function SearchCard({ search, image, refreshSearches }: SearchCardProps) {
   // mock isLoading until the delete search functionality is actually implemented
   const isLoading: boolean = false;
-  const { deleteSearch, deleteLoading, responseCode } = useDeleteSearch();
-
+  const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
+  const { cancelSearch, cancelLoading, cancelResponse } = useCancelSearch();
   const handleSearchKill = async (): Promise<void> => {
     // logic is different depending on if the search is active
     if (!search.active) {
       await deleteSearch({ search_id: search.ID });
-      if (responseCode && responseCode !== 200) {
+      if (deleteResponse && deleteResponse !== 200) {
         console.log('There has been an error deleting the search');
-        return;
       }
-      refreshSearches();
+    } else {
+      await cancelSearch({ search_id: search.ID });
+      if (cancelResponse && cancelResponse !== 200) {
+        console.log('There has been an error cancelling the search');
+      }
     }
+    refreshSearches();
   };
   return (
     <div className="searchCardContainer">
@@ -88,7 +92,7 @@ function SearchCard({ search, image, refreshSearches }: SearchCardProps) {
               classOverride="cancelSearchButton"
               buttonText={search.active ? 'Cancel' : 'Delete'}
               onClick={handleSearchKill}
-              loading={deleteLoading}
+              loading={deleteLoading || cancelLoading}
             />
           </div>
         </div>
