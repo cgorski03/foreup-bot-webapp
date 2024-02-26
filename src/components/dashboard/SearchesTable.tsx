@@ -5,7 +5,7 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { useGetSearches, useGetCourses } from '../../utils/api/requests';
 // @ts-ignore
 import SearchCard from './SearchCard/SearchCard';
-import FullscreenErrorMessage from '../error/FullscreenErrorMessage';
+import HandleAuthApiErrors from '../error/HandleAuthApiErrors';
 
 function NoSearchesFound() {
   return (
@@ -31,9 +31,8 @@ function SearchesTable() {
     if (!searches || !courses) {
       return <h1>Error Loading Searches</h1>;
     }
-    if (responseCode === 402) {
-      // User's token has expired
-      return <FullscreenErrorMessage msg="Your session has timed out." />;
+    if (responseCode !== 200) {
+      return <HandleAuthApiErrors responseCode={responseCode} />;
     }
     if (!searches.length) {
       // There are no searches for the user. Display stay search message

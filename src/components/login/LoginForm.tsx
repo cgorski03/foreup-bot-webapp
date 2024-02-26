@@ -4,6 +4,7 @@ import TextInputField from './inputFields/TextInputField';
 import { AuthorizationErrorMessage } from './message/ErrorMessage';
 import OutlinedButtonLoader from '../buttons/OutlinedButtonLoader';
 import './loginForm.css';
+import useSignIn from '../../utils/hooks/useSignIn';
 
 type LoginFormProps = {
   onAuthentication: () => void;
@@ -14,12 +15,13 @@ function LoginForm(props: LoginFormProps) {
   const [password, setPassword] = useState<string>('');
   const [loading, setLoader] = useState<boolean>(false);
   const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
-
+  const { setAuthedContext } = useSignIn();
   async function attemptLogin() {
     try {
       setLoader(true);
       await signIn({ username, password });
       setLoader(false);
+      await setAuthedContext();
       onAuthentication(); // call the parent callback function
     } catch (error: any) {
       setLoader(false);
