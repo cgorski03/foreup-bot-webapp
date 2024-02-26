@@ -1,10 +1,14 @@
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { signOut } from 'aws-amplify/auth';
-import { useContext } from 'react';
 import { UserInformationContext } from '../../Contexts/UserContext';
 
 export default function useSignOut() {
+  const [signingOut, setSigningOut] = useState<boolean>(false);
   const { setUserInfo } = useContext(UserInformationContext);
+  const navigate = useNavigate();
   const logOut = async (): Promise<boolean> => {
+    setSigningOut(true);
     try {
       await signOut();
       setUserInfo({
@@ -13,12 +17,12 @@ export default function useSignOut() {
         email_verified: undefined,
         id_token: undefined,
       });
-
-      window.location.reload();
+      navigate('/');
       return true;
     } catch (error) {
+      setSigningOut(false);
       return false;
     }
   };
-  return { logOut };
+  return { logOut, signingOut };
 }
