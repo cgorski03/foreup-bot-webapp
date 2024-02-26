@@ -15,8 +15,9 @@ type SearchCardProps = {
   search: UserSearchInfo;
   image: string;
   refreshSearches: () => void;
+  refreshLoading: boolean;
 };
-function SearchCard({ search, image, refreshSearches }: SearchCardProps) {
+function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCardProps) {
   // mock isLoading until the delete search functionality is actually implemented
   const isLoading: boolean = false;
   const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
@@ -37,7 +38,7 @@ function SearchCard({ search, image, refreshSearches }: SearchCardProps) {
     refreshSearches();
   };
   return (
-    <div className="searchCardContainer">
+    <div className={`searchCardContainer ${refreshLoading ? 'cardRefreshLoading' : ''}`}>
       <SearchCardHeader
         active={search.active}
         lastSearchCheck={search.heartbeat}
@@ -68,9 +69,7 @@ function SearchCard({ search, image, refreshSearches }: SearchCardProps) {
                 TIME RANGE
               </p>
               <p>
-                {convertTo12Hour(search.start)}
-                -
-                {convertTo12Hour(search.end)}
+                {convertTo12Hour(search.start)}-{convertTo12Hour(search.end)}
               </p>
             </div>
             <div className="headerLabelContainer">

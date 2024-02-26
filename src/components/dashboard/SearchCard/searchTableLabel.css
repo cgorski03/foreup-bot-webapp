@@ -6,6 +6,15 @@
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
   margin-bottom: 2rem;
 }
+.cardRefreshLoading {
+  transition:
+    background-color,
+    filter 0.1s linear;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: brightness(20%);
+  z-index: 1;
+  pointer-events: none;
+}
 .searchCardHeader {
   border-radius: 0.8rem 0.8rem 0 0;
   align-items: center;
