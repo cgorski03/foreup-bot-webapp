@@ -30,8 +30,8 @@ export function getElapsedTime(lastActive: string): string {
   const timeDifference = currentDate.getTime() - inputDate.getTime();
 
   const minutes: number = Math.floor(timeDifference / 60000); // 1 minute = 60,000 milliseconds
-  if (!minutes){
-    return 'Just now'
+  if (!minutes) {
+    return 'Just now';
   }
   return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
 }

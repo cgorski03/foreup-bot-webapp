@@ -69,7 +69,9 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
                 TIME RANGE
               </p>
               <p>
-                {convertTo12Hour(search.start)}-{convertTo12Hour(search.end)}
+                {convertTo12Hour(search.start)}
+                -
+                {convertTo12Hour(search.end)}
               </p>
             </div>
             <div className="headerLabelContainer">

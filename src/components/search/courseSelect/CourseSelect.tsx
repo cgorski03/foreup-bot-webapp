@@ -10,7 +10,7 @@ type CourseSelectProps = {
   onCourseSelection: (course: GolfCourse) => void;
 };
 
-type Option = { value: GolfCourse; label: JSX.Element };
+type Option = { value: string; courseObj: GolfCourse; label: JSX.Element };
 
 function CourseSelect(props: CourseSelectProps) {
   const { onCourseSelection } = props;
@@ -34,7 +34,8 @@ function CourseSelect(props: CourseSelectProps) {
         options={
           courses
             ? Object.values(courses).map((course) => ({
-              value: course,
+              value: course.courseName,
+              courseObj: course,
               label: (
                 <CourseLabel
                   courseName={course.courseName}
@@ -48,7 +49,7 @@ function CourseSelect(props: CourseSelectProps) {
         styles={selectStyles}
         onChange={(option: Option | null) => {
           if (option != null) {
-            onCourseSelection(option.value);
+            onCourseSelection(option.courseObj);
           }
         }}
         placeholder="Where would you like to play?"
