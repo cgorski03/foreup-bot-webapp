@@ -50,7 +50,7 @@ function useFetch<T>({ endpoint, method }: UseFetchProps) {
       });
       const responseData = await response.json();
       // Set the session storage
-      if (method === 'GET') {
+      if (method === 'GET' && response.ok) {
         sessionStorage.setItem(endpointUrl, JSON.stringify(responseData));
       }
       setIsLoading(false);

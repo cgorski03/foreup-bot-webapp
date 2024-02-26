@@ -17,7 +17,7 @@ function SearchesTable() {
   const handleSearchRefresh = () => {
     forceSearches();
   };
-  if (searchesLoading || coursesLoading) {
+  if ((searchesLoading || coursesLoading) && searches == null) {
     return (
       <div className="searchTableContainer">
         <div className="searchTableHeader">
@@ -52,6 +52,7 @@ function SearchesTable() {
             search={search}
             image={courses[search.course_id].image}
             refreshSearches={handleSearchRefresh}
+            refreshLoading={searchesLoading}
           />
         ))
       ) : (
