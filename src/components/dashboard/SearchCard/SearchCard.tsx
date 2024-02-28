@@ -1,14 +1,13 @@
 import React from 'react';
 import './searchTableLabel.css';
 import { FaCalendar, FaClock } from 'react-icons/fa';
-import { MdPerson } from 'react-icons/md';
+import { MdPerson, MdEdit, MdDelete, MdStopCircle } from 'react-icons/md';
 import { UserSearchInfo } from '../../../utils/api/types';
 import { SearchCardHeader } from './SearchCardHeader';
 import {
   convertTo12Hour,
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
-import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
 
 type SearchCardProps = {
@@ -17,12 +16,33 @@ type SearchCardProps = {
   refreshSearches: () => void;
   refreshLoading: boolean;
 };
+type IconLabeledButtonProps = {
+  icon: JSX.Element;
+  loading: boolean;
+  onClick: () => void;
+};
+function IconLabeledButton(props: IconLabeledButtonProps) {
+  const { onClick, loading, icon } = props;
+  return (
+    <div>
+      <button
+        type="submit"
+        onClick={onClick}
+        className={`iconLabeledButton ${loading && 'loading'}`}
+      >
+        {icon}
+      </button>
+    </div>
+  );
+}
 
 function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCardProps) {
   // If the search was successful, times.length > 0
-  const searchSuccess = search.times.length > 0;
+  // TODO Loading states and animation
+  // TOOD replace the ugly stop logo
+  // Include times foudn
   const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
-  const { cancelSearch, cancelLoading, cancelResponse } = useCancelSearch();
+  const { cancelSearch, cancelResponse } = useCancelSearch();
   const handleSearchKill = async (): Promise<void> => {
     // logic is different depending on if the search is active
     if (!search.active) {
@@ -85,20 +105,24 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
             </div>
           </div>
           <div className="searchActionsContainer">
-            <div className="searchActionButtons">
-              <OutlinedButtonLoader
-                classOverride={`editSearchButton ${searchSuccess && 'bookButton'}`}
-                buttonText={searchSuccess ? 'Book' : 'Edit'}
+            <IconLabeledButton
+              onClick={handleSearchKill}
+              icon={<MdEdit />}
+              loading={false}
+            />
+            {search.active ? (
+              <IconLabeledButton
                 onClick={handleSearchKill}
-                loading={false}
+                icon={<MdStopCircle />}
+                loading={deleteLoading}
               />
-              <OutlinedButtonLoader
-                classOverride={search.active ? 'cancelSearchButton' : 'deleteSearchButton'}
-                buttonText={search.active ? 'Cancel' : 'Delete'}
+            ) : (
+              <IconLabeledButton
                 onClick={handleSearchKill}
-                loading={deleteLoading || cancelLoading}
+                icon={<MdDelete />}
+                loading={deleteLoading}
               />
-            </div>
+            )}
           </div>
         </div>
       </div>
