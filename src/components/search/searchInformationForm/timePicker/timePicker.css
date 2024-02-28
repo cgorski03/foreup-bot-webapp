@@ -5,7 +5,7 @@
   color: var(--text-color);
   align-items: center;
 }
-input[type="time"]::-webkit-calendar-picker-indicator {
+input[type='time']::-webkit-calendar-picker-indicator {
   pointer-events: none;
   display: none;
 }
@@ -15,7 +15,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   border-radius: var(--border-radius-standard);
   font-size: 15px;
   text-align: center;
-  outline:none;
+  outline: none;
   box-sizing: border-box;
   width: 100px;
   color: var(--text-color);
@@ -31,10 +31,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .timePickerInput:hover {
   cursor: text;
 }
-input[type="time"]::-webkit-datetime-edit-hour-field:focus,
-input[type="time"]::-webkit-datetime-edit-minute-field:focus,
-input[type="time"]::-webkit-datetime-edit-second-field:focus,
-input[type="time"]::-webkit-datetime-edit-ampm-field:focus {
+/* Disabling default webkit */
+input[type='time']::-webkit-datetime-edit-hour-field:focus,
+input[type='time']::-webkit-datetime-edit-minute-field:focus,
+input[type='time']::-webkit-datetime-edit-second-field:focus,
+input[type='time']::-webkit-datetime-edit-ampm-field:focus {
   background-color: var(--secondary-color-light);
   color: var(--text-color);
 }

@@ -32,4 +32,6 @@ export type UserSearchInfo = {
   searchInitiated: string;
   heartbeat: string;
   course_id: number;
+  courseLink: string;
+  times: string[]
 };

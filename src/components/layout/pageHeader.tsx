@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { IoLogOut } from 'react-icons/io5';
 import './pageHeader.css';
-import PageLabel from './pageLabel/PageLabel';
+import PageLabel from './PageLabel';
 import useSignOut from '../../utils/hooks/useSignOut';
 import useSignIn from '../../utils/hooks/useSignIn';
 import HandleAuthApiErrors from '../error/HandleAuthApiErrors';
@@ -12,11 +12,12 @@ function PageHeader() {
   const { setAuthedContext } = useSignIn();
   const navigate = useNavigate();
   const location = useLocation();
-  const [userAuthed, setUserAuthed] = useState<Boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<Boolean>(true);
 
   function isProtectedPage() {
     return !(location.pathname === '/' || location.pathname === '/login');
   }
+
   useEffect(() => {
     const attemptSetContext = async () => {
       const result = await setAuthedContext();
@@ -24,7 +25,7 @@ function PageHeader() {
     };
     attemptSetContext().then((result) => {
       if (!result && isProtectedPage()) {
-        setUserAuthed(false);
+        setIsAuthenticated(false);
       }
     });
   }, [location.pathname]);
@@ -56,7 +57,7 @@ function PageHeader() {
   if (!isProtectedPage()) {
     return null;
   }
-  if (isProtectedPage() && !userAuthed) {
+  if (isProtectedPage() && !isAuthenticated) {
     return <HandleAuthApiErrors responseCode={401} />;
   }
   return (

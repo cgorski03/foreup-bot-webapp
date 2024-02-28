@@ -3,7 +3,7 @@ import './searchTableLabel.css';
 import { FaCalendar, FaClock } from 'react-icons/fa';
 import { MdPerson } from 'react-icons/md';
 import { UserSearchInfo } from '../../../utils/api/types';
-import { SearchCardHeader } from './SearchCardHeader/SearchCardHeader';
+import { SearchCardHeader } from './SearchCardHeader';
 import {
   convertTo12Hour,
   expandDate,
@@ -17,9 +17,10 @@ type SearchCardProps = {
   refreshSearches: () => void;
   refreshLoading: boolean;
 };
+
 function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCardProps) {
-  // mock isLoading until the delete search functionality is actually implemented
-  const isLoading: boolean = false;
+  // If the search was successful, times.length > 0
+  const searchSuccess = search.times.length > 0;
   const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
   const { cancelSearch, cancelLoading, cancelResponse } = useCancelSearch();
   const handleSearchKill = async (): Promise<void> => {
@@ -37,6 +38,7 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
     }
     refreshSearches();
   };
+
   return (
     <div className={`searchCardContainer ${refreshLoading ? 'cardRefreshLoading' : ''}`}>
       <SearchCardHeader
@@ -83,18 +85,20 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
             </div>
           </div>
           <div className="searchActionsContainer">
-            <OutlinedButtonLoader
-              classOverride="editSearchButton"
-              buttonText="Edit"
-              onClick={handleSearchKill}
-              loading={isLoading}
-            />
-            <OutlinedButtonLoader
-              classOverride="cancelSearchButton"
-              buttonText={search.active ? 'Cancel' : 'Delete'}
-              onClick={handleSearchKill}
-              loading={deleteLoading || cancelLoading}
-            />
+            <div className="searchActionButtons">
+              <OutlinedButtonLoader
+                classOverride={`editSearchButton ${searchSuccess && 'bookButton'}`}
+                buttonText={searchSuccess ? 'Book' : 'Edit'}
+                onClick={handleSearchKill}
+                loading={false}
+              />
+              <OutlinedButtonLoader
+                classOverride={search.active ? 'cancelSearchButton' : 'deleteSearchButton'}
+                buttonText={search.active ? 'Cancel' : 'Delete'}
+                onClick={handleSearchKill}
+                loading={deleteLoading || cancelLoading}
+              />
+            </div>
           </div>
         </div>
       </div>
