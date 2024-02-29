@@ -1,15 +1,17 @@
 import React from 'react';
 import './searchTableLabel.css';
 import { FaCalendar, FaClock } from 'react-icons/fa';
-import { MdPerson } from 'react-icons/md';
+import { MdPerson, MdEdit, MdDelete } from 'react-icons/md';
+import { IoStop } from 'react-icons/io5';
 import { UserSearchInfo } from '../../../utils/api/types';
-import { SearchCardHeader } from './SearchCardHeader/SearchCardHeader';
+import { SearchCardHeader } from './SearchCardHeader';
 import {
   convertTo12Hour,
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
-import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
+// @ts-ignore
+import { ReactComponent as Loader } from './spinner.svg';
 
 type SearchCardProps = {
   search: UserSearchInfo;
@@ -17,11 +19,32 @@ type SearchCardProps = {
   refreshSearches: () => void;
   refreshLoading: boolean;
 };
+type IconLabeledButtonProps = {
+  icon: JSX.Element;
+  loading: boolean;
+  onClick: () => void;
+};
+function IconLabeledButton(props: IconLabeledButtonProps) {
+  const { onClick, loading, icon } = props;
+  return (
+    <div>
+      <button
+        type="submit"
+        onClick={onClick}
+        className="iconLabeledButton"
+      >
+        {loading ? <Loader /> : icon}
+      </button>
+    </div>
+  );
+}
+
 function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCardProps) {
-  // mock isLoading until the delete search functionality is actually implemented
-  const isLoading: boolean = false;
+  // If the search was successful, times.length > 0
+  // TODO Loading states and animation
+  // Include times foudnd
   const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
-  const { cancelSearch, cancelLoading, cancelResponse } = useCancelSearch();
+  const { cancelSearch, cancelResponse } = useCancelSearch();
   const handleSearchKill = async (): Promise<void> => {
     // logic is different depending on if the search is active
     if (!search.active) {
@@ -37,6 +60,7 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
     }
     refreshSearches();
   };
+
   return (
     <div className={`searchCardContainer ${refreshLoading ? 'cardRefreshLoading' : ''}`}>
       <SearchCardHeader
@@ -69,9 +93,7 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
                 TIME RANGE
               </p>
               <p>
-                {convertTo12Hour(search.start)}
-                -
-                {convertTo12Hour(search.end)}
+                {convertTo12Hour(search.start)}-{convertTo12Hour(search.end)}
               </p>
             </div>
             <div className="headerLabelContainer">
@@ -83,18 +105,24 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
             </div>
           </div>
           <div className="searchActionsContainer">
-            <OutlinedButtonLoader
-              classOverride="editSearchButton"
-              buttonText="Edit"
+            <IconLabeledButton
               onClick={handleSearchKill}
-              loading={isLoading}
+              icon={<MdEdit />}
+              loading={false}
             />
-            <OutlinedButtonLoader
-              classOverride="cancelSearchButton"
-              buttonText={search.active ? 'Cancel' : 'Delete'}
-              onClick={handleSearchKill}
-              loading={deleteLoading || cancelLoading}
-            />
+            {search.active ? (
+              <IconLabeledButton
+                onClick={handleSearchKill}
+                icon={<IoStop />}
+                loading={deleteLoading}
+              />
+            ) : (
+              <IconLabeledButton
+                onClick={handleSearchKill}
+                icon={<MdDelete />}
+                loading={deleteLoading}
+              />
+            )}
           </div>
         </div>
       </div>

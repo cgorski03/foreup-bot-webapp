@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { fetchUserAttributes } from 'aws-amplify/auth';
 import { TailSpin } from 'react-loader-spinner';
-import { UserInformationContext } from '../../../Contexts/UserContext';
-import useAuth from '../../../utils/hooks/useAuth';
-import getIdToken from '../../../utils/authFunctions/getIdToken';
+import { UserInformationContext } from '../../Contexts/UserContext';
+import useAuth from '../../utils/hooks/useAuth';
+import getIdToken from '../../utils/authFunctions/getIdToken';
 
 type LoadSecurePageProps = {
   onLoad: (result: boolean, error?: Error) => void;
@@ -49,7 +49,11 @@ function LoadSecurePage(props: LoadSecurePageProps) {
 
   return (
     <div>
-      <TailSpin color="white" width="40" wrapperClass="mainLoginPageLoader" />
+      <TailSpin
+        color="white"
+        width="40"
+        wrapperClass="mainLoginPageLoader"
+      />
     </div>
   );
 }

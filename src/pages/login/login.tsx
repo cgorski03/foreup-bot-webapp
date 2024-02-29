@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../../components/login/LoginForm';
 import './login.css';
-import LoadSecurePage from '../../components/search/loading/LoadSecurePage';
+import LoadSecurePage from '../../components/search/LoadSecurePage';
 
 function Login() {
   const navigate = useNavigate();

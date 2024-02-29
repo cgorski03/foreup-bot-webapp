@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  expandDate,
-  getElapsedTime,
-} from '../../../../utils/dateExpansion/datetimeFunctions';
-import '../searchTableLabel.css';
+import { expandDate, getElapsedTime } from '../../../utils/dateExpansion/datetimeFunctions';
+import './searchTableLabel.css';
 
 type SearchHeaderProps = {
   active: boolean;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Select from 'react-select';
 // @ts-ignore
 import selectStyles from './selectStyles';
-import CourseLabel from './label/CourseLabel';
+import CourseLabel from './CourseLabel';
 import { useGetCourses } from '../../../utils/api/requests';
 import { GolfCourse } from '../../../utils/api/types';
 import HandleAuthApiErrors from '../../error/HandleAuthApiErrors';

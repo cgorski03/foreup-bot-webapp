@@ -118,26 +118,43 @@
   margin: 0 1.2rem 0 0;
 }
 .searchActionsContainer {
+  height: 100%;
   justify-content: flex-end;
+  align-items: flex-end;
 }
-.searchActionsContainer > .inputField,
-.searchActionsContainer > .inputField:focus {
-  background-color: var(--background-color);
-  font-weight: bold;
-  margin: 1.2rem;
-  width: 10rem;
-  transition: box-shadow 0.2s linear;
+.searchActionButtons {
+  display: flex;
+  flex-direction: column;
 }
 
-.searchActionsContainer > .editSearchButton {
-  border: 0.12rem solid var(--secondary-color);
+.iconLabeledButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2rem 1.2rem 1.2rem 0;
+  font-size: 1.6rem;
+  height: 2.88rem;
+  width: 2.88rem;
+  border-radius: 0.8rem;
+  background-color: var(--primary-color);
   color: var(--secondary-color-light);
+  transition: background-color 0.2s linear;
 }
-.searchActionsContainer > .cancelSearchButton {
-  border: 0.12rem solid firebrick;
-  color: firebrick;
+.iconLabeledButton:hover {
+  /* Make it slightly lighter */
+  background-color: rgba(255, 255, 255, 0.04);
 }
-.searchActionsContainer > .cancelSearchButton:hover,
-.searchActionsContainer > .editSearchButton:hover {
-  background-color: var(--background-color);
+.iconLabeledButton:active {
+  /* give the click effect */
+  background-color: var(--primary-color);
+}
+.spinner_ajPY {
+  transform-origin: center;
+  animation: spinner_AtaB 0.75s infinite ease-in;
+}
+
+@keyframes spinner_AtaB {
+  100% {
+    transform: rotate(360deg);
+  }
 }
