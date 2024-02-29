@@ -1,7 +1,8 @@
 import React from 'react';
 import './searchTableLabel.css';
 import { FaCalendar, FaClock } from 'react-icons/fa';
-import { MdPerson, MdEdit, MdDelete, MdStopCircle } from 'react-icons/md';
+import { MdPerson, MdEdit, MdDelete } from 'react-icons/md';
+import { IoStop } from 'react-icons/io5';
 import { UserSearchInfo } from '../../../utils/api/types';
 import { SearchCardHeader } from './SearchCardHeader';
 import {
@@ -9,6 +10,8 @@ import {
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
 import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
+// @ts-ignore
+import { ReactComponent as Loader } from './spinner.svg';
 
 type SearchCardProps = {
   search: UserSearchInfo;
@@ -28,9 +31,9 @@ function IconLabeledButton(props: IconLabeledButtonProps) {
       <button
         type="submit"
         onClick={onClick}
-        className={`iconLabeledButton ${loading && 'loading'}`}
+        className="iconLabeledButton"
       >
-        {icon}
+        {loading ? <Loader /> : icon}
       </button>
     </div>
   );
@@ -39,8 +42,7 @@ function IconLabeledButton(props: IconLabeledButtonProps) {
 function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCardProps) {
   // If the search was successful, times.length > 0
   // TODO Loading states and animation
-  // TOOD replace the ugly stop logo
-  // Include times foudn
+  // Include times foudnd
   const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
   const { cancelSearch, cancelResponse } = useCancelSearch();
   const handleSearchKill = async (): Promise<void> => {
@@ -91,9 +93,7 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
                 TIME RANGE
               </p>
               <p>
-                {convertTo12Hour(search.start)}
-                -
-                {convertTo12Hour(search.end)}
+                {convertTo12Hour(search.start)}-{convertTo12Hour(search.end)}
               </p>
             </div>
             <div className="headerLabelContainer">
@@ -113,7 +113,7 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
             {search.active ? (
               <IconLabeledButton
                 onClick={handleSearchKill}
-                icon={<MdStopCircle />}
+                icon={<IoStop />}
                 loading={deleteLoading}
               />
             ) : (

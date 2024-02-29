@@ -129,15 +129,32 @@
 
 .iconLabeledButton {
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 1.2rem 1.2rem 1.2rem 0;
   font-size: 1.6rem;
-  background-color: var(--primary-color);
+  height: 2.88rem;
+  width: 2.88rem;
   border-radius: 0.8rem;
-  padding: 0.64rem;
+  background-color: var(--primary-color);
   color: var(--secondary-color-light);
   transition: background-color 0.2s linear;
 }
 .iconLabeledButton:hover {
   /* Make it slightly lighter */
   background-color: rgba(255, 255, 255, 0.04);
+}
+.iconLabeledButton:active {
+  /* give the click effect */
+  background-color: var(--primary-color);
+}
+.spinner_ajPY {
+  transform-origin: center;
+  animation: spinner_AtaB 0.75s infinite ease-in;
+}
+
+@keyframes spinner_AtaB {
+  100% {
+    transform: rotate(360deg);
+  }
 }
