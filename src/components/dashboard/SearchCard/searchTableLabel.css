@@ -103,10 +103,11 @@
   color: var(--text-color);
   width: 100%;
   height: 30%;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .searchCardParameters > .headerLabelContainer:first-child {
   /* Want a larger margin between these elementes */
+  margin-left: 1.2rem;
   width: 45%;
 }
 .searchCardParameters > .headerLabelContainer:nth-child(2) {
@@ -119,6 +120,47 @@
 }
 .searchActionsContainer {
   height: 100%;
+  justify-content: space-between;
+}
+.availableTimesContainer {
+  width: 70%;
+  flex-wrap: wrap;
+}
+.availableTeeTime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 5rem;
+  width: 7.4rem;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: 0.8rem;
+  margin: 0 0.8rem;
+  padding: 0;
+}
+
+.availableTeeTime > p {
+  /* Apply styles to both top and bottom element of label */
+  box-sizing: border-box;
+
+  margin: 0;
+  font-weight: bold;
+  font-size: 0.96rem;
+}
+.timeLabelTop {
+  background-color: var(--header-background-color);
+  padding: 0.6rem 0;
+  border-radius: 0.8rem 0.8rem 0 0;
+  width: 100%;
+}
+.playerLabelBottom {
+  padding: 0.6rem 0;
+  background-color: var(--secondary-color-dark);
+  width: 100%;
+  border-radius: 0 0 0.8rem 0.8rem;
+}
+.searchActionIcons {
+  width: 30%;
   justify-content: flex-end;
   align-items: flex-end;
 }

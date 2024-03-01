@@ -24,6 +24,32 @@ type IconLabeledButtonProps = {
   loading: boolean;
   onClick: () => void;
 };
+type FoundTimeIconsProps = {
+  teeTimes: string[][];
+  startIndex: number;
+};
+function FoundTimeIcons(props: FoundTimeIconsProps) {
+  // Function renders 6 tee times starting at the nth index
+  const { teeTimes, startIndex } = props;
+  if (!teeTimes) {
+    return null;
+  }
+  return (
+    <div className="d-flex availableTimesContainer">
+      {teeTimes.slice(startIndex, 6).map((teeTime) => (
+        <button
+          type="submit"
+          className="availableTeeTime"
+          key={teeTime[0]}
+        >
+          <p className="timeLabelTop">{convertTo12Hour(teeTime[0])}</p>
+          <p className="playerLabelBottom">{teeTime[1]}</p>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function IconLabeledButton(props: IconLabeledButtonProps) {
   const { onClick, loading, icon } = props;
   return (
@@ -44,7 +70,7 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
   // TODO Loading states and animation
   // Include times foudnd
   const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
-  const { cancelSearch, cancelResponse } = useCancelSearch();
+  const { cancelSearch, cancelLoading, cancelResponse } = useCancelSearch();
   const handleSearchKill = async (): Promise<void> => {
     // logic is different depending on if the search is active
     if (!search.active) {
@@ -105,24 +131,30 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
             </div>
           </div>
           <div className="searchActionsContainer">
-            <IconLabeledButton
-              onClick={handleSearchKill}
-              icon={<MdEdit />}
-              loading={false}
+            <FoundTimeIcons
+              teeTimes={search.times}
+              startIndex={0}
             />
-            {search.active ? (
+            <div className="d-flex searchActionIcons">
               <IconLabeledButton
                 onClick={handleSearchKill}
-                icon={<IoStop />}
-                loading={deleteLoading}
+                icon={<MdEdit />}
+                loading={false}
               />
-            ) : (
-              <IconLabeledButton
-                onClick={handleSearchKill}
-                icon={<MdDelete />}
-                loading={deleteLoading}
-              />
-            )}
+              {search.active ? (
+                <IconLabeledButton
+                  onClick={handleSearchKill}
+                  icon={<IoStop />}
+                  loading={cancelLoading}
+                />
+              ) : (
+                <IconLabeledButton
+                  onClick={handleSearchKill}
+                  icon={<MdDelete />}
+                  loading={deleteLoading}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
