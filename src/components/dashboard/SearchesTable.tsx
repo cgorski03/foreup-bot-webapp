@@ -124,7 +124,17 @@ function SearchesTable() {
         <div>
           <FilterSearchesButton
             onButtonCick={handleFilterButtonClick}
+            buttonTitle="All"
+            activeFilter={searchFilter}
+          />
+          <FilterSearchesButton
+            onButtonCick={handleFilterButtonClick}
             buttonTitle="Active"
+            activeFilter={searchFilter}
+          />
+          <FilterSearchesButton
+            onButtonCick={handleFilterButtonClick}
+            buttonTitle="Inactive"
             activeFilter={searchFilter}
           />
         </div>
