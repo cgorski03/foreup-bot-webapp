@@ -22,7 +22,8 @@
 .searchTableHeader {
   display: flex;
   width: 100%;
-  margin: 0;
+  margin: 0 0 0.08rem 0;
+  align-items: center;
 }
 .headerDividerLine {
   width: 100%;
@@ -32,26 +33,50 @@
   border-radius: 1px;
   margin: 0 0 2.4rem 0;
 }
-.searchTableHeader > button {
+.refreshSearchesButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.48rem;
-  padding: 0.36rem;
   border-radius: 0.68rem;
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.12s linear;
-  margin: 0 0 0.2rem 0;
+  margin: 0 2rem 0.04rem 0;
+  font-size: 1.6rem;
+  height: 2.44rem;
+  width: 2.44rem;
+  outline: 1px solid var(--secondary-color-light);
 }
 .searchTableHeader > button:hover {
-  background-color: var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.04);
   cursor: pointer;
 }
 .searchTableHeader > button:active {
   background-color: var(--background-color);
   cursor: default;
 }
-.searchCardHeader {
-  display: flex;
+.activeFilterButton {
+  background-color: var(--secondary-color);
+}
+.filterButtonActive,
+.filterButtonInactive {
+  height: 2.44rem;
+  width: 4.8rem;
+  box-sizing: border-box;
+  font-size: 1.08rem;
+  border-radius: 0.8rem;
+  transition: background-color 0.14s linear;
+  background-color: var(--primary-color);
+}
+.filterButtonActive:hover,
+.filterButtonInactive:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+.filterButtonActive {
+  font-weight: 600;
+  color: var(--accent-color);
+  outline: 1.2px solid var(--accent-color);
+}
+.filterButtonInactive {
+  color: var(--text-color);
 }

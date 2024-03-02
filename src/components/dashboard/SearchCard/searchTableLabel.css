@@ -16,6 +16,7 @@
   pointer-events: none;
 }
 .searchCardHeader {
+  display: flex;
   border-radius: 0.8rem 0.8rem 0 0;
   align-items: center;
   background-color: var(--header-background-color);
