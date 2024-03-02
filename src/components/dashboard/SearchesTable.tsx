@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './searchTable.css';
 import { IoMdRefresh } from 'react-icons/io';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
@@ -7,6 +7,11 @@ import { useGetSearches, useGetCourses } from '../../utils/api/requests';
 import SearchCard from './SearchCard/SearchCard';
 import HandleAuthApiErrors from '../error/HandleAuthApiErrors';
 
+type FilterSearchesButtonProps = {
+  buttonTitle: string;
+  onButtonCick: (buttonTitle: string) => void;
+  activeFilter: string;
+};
 function NoSearchesFound() {
   return (
     <div className="noSearchesFoundContainer">
@@ -16,9 +21,26 @@ function NoSearchesFound() {
     </div>
   );
 }
+
+function FilterSearchesButton(props: FilterSearchesButtonProps) {
+  const { buttonTitle, onButtonCick, activeFilter } = props;
+  return (
+    <button
+      type="submit"
+      className={
+        activeFilter === buttonTitle ? 'filterButtonActive' : 'filterButtonInactive'
+      }
+      onClick={() => onButtonCick(buttonTitle)}
+    >
+      {buttonTitle}
+    </button>
+  );
+}
 function SearchesTable() {
-  const { getSearches, forceSearches, searchesLoading, searches, responseCode } = useGetSearches();
+  const { getSearches, forceSearches, searchesLoading, searches, responseCode } =
+    useGetSearches();
   const { getCourses, coursesLoading, courses } = useGetCourses();
+  const [searchFilter, setSearchFilter] = useState<string>('All');
 
   useEffect(() => {
     getCourses();
@@ -27,7 +49,11 @@ function SearchesTable() {
   const handleSearchRefresh = () => {
     forceSearches();
   };
+  const handleFilterButtonClick = (buttonName: string) => {
+    setSearchFilter(buttonName);
+  };
   const renderSearchCards = () => {
+    // TODO: Lift this logic into the page element
     if (!searches || !courses) {
       return <h1>Error Loading Searches</h1>;
     }
@@ -38,27 +64,47 @@ function SearchesTable() {
       // There are no searches for the user. Display stay search message
       return <NoSearchesFound />;
     }
-    return searches.map((search) => (
-      <SearchCard
-        key={search.ID}
-        search={search}
-        image={courses[search.course_id].image}
-        refreshSearches={handleSearchRefresh}
-        refreshLoading={searchesLoading}
-      />
-    ));
+    const searchFilterParsing = (searchActive: Boolean) => {
+      console.log(searchFilter + searchActive);
+      switch (searchFilter) {
+        case 'Active':
+          return searchActive;
+        case 'Inactive':
+          return !searchActive;
+        default:
+          return true;
+      }
+    };
+    return searches.map(
+      (search) =>
+        searchFilterParsing(search.active) && (
+          <SearchCard
+            key={search.ID}
+            search={search}
+            image={courses[search.course_id].image}
+            refreshSearches={handleSearchRefresh}
+            refreshLoading={searchesLoading}
+          />
+        ),
+    );
   };
   if ((searchesLoading || coursesLoading) && searches == null) {
     return (
       <div className="searchTableContainer">
         <div className="searchTableHeader">
           <button
+            className="refreshSearchesButton"
             type="button"
             aria-label="Refresh searches"
             onClick={handleSearchRefresh}
           >
             <IoMdRefresh />
           </button>
+          <FilterSearchesButton
+            onButtonCick={handleFilterButtonClick}
+            buttonTitle="Active"
+            activeFilter={searchFilter}
+          />
         </div>
         <hr className="headerDividerLine" />
       </div>
@@ -68,12 +114,30 @@ function SearchesTable() {
     <div className="searchTableContainer">
       <div className="searchTableHeader">
         <button
+          className="refreshSearchesButton"
           type="button"
           aria-label="Refresh searches"
           onClick={handleSearchRefresh}
         >
           <IoMdRefresh />
         </button>
+        <div>
+          <FilterSearchesButton
+            onButtonCick={handleFilterButtonClick}
+            buttonTitle="All"
+            activeFilter={searchFilter}
+          />
+          <FilterSearchesButton
+            onButtonCick={handleFilterButtonClick}
+            buttonTitle="Active"
+            activeFilter={searchFilter}
+          />
+          <FilterSearchesButton
+            onButtonCick={handleFilterButtonClick}
+            buttonTitle="Inactive"
+            activeFilter={searchFilter}
+          />
+        </div>
       </div>
       <hr className="headerDividerLine" />
       {renderSearchCards()}
