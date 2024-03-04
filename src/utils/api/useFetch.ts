@@ -59,7 +59,7 @@ function useFetch<T>({ endpoint, method }: UseFetchProps) {
     }
   };
 
-  return { isLoading, commonFetch, data, responseCode };
+  return { isLoading, commonFetch, data, setData, responseCode };
 }
 
 export default useFetch;

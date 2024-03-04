@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './searchTable.css';
 import { IoMdRefresh } from 'react-icons/io';
-import { FaMagnifyingGlass } from 'react-icons/fa6';
-import { useGetSearches, useGetCourses } from '../../utils/api/requests';
 // @ts-ignore
 import SearchCard from './SearchCard/SearchCard';
-import HandleAuthApiErrors from '../error/HandleAuthApiErrors';
+import { NoSearchesFound } from '../error/HandleFetchErrors';
+import { GolfCourseCollection, UserSearchInfo } from '../../utils/api/types';
+import { DashboardContext } from '../../Contexts/DashboardContext';
 
 type FilterSearchesButtonProps = {
   buttonTitle: string;
   onButtonCick: (buttonTitle: string) => void;
   activeFilter: string;
 };
-function NoSearchesFound() {
-  return (
-    <div className="noSearchesFoundContainer">
-      <FaMagnifyingGlass className="noSearchesFoundIcon" />
-      <h1>No searches found</h1>
-      <p>It looks like you don&apos;t have any searches. Create one on the search page!</p>
-    </div>
-  );
-}
+type SearchesTableProps = {
+  searches: UserSearchInfo[] | null;
+  courses: GolfCourseCollection | null;
+  loading: boolean;
+};
 
 function FilterSearchesButton(props: FilterSearchesButtonProps) {
   const { buttonTitle, onButtonCick, activeFilter } = props;
@@ -36,36 +32,16 @@ function FilterSearchesButton(props: FilterSearchesButtonProps) {
     </button>
   );
 }
-function SearchesTable() {
-  const { getSearches, forceSearches, searchesLoading, searches, responseCode } =
-    useGetSearches();
-  const { getCourses, coursesLoading, courses } = useGetCourses();
+function SearchesTable(props: SearchesTableProps) {
+  const { refreshSearches } = useContext(DashboardContext);
+  const { searches, courses, loading } = props;
   const [searchFilter, setSearchFilter] = useState<string>('All');
 
-  useEffect(() => {
-    getCourses();
-    getSearches();
-  }, []);
-  const handleSearchRefresh = () => {
-    forceSearches();
-  };
   const handleFilterButtonClick = (buttonName: string) => {
     setSearchFilter(buttonName);
   };
   const renderSearchCards = () => {
-    // TODO: Lift this logic into the page element
-    if (!searches || !courses) {
-      return <h1>Error Loading Searches</h1>;
-    }
-    if (responseCode !== 200) {
-      return <HandleAuthApiErrors responseCode={responseCode} />;
-    }
-    if (!searches.length) {
-      // There are no searches for the user. Display stay search message
-      return <NoSearchesFound />;
-    }
     const searchFilterParsing = (searchActive: Boolean) => {
-      console.log(searchFilter + searchActive);
       switch (searchFilter) {
         case 'Active':
           return searchActive;
@@ -75,20 +51,22 @@ function SearchesTable() {
           return true;
       }
     };
-    return searches.map(
-      (search) =>
-        searchFilterParsing(search.active) && (
-          <SearchCard
-            key={search.ID}
-            search={search}
-            image={courses[search.course_id].image}
-            refreshSearches={handleSearchRefresh}
-            refreshLoading={searchesLoading}
-          />
-        ),
-    );
+    // TS will throw an error if its null even though that will never happen
+    if (courses && searches) {
+      return searches.map(
+        (search) =>
+          searchFilterParsing(search.active) && (
+            <SearchCard
+              key={search.ID}
+              search={search}
+              image={courses[search.course_id].image}
+            />
+          ),
+      );
+    }
+    return null;
   };
-  if ((searchesLoading || coursesLoading) && searches == null) {
+  if (loading && searches == null) {
     return (
       <div className="searchTableContainer">
         <div className="searchTableHeader">
@@ -96,7 +74,7 @@ function SearchesTable() {
             className="refreshSearchesButton"
             type="button"
             aria-label="Refresh searches"
-            onClick={handleSearchRefresh}
+            onClick={refreshSearches}
           >
             <IoMdRefresh />
           </button>
@@ -117,7 +95,7 @@ function SearchesTable() {
           className="refreshSearchesButton"
           type="button"
           aria-label="Refresh searches"
-          onClick={handleSearchRefresh}
+          onClick={refreshSearches}
         >
           <IoMdRefresh />
         </button>
@@ -140,7 +118,7 @@ function SearchesTable() {
         </div>
       </div>
       <hr className="headerDividerLine" />
-      {renderSearchCards()}
+      {searches && courses ? renderSearchCards() : <NoSearchesFound />}
     </div>
   );
 }

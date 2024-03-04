@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 import FullscreenErrorMessage from './FullscreenErrorMessage';
 
 export default function HandleAuthApiErrors({
@@ -16,4 +17,13 @@ export default function HandleAuthApiErrors({
     default:
       return <FullscreenErrorMessage msg="An error has occured" />;
   }
+}
+export function NoSearchesFound() {
+  return (
+    <div className="noSearchesFoundContainer">
+      <FaMagnifyingGlass className="noSearchesFoundIcon" />
+      <h1>No searches found</h1>
+      <p>It looks like you don&apos;t have any searches. Create one on the search page!</p>
+    </div>
+  );
 }

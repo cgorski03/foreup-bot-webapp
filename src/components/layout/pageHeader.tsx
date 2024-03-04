@@ -5,7 +5,7 @@ import './pageHeader.css';
 import PageLabel from './PageLabel';
 import useSignOut from '../../utils/hooks/useSignOut';
 import useSignIn from '../../utils/hooks/useSignIn';
-import HandleAuthApiErrors from '../error/HandleAuthApiErrors';
+import HandleAuthApiErrors from '../error/HandleFetchErrors';
 
 function PageHeader() {
   const { logOut } = useSignOut();
