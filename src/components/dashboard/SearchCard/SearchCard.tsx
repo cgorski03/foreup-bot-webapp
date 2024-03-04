@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './searchTableLabel.css';
 import { FaCalendar, FaClock } from 'react-icons/fa';
 import { MdPerson, MdEdit, MdDelete } from 'react-icons/md';
@@ -9,15 +9,14 @@ import {
   convertTo12Hour,
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
-import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
 // @ts-ignore
 import { ReactComponent as Loader } from './spinner.svg';
+import { DashboardContext } from '../../../Contexts/DashboardContext';
+import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
 
 type SearchCardProps = {
   search: UserSearchInfo;
   image: string;
-  refreshSearches: () => void;
-  refreshLoading: boolean;
 };
 type IconLabeledButtonProps = {
   icon: JSX.Element;
@@ -65,14 +64,23 @@ function IconLabeledButton(props: IconLabeledButtonProps) {
   );
 }
 
-function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCardProps) {
-  // If the search was successful, times.length > 0
-  // TODO Loading states and animation
-  // Include times foudnd
-  const { deleteSearch, deleteLoading, deleteResponse } = useDeleteSearch();
+function SearchCard(props: SearchCardProps) {
+  const { search, image } = props;
+  const { setSearches, refreshLoading } = useContext(DashboardContext);
+  const { deleteSearch, deleteLoading, deleteResponse, updatedSeaches } = useDeleteSearch();
   const { cancelSearch, cancelLoading, cancelResponse } = useCancelSearch();
+  const [searchDying, setSearchDying] = useState(false);
+
+  useEffect(() => {
+    if (updatedSeaches != null) {
+      setSearchDying(true);
+      setSearches(updatedSeaches);
+    }
+  }, [updatedSeaches]);
+
   const handleSearchKill = async (): Promise<void> => {
     // logic is different depending on if the search is active
+    // This cancel logic must be in this component in order to be able to cancel multiple
     if (!search.active) {
       await deleteSearch({ search_id: search.ID });
       if (deleteResponse && deleteResponse !== 200) {
@@ -81,14 +89,16 @@ function SearchCard({ search, image, refreshSearches, refreshLoading }: SearchCa
     } else {
       await cancelSearch({ search_id: search.ID });
       if (cancelResponse && cancelResponse !== 200) {
+        // TODO: Change cancel search response to be the updated search data
         console.log('There has been an error cancelling the search');
       }
     }
-    refreshSearches();
   };
 
   return (
-    <div className={`searchCardContainer ${refreshLoading ? 'cardRefreshLoading' : ''}`}>
+    <div
+      className={`searchCardContainer ${searchDying && 'fadeOut'} ${refreshLoading && 'cardRefreshLoading'}`}
+    >
       <SearchCardHeader
         active={search.active}
         lastSearchCheck={search.heartbeat}

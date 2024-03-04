@@ -19,6 +19,7 @@ export const useGetSearches = () => {
   const { commonFetch,
     isLoading: searchesLoading,
     data: searches,
+    setData: setSearches,
     responseCode } = useFetch<UserSearchInfo[]>(
     {
       endpoint: '/search',
@@ -30,7 +31,7 @@ export const useGetSearches = () => {
 
   const forceSearches = (input?: undefined) => commonFetch({ input, cacheOverride: true });
 
-  return { getSearches, forceSearches, searchesLoading, searches, responseCode };
+  return { getSearches, forceSearches, searchesLoading, searches, setSearches, responseCode };
 };
 
 export const useCreateSearch = () => {
@@ -46,14 +47,14 @@ export const useCreateSearch = () => {
 export const useDeleteSearch = () => {
   const { commonFetch,
     isLoading: deleteLoading,
-    data,
-    responseCode: deleteResponse } = useFetch<string>({
+    data: updatedSeaches,
+    responseCode: deleteResponse } = useFetch<UserSearchInfo[]>({
     endpoint: '/search',
     method: 'DELETE',
   });
   const deleteSearch = (input: DeleteSearchInput) => commonFetch({ input });
 
-  return { deleteSearch, deleteLoading, data, deleteResponse };
+  return { deleteSearch, deleteLoading, updatedSeaches, deleteResponse };
 };
 
 export const useCancelSearch = () => {

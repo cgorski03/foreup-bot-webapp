@@ -5,7 +5,7 @@ import selectStyles from './selectStyles';
 import CourseLabel from './CourseLabel';
 import { useGetCourses } from '../../../utils/api/requests';
 import { GolfCourse } from '../../../utils/api/types';
-import HandleAuthApiErrors from '../../error/HandleAuthApiErrors';
+import HandleAuthApiErrors from '../../error/HandleFetchErrors';
 
 type CourseSelectProps = {
   onCourseSelection: (course: GolfCourse) => void;
