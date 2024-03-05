@@ -26,7 +26,6 @@ function Dashboard() {
 
   useEffect(() => {
     // If the response code is not 200, set the error state to true
-    console.log(responseCode);
     if (responseCode != null && responseCode !== 200) {
       setError(true);
     }
