@@ -25,6 +25,8 @@ Welcome to my Tee Time Finder Web App repository! This web app simplifies the pr
 
 - **DynamoDB:** DynamoDB is used for robust and efficient tracking of user searches.
 
+-  **CloudWatch:** All AWS services write logs to cloudwatch 
+
 ## Codebase
 
 - **React:** The frontend is developed using the React Javascript framework.
