@@ -60,12 +60,12 @@ export const useDeleteSearch = () => {
 export const useCancelSearch = () => {
   const { commonFetch, isLoading:
   cancelLoading,
-  data,
-  responseCode: cancelResponse } = useFetch<string>({
+  data: cancelledSearches,
+  responseCode: cancelResponse } = useFetch<UserSearchInfo[]>({
     endpoint: '/search',
     method: 'PUT',
   });
   const cancelSearch = (input: DeleteSearchInput) => commonFetch({ input });
 
-  return { cancelSearch, cancelLoading, data, cancelResponse };
+  return { cancelSearch, cancelLoading, cancelledSearches, cancelResponse };
 };

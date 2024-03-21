@@ -22,6 +22,7 @@
 .searchTableHeader {
   display: flex;
   width: 100%;
+  height: 2.44rem;
   margin: 0;
   align-items: center;
 }
@@ -40,9 +41,9 @@
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.12s linear;
-  margin: 0 0 0.04rem 0;
+  margin: 0;
   font-size: 1.6rem;
-  height: 2.44rem;
+  height: 100%;
   width: 2.44rem;
 }
 .dashboardHeaderButton:hover {
@@ -54,6 +55,7 @@
   cursor: default;
 }
 .searchFilterButtonContainer {
+  height: 100%;
   margin: 0 0 0 2rem;
 }
 .activeFilterButton {
@@ -61,7 +63,7 @@
 }
 .filterButtonActive,
 .filterButtonInactive {
-  height: 2.2rem;
+  height: 100%;
   width: 4.8rem;
   box-sizing: border-box;
   font-size: 1.08rem;
@@ -89,10 +91,17 @@
     rgba(0, 0, 0, 0.22) 0px -9px 12px;
 }
 .navigationButtonContainer {
+  height: 100%;
   display: flex;
   margin-left: auto;
 }
+.navigationButtonContainer > .dashboardHeaderButton {
+  /* All Nav Buttons */
+  color: var(--secondary-color-light);
+}
 .navigationButtonContainer > p.dashboardHeaderButton {
+  box-sizing: border-box;
   pointer-events: none;
-  font-size: 1.2rem;
+  font-size: 1.12rem;
+  padding: 1px 0;
 }
