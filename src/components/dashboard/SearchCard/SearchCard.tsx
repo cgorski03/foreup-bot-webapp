@@ -68,7 +68,8 @@ function SearchCard(props: SearchCardProps) {
   const { search, image } = props;
   const { setSearches, refreshLoading } = useContext(DashboardContext);
   const { deleteSearch, deleteLoading, deleteResponse, updatedSeaches } = useDeleteSearch();
-  const { cancelSearch, cancelLoading, cancelResponse } = useCancelSearch();
+  const { cancelSearch, cancelLoading, cancelResponse, cancelledSearches } =
+    useCancelSearch();
   const [searchDying, setSearchDying] = useState(false);
 
   useEffect(() => {
@@ -77,6 +78,13 @@ function SearchCard(props: SearchCardProps) {
       setSearches(updatedSeaches);
     }
   }, [updatedSeaches]);
+
+  useEffect(() => {
+    if (cancelledSearches != null) {
+      setSearchDying(true);
+      setSearches(cancelledSearches);
+    }
+  }, [cancelledSearches]);
 
   const handleSearchKill = async (): Promise<void> => {
     // logic is different depending on if the search is active
