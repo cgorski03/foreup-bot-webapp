@@ -5,6 +5,7 @@ export type UserInformation = {
   email: string | undefined;
   email_verified: string | undefined;
   id_token: string | undefined;
+  channel_id: string | undefined;
 };
 type UserContextType = {
   userInfo: UserInformation | null;

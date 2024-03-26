@@ -4,7 +4,7 @@ import TextInputField from './inputFields/TextInputField';
 import { AuthorizationErrorMessage } from './message/ErrorMessage';
 import OutlinedButtonLoader from '../buttons/OutlinedButtonLoader';
 import './loginForm.css';
-import useSignIn from '../../utils/hooks/useSignIn';
+import useSignIn from '../../utils/hooks/useAuthContext';
 
 type LoginFormProps = {
   onAuthentication: () => void;
