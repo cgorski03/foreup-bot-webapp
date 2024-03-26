@@ -4,7 +4,7 @@ import { IoLogOut } from 'react-icons/io5';
 import './pageHeader.css';
 import PageLabel from './PageLabel';
 import useSignOut from '../../utils/hooks/useSignOut';
-import useSignIn from '../../utils/hooks/useSignIn';
+import useSignIn from '../../utils/hooks/useAuthContext';
 import HandleAuthApiErrors from '../error/HandleFetchErrors';
 
 function PageHeader() {
