@@ -37,5 +37,5 @@ export type UserSearchInfo = {
 };
 
 export type VerificationCode = {
-  verificationCode: string;
+  verification_code: string;
 };

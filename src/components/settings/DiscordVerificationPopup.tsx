@@ -18,7 +18,7 @@ export default function DiscordVerificationPopup({
   // Watch and see if there is a verification code that appeads
   useEffect(() => {
     if (verificationCode) {
-      setDisplayedVerificationCode(verificationCode.verificationCode);
+      setDisplayedVerificationCode(verificationCode.verification_code);
     }
   }, [verificationCode]);
   return (
