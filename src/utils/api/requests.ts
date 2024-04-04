@@ -82,13 +82,13 @@ export const useTestMessage = () => {
 
 export const useCreateVerificationCode = () => {
   const { commonFetch,
-    isLoading: testMessageLoading,
+    isLoading: verificationCodeLoading,
     responseCode,
     data: verificationCode } = useFetch<VerificationCode>({
     endpoint: '/notify',
     method: 'POST',
   });
-  const sendTestMessage = (input?: undefined) => commonFetch({ input });
+  const createVerificationCode = (input?: undefined) => commonFetch({ input });
 
-  return { sendTestMessage, testMessageLoading, responseCode, verificationCode };
+  return { createVerificationCode, verificationCodeLoading, responseCode, verificationCode };
 };
