@@ -1,0 +1,22 @@
+.verificationWrapper {
+  position: fixed;
+  inset: 0 0 0 0;
+
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.discordVerificationPopup {
+  position: fixed;
+  inset: 0 0 0 0;
+
+  z-index: 100;
+  margin: auto auto;
+  height: 40rem;
+  width: 25rem;
+  background-color: var(--secondary-color-dark);
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+}
+div.discordVerificationPopup > div > button.iconLabeledButton {
+  margin: 0;
+}

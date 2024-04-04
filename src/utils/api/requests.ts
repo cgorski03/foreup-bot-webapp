@@ -1,4 +1,4 @@
-import type { CreateSearchInput, GolfCourseCollection, UserSearchInfo, DeleteSearchInput } from './types';
+import type { CreateSearchInput, GolfCourseCollection, UserSearchInfo, DeleteSearchInput, VerificationCode } from './types';
 import useFetch from './useFetch';
 
 export const useGetCourses = () => {
@@ -68,4 +68,27 @@ export const useCancelSearch = () => {
   const cancelSearch = (input: DeleteSearchInput) => commonFetch({ input });
 
   return { cancelSearch, cancelLoading, cancelledSearches, cancelResponse };
+};
+
+export const useTestMessage = () => {
+  const { commonFetch, isLoading: testMessageLoading, responseCode } = useFetch<string>({
+    endpoint: '/notify',
+    method: 'GET',
+  });
+  const sendTestMessage = (input?: undefined) => commonFetch({ input, cacheOverride: true });
+
+  return { sendTestMessage, testMessageLoading, responseCode };
+};
+
+export const useCreateVerificationCode = () => {
+  const { commonFetch,
+    isLoading: verificationCodeLoading,
+    responseCode,
+    data: verificationCode } = useFetch<VerificationCode>({
+    endpoint: '/notify',
+    method: 'POST',
+  });
+  const createVerificationCode = (input?: undefined) => commonFetch({ input });
+
+  return { createVerificationCode, verificationCodeLoading, responseCode, verificationCode };
 };

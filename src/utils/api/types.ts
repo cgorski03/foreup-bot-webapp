@@ -35,3 +35,7 @@ export type UserSearchInfo = {
   courseLink: string;
   times: string[][]
 };
+
+export type VerificationCode = {
+  verification_code: string;
+};
