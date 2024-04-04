@@ -13,13 +13,18 @@ export default function useAuthContext() {
     setAuthContextLoading(true);
     try {
       const userAttributes = await fetchUserAttributes();
-      console.log(userAttributes);
+      // Check if the user has a channel id
+      // This prevents an error if the user does has not setup discord yet
+      let channelIdValue: string | undefined;
+      if ('custom:channel_id' in userAttributes) {
+        channelIdValue = userAttributes['custom:channel_id'];
+      }
       setUserInfo({
         name: userAttributes.name,
         email: userAttributes.email,
         email_verified: userAttributes.email_verified,
         id_token: await getIdToken(),
-        channel_id: userAttributes['custom:channel_id'],
+        channel_id: channelIdValue,
       });
       return true;
     } catch (error: any) {

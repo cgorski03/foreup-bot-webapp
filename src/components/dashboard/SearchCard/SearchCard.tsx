@@ -9,20 +9,15 @@ import {
   convertTo12Hour,
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
-// @ts-ignore
-import { ReactComponent as Loader } from './spinner.svg';
 import { DashboardContext } from '../../../Contexts/DashboardContext';
 import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
+import IconLabeledButton from '../../buttons/IconLabeledButton';
 
 type SearchCardProps = {
   search: UserSearchInfo;
   image: string;
 };
-type IconLabeledButtonProps = {
-  icon: JSX.Element;
-  loading: boolean;
-  onClick: () => void;
-};
+
 type FoundTimeIconsProps = {
   teeTimes: string[][];
   startIndex: number;
@@ -45,21 +40,6 @@ function FoundTimeIcons(props: FoundTimeIconsProps) {
           <p className="playerLabelBottom">{teeTime[1]}</p>
         </button>
       ))}
-    </div>
-  );
-}
-
-function IconLabeledButton(props: IconLabeledButtonProps) {
-  const { onClick, loading, icon } = props;
-  return (
-    <div>
-      <button
-        type="submit"
-        onClick={onClick}
-        className="iconLabeledButton"
-      >
-        {loading ? <Loader /> : icon}
-      </button>
     </div>
   );
 }
