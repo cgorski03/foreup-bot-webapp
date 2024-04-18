@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './searchInformationForm.css';
 import Calendar from './calendar/Calendar';
 import PlayerSelect from './players/PlayerSelect';
@@ -7,6 +7,7 @@ import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 import { GolfCourse, CreateSearchInput } from '../../../utils/api/types';
 import { useCreateSearch } from '../../../utils/api/requests';
 import { StartSearchErrorMessage } from '../../login/message/ErrorMessage';
+import { UserInformationContext } from '../../../Contexts/UserContext';
 
 type SearchInfoFormProps = {
   course: GolfCourse | null;
@@ -19,10 +20,15 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
   const [error, setError] = useState<string>('');
   const { createSearch, isLoading, responseCode } = useCreateSearch();
+  const { userInfo } = useContext(UserInformationContext);
 
+  const handleButtonNoDiscord = () => {
+    setError('noDiscord');
+  };
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
   };
+
   const handleTimeChange = (timeID: number, time: string): void => {
     // start time will have timeid of 0
     if (!timeID) {
@@ -75,11 +81,7 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
           onSelectedDateChange={handleDateSelection}
           courseEndDate={
             course
-              ? new Date(
-                new Date().setDate(
-                  new Date().getDate() + course.maxBookingDays,
-                ),
-              )
+              ? new Date(new Date().setDate(new Date().getDate() + course.maxBookingDays))
               : null
           }
         />
@@ -89,12 +91,21 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
           <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <StartSearchErrorMessage error={error} />
-          <OutlinedButtonLoader
-            classOverride="searchButtonHomePage"
-            buttonText="Start Search"
-            onClick={handleSearchEvent}
-            loading={isLoading}
-          />
+          {userInfo?.channel_id ? (
+            <OutlinedButtonLoader
+              classOverride="searchButtonHomePage"
+              buttonText="Start Search"
+              onClick={handleSearchEvent}
+              loading={isLoading}
+            />
+          ) : (
+            <OutlinedButtonLoader
+              classOverride="searchButtonHomePage"
+              buttonText="Connect Discord First"
+              onClick={handleButtonNoDiscord}
+              loading={false}
+            />
+          )}
         </div>
       </div>
     </div>
