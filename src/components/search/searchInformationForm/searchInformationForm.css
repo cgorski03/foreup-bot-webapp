@@ -43,3 +43,14 @@
   background-color: var(--secondary-color-dark);
   margin: 0px 0px 8px 0px;
 }
+
+.searchCriteriaContainer > .searchButtonHomePage {
+  color: var(--secondary-color-light);
+  background-color: var(--secondary-color-dark);
+  border-color: var(--secondary-color-light);
+  margin: 0px 0px 8px 0px;
+}
+
+.searchCriteriaContainer > .searchButtonHomePage:hover {
+  cursor: default;
+}

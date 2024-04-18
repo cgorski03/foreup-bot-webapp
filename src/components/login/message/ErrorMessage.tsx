@@ -35,13 +35,12 @@ export function StartSearchErrorMessage({ error }: { error: string }) {
 
       case 'noCourse':
         return 'Please select a golf course';
-
+      case 'noDiscord':
+        return 'Please connect your discord account in settings to start a search';
       default:
         return '';
     }
   };
 
-  return (
-    <div id="AuthorizationErrorMessageDisplay">{parseSearchMessage()}</div>
-  );
+  return <div id="AuthorizationErrorMessageDisplay">{parseSearchMessage()}</div>;
 }
