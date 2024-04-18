@@ -23,6 +23,14 @@
   flex-direction: column;
   border-radius: 1rem;
 }
+/* This is the content in the popup, basically not the X button */
+.discordVerificationPopupContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
 
 /* Top left button X close window */
 div.discordVerificationPopup > div > button.iconLabeledButton {
@@ -36,13 +44,13 @@ div.discordVerificationPopup > div > button.iconLabeledButton:hover {
   background-color: rgba(255, 255, 255, 0.02);
 }
 
-/* This is the div of the content: Instructions, buttons, etc */
-.discordVerificationPopupContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* Discord Icon that is the header for the popup */
+.discordIconHeaderFormatting {
+  font-size: 3.8rem;
+  margin: 0 0 2rem 0;
+}
+div > .connectDiscordButton {
+  margin: 1.2rem 0;
 }
 /* Wrapper class to override OutlinedButtonLoader */
 .connectDiscordButton {
@@ -57,6 +65,29 @@ div.discordVerificationPopup > div > button.iconLabeledButton:hover {
 a > .connectDiscordButton {
   width: 5rem;
   background-color: var(--header-background-color);
+  margin: 0 0 9rem 0;
+}
+.verifyInstructionsText {
+  text-align: center;
+  font-size: 1.2rem;
+}
+.verificationCodeDisplayAndButtons {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.generateAndCopyButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.generateAndCopyButtonContainer > button.connectDiscordButton:first-child {
+  width: 83%;
+}
+.generateAndCopyButtonContainer > button.connectDiscordButton:nth-child(2) {
+  width: 15%;
+  border-color: var(--secondary-color-light);
+  color: var(--secondary-color-light);
 }
 /* Verification Code Display Container  */
 .verificationCodeContainer {
