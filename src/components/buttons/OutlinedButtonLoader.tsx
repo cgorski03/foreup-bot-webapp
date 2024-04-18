@@ -6,7 +6,7 @@ import { ReactComponent as Loader } from '../login/inputFields/loader.svg';
 type OutlinedButtonLoaderProps = {
   onClick: () => void;
   classOverride?: string;
-  buttonText: string;
+  buttonText: string | React.JSX.Element;
   loading: boolean;
 };
 function OutlinedButtonLoader(props: OutlinedButtonLoaderProps) {

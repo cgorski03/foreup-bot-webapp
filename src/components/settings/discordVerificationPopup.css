@@ -1,9 +1,12 @@
+/* This is the wrapper, element takes up the whole screen. This is essentially the background */
 .verificationWrapper {
   position: fixed;
   inset: 0 0 0 0;
 
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+/* This is the acutal popup itself */
 .discordVerificationPopup {
   position: fixed;
   inset: 0 0 0 0;
@@ -12,11 +15,110 @@
   margin: auto auto;
   height: 40rem;
   width: 25rem;
-  background-color: var(--secondary-color-dark);
+  background-color: var(--header-background-color);
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
 }
+/* This is the content in the popup, basically not the X button */
+.discordVerificationPopupContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Top left button X close window */
 div.discordVerificationPopup > div > button.iconLabeledButton {
+  background-color: var(--header-background-color);
   margin: 0;
+  transition: background-color 0.1s;
+}
+
+/* Top left button X close window hover */
+div.discordVerificationPopup > div > button.iconLabeledButton:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Discord Icon that is the header for the popup */
+.discordIconHeaderFormatting {
+  font-size: 3.8rem;
+  margin: 0 0 2rem 0;
+}
+div > .connectDiscordButton {
+  margin: 1.2rem 0;
+}
+/* Wrapper class to override OutlinedButtonLoader */
+.connectDiscordButton {
+  background-color: var(--header-background-color);
+  transition: background-color 0.1s;
+}
+/* Change the hover styles */
+.connectDiscordButton:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+/* Target the join button specifically to make it less wide */
+a > .connectDiscordButton {
+  width: 5rem;
+  background-color: var(--header-background-color);
+  margin: 0 0 9rem 0;
+}
+.verifyInstructionsText {
+  text-align: center;
+  font-size: 1.2rem;
+}
+.verificationCodeDisplayAndButtons {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.generateAndCopyButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.generateAndCopyButtonContainer > button.connectDiscordButton:first-child {
+  width: 83%;
+}
+.generateAndCopyButtonContainer > button.connectDiscordButton:nth-child(2) {
+  width: 15%;
+  border-color: var(--secondary-color-light);
+  color: var(--secondary-color-light);
+}
+/* Verification Code Display Container  */
+.verificationCodeContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 4rem;
+}
+
+/* Individual Verificaiton Code Character */
+.verificationCodeCharContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 2.4rem;
+  margin: 0.2rem 0.4rem 0 0.4rem;
+}
+/* Verification Character */
+.verificationCodeCharContainer > p {
+  margin: 0.2rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Border on the bottom of the character */
+.verifyCharacterBase {
+  background-color: var(--text-color);
+  height: 2px;
+  width: 100%;
+  margin: 0;
+  bottom: 0.2rem;
 }
