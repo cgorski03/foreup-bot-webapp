@@ -100,7 +100,7 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
             />
           ) : (
             <OutlinedButtonLoader
-              classOverride="searchButtonHomePage"
+              classOverride="searchButtonHomePage disabledButton"
               buttonText="Connect Discord First"
               onClick={handleButtonNoDiscord}
               loading={false}
