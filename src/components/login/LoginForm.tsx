@@ -43,7 +43,7 @@ function LoginForm(props: LoginFormProps) {
   return (
     <div className="textField">
       <img
-        src="/images/golf_bot_image.jpeg"
+        src="/golf_bot_image.jpeg"
         className="appImage"
         alt="app"
       />
