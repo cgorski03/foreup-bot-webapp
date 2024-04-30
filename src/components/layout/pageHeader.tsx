@@ -63,7 +63,7 @@ function PageHeader() {
   return (
     <div className="pageHeaderContainer">
       <img
-        src="/images/golf_bot_image.jpeg"
+        src="/golf_bot_image.jpeg"
         className="headerLogo"
         alt="app"
       />
