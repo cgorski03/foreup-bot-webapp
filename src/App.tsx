@@ -43,6 +43,10 @@ function App() {
               element={<Settings />}
             />
             <Route
+              path="/settings/"
+              element={<Settings />}
+            />
+            <Route
               path="*"
               element={<NotFound />}
             />
