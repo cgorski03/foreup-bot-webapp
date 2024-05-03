@@ -15,7 +15,7 @@ export default function FullscreenErrorMessage({ msg }: FullscreenErrorMessagePr
     <div className="fullscreenSignoutMessage">
       <div className="signoutMessageForm">
         <img
-          src="/images/golf_bot_image.jpeg"
+          src="/golf_bot_image.jpeg"
           className="appImage"
           alt="app"
         />
