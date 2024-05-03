@@ -16,6 +16,7 @@ type CommonFetch = {
 function useFetch<T>({ endpoint, method }: UseFetchProps) {
   const DEFAULT_FETCH_HEADERS = {
     Authorization: useContext(UserInformationContext).userInfo?.id_token || '',
+    'Content-Type': 'application/json',
   };
   const [isLoading, setIsLoading] = useState(false);
   // we are assigning the generic type T to our data value here
