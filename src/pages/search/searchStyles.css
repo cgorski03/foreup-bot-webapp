@@ -1,11 +1,10 @@
 #courseSelectionContainer {
-  width: 700px;
+  width: min(calc(100% - 10px), 700px);
   margin-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--secondary-color-dark);
-
 }
 #homePageContainer {
   display: flex;

@@ -6,7 +6,7 @@ import CourseLabel from './CourseLabel';
 import { useGetCourses } from '../../../utils/api/requests';
 import { GolfCourse } from '../../../utils/api/types';
 import HandleAuthApiErrors from '../../error/HandleFetchErrors';
-
+// This is some AWFUL code that i have to refactor when I get a chance holy
 type CourseSelectProps = {
   onCourseSelection: (course: GolfCourse) => void;
 };
@@ -49,7 +49,7 @@ function CourseSelect(props: CourseSelectProps) {
       return <HandleAuthApiErrors responseCode={responseCode} />;
     }
     return (
-      <div>
+      <div style={{ width: '100%' }}>
         <Select
           isSearchable
           styles={selectStyles}
@@ -60,7 +60,7 @@ function CourseSelect(props: CourseSelectProps) {
     );
   }
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <Select
         options={renderCourses()}
         isSearchable
