@@ -1,4 +1,4 @@
-#courseSelectionContainer {
+.teeSearchFormContainer {
   width: min(calc(100% - 10px), 700px);
   margin-top: 20vh;
   display: flex;
@@ -24,4 +24,11 @@
   background-color: var(--secondary-color);
   width: calc(100% - 30px);
   margin: 20px 0px;
+}
+/* Mobile styles */
+@media (max-width: 700px) {
+  .teeSearchFormContainer {
+    margin-top: 10vh;
+    height: 100vh;
+  }
 }

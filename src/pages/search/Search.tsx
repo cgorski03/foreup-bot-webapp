@@ -13,7 +13,7 @@ function Search() {
 
   return (
     <div id="homePageContainer">
-      <div id="courseSelectionContainer">
+      <div className="teeSearchFormContainer">
         <CourseSelect onCourseSelection={handleCourseSelection} />
         <div className="dividerLineDiv" />
         <SearchInfoForm course={selectedCourse} />
