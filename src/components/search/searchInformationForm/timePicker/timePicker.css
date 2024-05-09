@@ -39,3 +39,9 @@ input[type='time']::-webkit-datetime-edit-ampm-field:focus {
   background-color: var(--secondary-color-light);
   color: var(--text-color);
 }
+@media (max-width: 700px) {
+  /* If it is mobile, move the time closer together*/
+  .timePickerContainer {
+    width: 70%;
+  }
+}
