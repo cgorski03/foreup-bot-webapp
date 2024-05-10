@@ -20,6 +20,8 @@ function PageHeader() {
 
   useEffect(() => {
     const attemptSetContext = async () => {
+      // Trying to avoid flashing the page
+      setIsAuthenticated(true);
       const result = await setAuthedContext();
       return result;
     };
@@ -37,6 +39,7 @@ function PageHeader() {
           // This is mock logic TODO
           console.log('Error signing out');
         }
+        setIsAuthenticated(false);
       });
     } else {
       switch (buttonValue) {

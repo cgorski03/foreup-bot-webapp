@@ -26,8 +26,10 @@ export default function useAuthContext() {
         id_token: await getIdToken(),
         channel_id: channelIdValue,
       });
+      setAuthContextLoading(false);
       return true;
     } catch (error: any) {
+      setAuthContextLoading(false);
       return false;
     }
   };
