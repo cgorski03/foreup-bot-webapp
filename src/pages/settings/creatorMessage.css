@@ -22,6 +22,8 @@
 }
 
 .handWave {
+  position: relative;
+  z-index: 1;
   animation: wave 2s infinite;
 }
 

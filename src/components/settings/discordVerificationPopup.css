@@ -1,6 +1,7 @@
 /* This is the wrapper, element takes up the whole screen. This is essentially the background */
 .verificationWrapper {
   position: fixed;
+  z-index: 100;
   inset: 0 0 0 0;
 
   background-color: rgba(0, 0, 0, 0.3);
