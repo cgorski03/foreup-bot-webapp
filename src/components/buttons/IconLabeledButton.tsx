@@ -11,7 +11,7 @@ type IconLabeledButtonProps = {
 function IconLabeledButton(props: IconLabeledButtonProps) {
   const { onClick, loading, icon } = props;
   return (
-    <div>
+    <div className="ButtonWrapperForMobile">
       <button
         type="submit"
         onClick={onClick}

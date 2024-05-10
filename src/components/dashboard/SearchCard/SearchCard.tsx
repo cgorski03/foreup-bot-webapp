@@ -10,7 +10,11 @@ import {
   expandDate,
 } from '../../../utils/dateExpansion/datetimeFunctions';
 import { DashboardContext } from '../../../Contexts/DashboardContext';
-import { useCancelSearch, useDeleteSearch } from '../../../utils/api/requests';
+import {
+  useCancelSearch,
+  useDeleteSearch,
+  useGetSearches,
+} from '../../../utils/api/requests';
 import IconLabeledButton from '../../buttons/IconLabeledButton';
 
 type SearchCardProps = {
@@ -47,6 +51,7 @@ function FoundTimeIcons(props: FoundTimeIconsProps) {
 function SearchCard(props: SearchCardProps) {
   const { search, image } = props;
   const { setSearches, refreshLoading } = useContext(DashboardContext);
+  const { updateCache } = useGetSearches();
   const { deleteSearch, deleteLoading, deleteResponse, updatedSeaches } = useDeleteSearch();
   const { cancelSearch, cancelLoading, cancelResponse, cancelledSearches } =
     useCancelSearch();
@@ -55,6 +60,9 @@ function SearchCard(props: SearchCardProps) {
   useEffect(() => {
     if (updatedSeaches != null) {
       setSearchDying(true);
+      // Update the users cache with the new info
+      updateCache(updatedSeaches);
+      // Update the searches shown on the users screen
       setSearches(updatedSeaches);
     }
   }, [updatedSeaches]);
@@ -62,6 +70,9 @@ function SearchCard(props: SearchCardProps) {
   useEffect(() => {
     if (cancelledSearches != null) {
       setSearchDying(true);
+      // Update the users cache with the new info
+      updateCache(cancelledSearches);
+      // Update the searches shown on the users screen
       setSearches(cancelledSearches);
     }
   }, [cancelledSearches]);

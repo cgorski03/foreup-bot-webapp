@@ -4,22 +4,37 @@ function getOrdinalSuffix(day: number) {
   return day + (suffixes[relevantDigits] || suffixes[0]);
 }
 
-export function expandDate(options: {
-  date: string;
+export function expandDate(options: { date: string;
   dayOfWeek?: boolean;
-  time?: boolean;
-}): string {
-  const dateObject = new Date(options.date + (options.time ? 'Z' : ' '));
+  time?: boolean; }): string {
+  // Check if the date string is in the "MM-DD-YYYY" format
+  // This is only a problem on mobile because JS is terrible
+  let formattedDateString = options.date;
+  const mmddyyyyRegex = /^(\d{2})-(\d{2})-(\d{4})$/;
+  const mmddyyyyMatch = options.date.match(mmddyyyyRegex);
+
+  if (mmddyyyyMatch) {
+    // Convert the "MM-DD-YYYY" format to a valid date string
+    const [, month, day, year] = mmddyyyyMatch;
+    formattedDateString = `${year}-${month}-${day}`;
+  }
+
+  const dateObject = new Date(formattedDateString);
+  if (Number.isNaN(dateObject.getTime())) {
+    // Handle invalid date string
+    return 'Hello';
+  }
+
   const formattedDate = dateObject.toLocaleString('en-US', {
     ...(options.dayOfWeek ? { weekday: 'long' } : {}),
-    ...(options.time
-      ? { hour: 'numeric', minute: 'numeric', hour12: true }
-      : {}),
+    ...(options.time ? { hour: 'numeric', minute: 'numeric', hour12: true } : {}),
     month: 'long',
     day: 'numeric',
   });
+
   const formattedDateWithSuffix = formattedDate.replace(/\d+/, (day) => getOrdinalSuffix(parseInt(day, 10)));
-  // remove the at in the date object that is returned
+
+  // Remove the "at" in the date object that is returned
   return formattedDateWithSuffix.replace(' at', '');
 }
 

@@ -12,7 +12,9 @@ type CommonFetch = {
   input?: { [index: string]: any };
   cacheOverride?: boolean;
 };
-
+export function getEndpointUrl(endpoint: string) {
+  return `${BASE_URL}${endpoint}`;
+}
 function useFetch<T>({ endpoint, method }: UseFetchProps) {
   const DEFAULT_FETCH_HEADERS = {
     Authorization: useContext(UserInformationContext).userInfo?.id_token || '',

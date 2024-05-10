@@ -21,8 +21,10 @@ function LoginForm(props: LoginFormProps) {
       setLoader(true);
       await signIn({ username, password });
       setLoader(false);
-      await setAuthedContext();
-      onAuthentication(); // call the parent callback function
+      const result = await setAuthedContext();
+      if (result) {
+        onAuthentication(); // call the parent callback function
+      }
     } catch (error: any) {
       setLoader(false);
       setLoginErrorMessage(error.message);

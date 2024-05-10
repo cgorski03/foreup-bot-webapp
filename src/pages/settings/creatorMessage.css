@@ -1,0 +1,111 @@
+.creatorMessageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  color: #c9d1d9;
+  background-color: #1a1e22;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.messageHeading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.messageHeading > span.handWave {
+  position: relative;
+  z-index: 1;
+  animation: wave 2s infinite;
+}
+
+.messageText {
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #c9d1d9;
+}
+
+.linkContainer {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.githubLink,
+.formLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.githubLink {
+  background-color: #61afef;
+  color: #1a1e22;
+}
+
+.formLink {
+  background-color: #c9d1d9;
+  color: #1a1e22;
+}
+
+.githubLink:hover {
+  background-color: #3b8dcc;
+}
+
+.formLink:hover {
+  background-color: #b0bec5;
+}
+
+.githubIcon,
+.formIcon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  color: #1a1e22;
+}
+
+.githubText,
+.formText {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a1e22;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .messageHeading {
+    text-align: center;
+  }
+  .linkContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
