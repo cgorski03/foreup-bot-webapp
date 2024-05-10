@@ -106,6 +106,14 @@
   padding: 1px 0;
 }
 @media (max-width: 1000px) {
+  .dashboardHeaderButton {
+    width: fit-content;
+    padding: 0 0.4rem;
+  }
+  /* Preventing the look that the buttons are "stuck on" */
+  .dashboardHeaderButton:hover {
+    background-color: rgba(255, 255, 255, 0);
+  }
   .searchTableContainer {
     width: 90%;
   }
