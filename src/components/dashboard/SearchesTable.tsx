@@ -2,10 +2,13 @@ import React, { useState, useContext } from 'react';
 import './searchTable.css';
 import { IoMdRefresh } from 'react-icons/io';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
-import SearchCard from './SearchCard/SearchCard';
+// import SearchCard from './SearchCard/SearchCard';
 import { NoSearchesFound } from '../error/HandleFetchErrors';
 import { GolfCourseCollection, UserSearchInfo } from '../../utils/api/types';
 import { DashboardContext } from '../../Contexts/DashboardContext';
+import MobileSearchCard from './SearchCard/MobileSearchCard';
+import useMediaQuery from '../../utils/hooks/useMediaQuery';
+import SearchCard from './SearchCard/SearchCard';
 
 type FilterSearchesButtonProps = {
   buttonTitle: string;
@@ -39,6 +42,7 @@ function SearchesTable(props: SearchesTableProps) {
   const { searches, courses, loading } = props;
   const [searchFilter, setSearchFilter] = useState<string>('All');
   const [searchStartIndex, setSearchStartIndex] = useState<number>(0);
+  const isMobile = useMediaQuery('(max-width: 768px)');
   let filteredSearches: UserSearchInfo[] = [];
 
   const handleFilterButtonClick = (buttonName: string) => {
@@ -74,13 +78,19 @@ function SearchesTable(props: SearchesTableProps) {
       // Then, slice the array to only show 5 searches at a time
       return filteredSearches.slice(startIndex, startIndex + 5).map(
         (search) =>
-          searchFilterParsing(search.active) && (
+          searchFilterParsing(search.active) &&
+          (isMobile ? (
+            <MobileSearchCard
+              key={search.ID}
+              search={search}
+            />
+          ) : (
             <SearchCard
               key={search.ID}
               search={search}
               image={courses[search.course_id].image}
             />
-          ),
+          )),
       );
     }
     return null;

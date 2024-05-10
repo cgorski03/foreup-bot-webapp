@@ -105,3 +105,8 @@
   font-size: 1.12rem;
   padding: 1px 0;
 }
+@media (max-width: 1000px) {
+  .searchTableContainer {
+    width: 90%;
+  }
+}
