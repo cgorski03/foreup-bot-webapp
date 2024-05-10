@@ -1,5 +1,5 @@
 import type { CreateSearchInput, GolfCourseCollection, UserSearchInfo, DeleteSearchInput, VerificationCode } from './types';
-import useFetch from './useFetch';
+import useFetch, { getEndpointUrl } from './useFetch';
 
 export const useGetCourses = () => {
   const { commonFetch,
@@ -31,7 +31,17 @@ export const useGetSearches = () => {
 
   const forceSearches = (input?: undefined) => commonFetch({ input, cacheOverride: true });
 
-  return { getSearches, forceSearches, searchesLoading, searches, setSearches, responseCode };
+  const updateCache = (updatedSearches: UserSearchInfo[]) => {
+    sessionStorage.setItem(getEndpointUrl('/search'), JSON.stringify(updatedSearches));
+  };
+
+  return { getSearches,
+    forceSearches,
+    searchesLoading,
+    searches,
+    setSearches,
+    responseCode,
+    updateCache };
 };
 
 export const useCreateSearch = () => {

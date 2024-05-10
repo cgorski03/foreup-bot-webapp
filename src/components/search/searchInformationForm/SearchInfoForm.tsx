@@ -6,7 +6,7 @@ import TimePicker from './timePicker/TimePicker';
 import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 import { GolfCourse, CreateSearchInput } from '../../../utils/api/types';
 import { useCreateSearch } from '../../../utils/api/requests';
-import { StartSearchErrorMessage } from '../../login/message/ErrorMessage';
+import { StartSearchResponseMessage } from '../../login/message/ErrorMessage';
 import { UserInformationContext } from '../../../Contexts/UserContext';
 
 type SearchInfoFormProps = {
@@ -18,12 +18,12 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   const [selectedStartTime, setSelectedStartTime] = useState<string>('08:00');
   const [selectedEndTime, setSelectedEndTime] = useState<string>('22:00');
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
-  const [error, setError] = useState<string>('');
+  const [responseMessage, setResponseMessage] = useState<string>('');
   const { createSearch, isLoading, responseCode } = useCreateSearch();
   const { userInfo } = useContext(UserInformationContext);
 
   const handleButtonNoDiscord = () => {
-    setError('noDiscord');
+    setResponseMessage('noDiscord');
   };
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
@@ -46,9 +46,9 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
     if (!course || selectedStartTime > selectedEndTime) {
       // early return if not all conditions are complete
       if (!course) {
-        setError('noCourse');
+        setResponseMessage('noCourse');
       } else {
-        setError('startTooLate');
+        setResponseMessage('startTooLate');
       }
       return;
     }
@@ -68,9 +68,10 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
     };
     await createSearch(search);
     if (responseCode && Math.floor(responseCode / 100) !== 2) {
-      console.log(responseCode);
-      // api request error case
-      setError('requestError');
+      // Check if it is because of too many searches
+      setResponseMessage('requestError');
+    } else {
+      setResponseMessage('success');
     }
   };
 
@@ -90,7 +91,7 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
         <div className="searchCriteriaContainer">
           <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
-          <StartSearchErrorMessage error={error} />
+          <StartSearchResponseMessage message={responseMessage} />
           {userInfo?.channel_id ? (
             <OutlinedButtonLoader
               classOverride="searchButtonHomePage"

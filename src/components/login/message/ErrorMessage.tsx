@@ -21,26 +21,37 @@ export function AuthorizationErrorMessage({ error }: { error: string }) {
   return <div id="AuthorizationErrorMessageDisplay">{parseLoginMessage()}</div>;
 }
 
-export function StartSearchErrorMessage({ error }: { error: string }) {
+export function StartSearchResponseMessage({ message }: { message: string }) {
   const parseSearchMessage = () => {
-    if (error === '') {
+    if (message === '') {
       return '';
     }
-    switch (error) {
+    switch (message) {
       case 'requestError':
         return 'An error occur while starting the search. Please try again';
-
       case 'startTooLate':
         return 'The start time must be before the end time';
-
       case 'noCourse':
         return 'Please select a golf course';
       case 'noDiscord':
         return 'Please connect your discord account in settings to start a search';
+      case 'tooManySearches':
+        return 'You have too many searches in progress. Please wait for one to finish or cancel one before starting another.';
+      case 'success':
+        return 'Search started successfully';
       default:
         return '';
     }
   };
-
-  return <div id="AuthorizationErrorMessageDisplay">{parseSearchMessage()}</div>;
+  if (message !== 'success') {
+    return <div id="AuthorizationErrorMessageDisplay">{parseSearchMessage()}</div>;
+  }
+  return (
+    <div
+      id="AuthorizationErrorMessageDisplay"
+      style={{ color: 'green' }}
+    >
+      {parseSearchMessage()}
+    </div>
+  );
 }
