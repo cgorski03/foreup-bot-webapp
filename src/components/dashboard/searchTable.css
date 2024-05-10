@@ -109,4 +109,13 @@
   .searchTableContainer {
     width: 90%;
   }
+  .filterButtonActive,
+  .filterButtonInactive {
+    width: fit-content;
+    padding: 0 0.6rem;
+  }
+  .searchFilterButtonContainer {
+    height: 100%;
+    margin: 0 0 0 0.2rem;
+  }
 }

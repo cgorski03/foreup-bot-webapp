@@ -96,6 +96,7 @@ function SearchesTable(props: SearchesTableProps) {
     return null;
   };
   if (loading && searches == null) {
+    // If the searches are still loading, still show the menu
     return (
       <div className="searchTableContainer">
         <div className="searchTableHeader">
