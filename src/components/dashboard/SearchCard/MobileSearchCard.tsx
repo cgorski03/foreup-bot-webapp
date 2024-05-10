@@ -15,37 +15,11 @@ import IconLabeledButton from '../../buttons/IconLabeledButton';
 
 type SearchCardProps = {
   search: UserSearchInfo;
-  image: string;
 };
 
-type FoundTimeIconsProps = {
-  teeTimes: string[][];
-  startIndex: number;
-};
-function FoundTimeIcons(props: FoundTimeIconsProps) {
-  // Function renders 6 tee times starting at the nth index
-  const { teeTimes, startIndex } = props;
-  if (!teeTimes) {
-    return null;
-  }
-  return (
-    <div className="d-flex availableTimesContainer">
-      {teeTimes.slice(startIndex, 6).map((teeTime) => (
-        <button
-          type="submit"
-          className="availableTeeTime"
-          key={teeTime[0]}
-        >
-          <p className="timeLabelTop">{convertTo12Hour(teeTime[0])}</p>
-          <p className="playerLabelBottom">{teeTime[1]}</p>
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function SearchCard(props: SearchCardProps) {
-  const { search, image } = props;
+function MobileSearchCard(props: SearchCardProps) {
+  const { search } = props;
+  // TS bs
   const { setSearches, refreshLoading } = useContext(DashboardContext);
   const { deleteSearch, deleteLoading, deleteResponse, updatedSeaches } = useDeleteSearch();
   const { cancelSearch, cancelLoading, cancelResponse, cancelledSearches } =
@@ -92,49 +66,32 @@ function SearchCard(props: SearchCardProps) {
         lastSearchCheck={search.heartbeat}
         searchInitiated={search.searchInitiated}
         searchId={search.ID}
-        mobile={false}
+        mobile
       />
-      <div className="searchCardBody">
-        <div className="imageTitleContainer">
-          <h1 className="searchTitle">{search.courseName}</h1>
-          <img
-            alt={search.courseName}
-            src={image}
-            className="golfCourseImagePreview"
-          />
-        </div>
-        <div className="rightHalfCardBody">
-          <div className="searchCardParameters">
-            <div className="headerLabelContainer">
+      <div className="searchCardBodyMobile">
+        <h1 className="searchTitleMobile">{search.courseName}</h1>
+        <div className="bottomHalfCardBodyMobile">
+          <div className="searchCardParametersMobile">
+            <div className="labelSearchInfoMobile">
               <p>
-                <FaCalendar className="labelIcon" />
-                DATE
-              </p>
-              <p>{expandDate({ date: search.date, dayOfWeek: true })}</p>
-            </div>
-            <div className="headerLabelContainer">
-              <p>
-                <FaClock className="labelIcon" />
-                TIME RANGE
-              </p>
-              <p>
-                {convertTo12Hour(search.start)}-{convertTo12Hour(search.end)}
+                <FaCalendar className="labelIcon" />{' '}
+                {expandDate({ date: search.date, dayOfWeek: true })}
               </p>
             </div>
-            <div className="headerLabelContainer">
+            <div className="labelSearchInfoMobile">
               <p>
-                <MdPerson style={{ margin: '0' }} />
-                PLAYERS
+                <FaClock className="labelIcon" /> {convertTo12Hour(search.start)}-
+                {convertTo12Hour(search.end)}
               </p>
-              <p>{search.players}</p>
+            </div>
+            <div className="labelSearchInfoMobile">
+              <p>
+                <MdPerson style={{ margin: '0' }} /> {search.players}
+              </p>
             </div>
           </div>
           <div className="searchActionsContainer">
-            <FoundTimeIcons
-              teeTimes={search.times}
-              startIndex={0}
-            />
-            <div className="d-flex searchActionIcons">
+            <div className="">
               <IconLabeledButton
                 onClick={handleSearchKill}
                 icon={<MdEdit />}
@@ -161,4 +118,4 @@ function SearchCard(props: SearchCardProps) {
   );
 }
 
-export default SearchCard;
+export default MobileSearchCard;

@@ -1,5 +1,6 @@
 .pageHeaderContainer {
   width: 100%;
+  overflow-y: hidden;
   height: 68px;
   background-color: var(--header-background-color);
 
@@ -7,12 +8,12 @@
   top: 0px;
   display: flex;
   align-items: flex-end;
-  box-shadow: rgba(80, 80, 80, 0.2) 0px 2px 8px 0px;;
+  box-shadow: rgba(80, 80, 80, 0.2) 0px 2px 8px 0px;
 }
 
 .headerLogo {
   max-width: 50px;
-  max-height: 50px; 
+  max-height: 50px;
   border-radius: 10px;
   margin: 9px 29px 9px 9px;
 }
@@ -23,6 +24,6 @@
   margin-bottom: 9px;
   height: 4px;
 }
-#signOutButtonLabel { 
+/* #signOutButtonLabel { 
   justify-self: end;
-}
+} */

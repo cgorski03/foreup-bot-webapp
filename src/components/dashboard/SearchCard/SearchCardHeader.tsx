@@ -7,10 +7,11 @@ type SearchHeaderProps = {
   lastSearchCheck: string;
   searchInitiated: string;
   searchId: string;
+  mobile: boolean;
 };
 
 export function SearchCardHeader(props: SearchHeaderProps) {
-  const { active, lastSearchCheck, searchInitiated, searchId } = props;
+  const { active, lastSearchCheck, searchInitiated, searchId, mobile } = props;
   return (
     <div className="searchCardHeader">
       <div className="headerLabelContainer">
@@ -23,16 +24,18 @@ export function SearchCardHeader(props: SearchHeaderProps) {
             : expandDate({ date: lastSearchCheck, time: true })}
         </p>
       </div>
-      <div className="headerRightJustified">
-        <div className="headerLabelContainer">
-          <p>SEARCH INITIATED</p>
-          <p>{expandDate({ date: searchInitiated, time: true })}</p>
+      {!mobile && (
+        <div className="headerRightJustified">
+          <div className="headerLabelContainer">
+            <p>SEARCH INITIATED</p>
+            <p>{expandDate({ date: searchInitiated, time: true })}</p>
+          </div>
+          <div className="headerLabelContainer">
+            <p>ID #</p>
+            <p>{searchId}</p>
+          </div>
         </div>
-        <div className="headerLabelContainer">
-          <p>ID #</p>
-          <p>{searchId}</p>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

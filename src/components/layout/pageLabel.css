@@ -2,7 +2,7 @@
   font-size: 16px;
   color: var(--text-color);
   background-color: var(--header-background-color);
-  transition: background-color .15s ease;
+  transition: background-color 0.15s ease;
   border: none;
   border-radius: var(--border-radius-standard);
   padding: 7px 10px;
@@ -18,23 +18,25 @@
 .labelContainer {
   display: flex;
   flex-direction: column;
-  margin: 0px 20px 0px 0px;
+  margin: 0px min(0.72vw, 20px) 0px 0px;
 }
 .labelContainer:last-child {
   margin-left: auto;
 }
-.labelContainer:last-child > :first-child{
+.labelContainer:last-child > :first-child {
   font-size: 20px;
   padding-bottom: 0px;
 }
-.currentPageUnderline { 
+.currentPageUnderline {
   margin-top: 2px;
   width: 100%;
   height: 2px;
   border-radius: 2px;
   background-color: var(--header-background-color);
-  transition: background-color .2s ease;
+  transition: background-color 0.2s ease;
 }
 .selectedPageUnderline {
   background-color: var(--accent-color);
+}
+@media (max-width: 700px) {
 }

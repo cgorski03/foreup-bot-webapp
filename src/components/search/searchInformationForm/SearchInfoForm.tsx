@@ -75,7 +75,7 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   };
 
   return (
-    <div id="searchDetailsContainer">
+    <div className="searchDetailsContainer">
       <div className="halfWidthInfoBlock leftHalfInfoBlock">
         <Calendar
           onSelectedDateChange={handleDateSelection}

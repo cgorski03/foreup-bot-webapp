@@ -14,7 +14,7 @@ const selectStyles = {
     ...provided,
     padding: 12,
     fontSize: 15,
-    width: 700,
+    width: "100%",
     backgroundColor:
       state.isSelected || state.isFocused
         ? "var(--secondary-color)"
@@ -29,7 +29,7 @@ const selectStyles = {
     ...provided, // Spread the provided styles here
     padding: 10,
     fontSize: 27,
-    width: 700,
+    width: "100%",
     backgroundColor: "var(--secondary-color-dark)",
     border: "none",
     overflow: "hidden",
