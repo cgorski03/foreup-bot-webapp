@@ -27,7 +27,7 @@ export default function CreatorMessage() {
           <span className="githubText">Venture into GitHub</span>
         </a>
         <a
-          href="https://forms.google.com/your-form-url"
+          href="https://forms.gle/g5HJREbAcKkRz9Fb8"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Google Form link"
