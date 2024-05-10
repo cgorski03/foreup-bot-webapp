@@ -28,7 +28,7 @@ export function StartSearchResponseMessage({ message }: { message: string }) {
     }
     switch (message) {
       case 'requestError':
-        return 'An error occur while starting the search. Please try again';
+        return 'An error occur while starting the search. Do you have more than 3 concurrent searches?';
       case 'startTooLate':
         return 'The start time must be before the end time';
       case 'noCourse':
