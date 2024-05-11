@@ -9,17 +9,17 @@ export function expandDate(options: { date: string;
   time?: boolean; }): string {
   // Check if the date string is in the "MM-DD-YYYY" format
   // This is only a problem on mobile because JS is terrible
-  let formattedDateString = `${options.date}Z`;
+  const formattedDateString = `${options.date}Z`;
   const mmddyyyyRegex = /^(\d{2})-(\d{2})-(\d{4})$/;
   const mmddyyyyMatch = options.date.match(mmddyyyyRegex);
-
+  let dateObject: Date;
   if (mmddyyyyMatch) {
     // Convert the "MM-DD-YYYY" format to a valid date string
     const [, month, day, year] = mmddyyyyMatch;
-    formattedDateString = `${year}-${month}-${day}`;
+    dateObject = new Date(Number(year), (Number(month) - 1), Number(day));
+  } else {
+    dateObject = new Date(formattedDateString);
   }
-
-  const dateObject = new Date(formattedDateString);
   if (Number.isNaN(dateObject.getTime())) {
     // Handle invalid date string
     return 'Invalid Date, Tell Colin He is Dumb';
