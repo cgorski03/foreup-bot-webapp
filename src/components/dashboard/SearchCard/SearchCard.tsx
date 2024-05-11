@@ -56,7 +56,6 @@ function SearchCard(props: SearchCardProps) {
   const { cancelSearch, cancelLoading, cancelResponse, cancelledSearches } =
     useCancelSearch();
   const [searchDying, setSearchDying] = useState(false);
-  console.log(expandDate({ date: '05-16-2024', dayOfWeek: true }));
   useEffect(() => {
     if (updatedSeaches != null) {
       setSearchDying(true);
