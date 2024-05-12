@@ -67,7 +67,7 @@
 /* Mobile styles */
 @media (max-width: 700px) {
   .featuredCoursesBanner {
-    visibility: hidden;
+    height: 30%;
   }
   .teeSearchFormContainer {
     margin-top: 10vh;

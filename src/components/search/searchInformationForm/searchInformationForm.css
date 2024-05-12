@@ -108,6 +108,7 @@
     margin-top: 30px;
     flex-direction: column;
     align-items: center;
+    padding-top: 50px;
   }
   .halfWidthInfoBlock {
     width: 100%;
