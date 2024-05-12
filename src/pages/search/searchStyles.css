@@ -1,7 +1,8 @@
 .featuredCoursesBanner {
-  width: 100%;
+  width: 75%;
   display: flex;
-  justify-content: center;
+  gap: 32px;
+  /* justify-content: center; */
 }
 .teeSearchFormContainer {
   width: min(calc(100% - 10px), 700px);

@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Select from 'react-select';
 // @ts-ignore
 import selectStyles from './selectStyles';
 import CourseLabel from './CourseLabel';
-import { useGetCourses } from '../../../utils/api/requests';
-import { GolfCourse } from '../../../utils/api/types';
-import HandleAuthApiErrors from '../../error/HandleFetchErrors';
-// This is some AWFUL code that i have to refactor when I get a chance holy
+import { GolfCourse, GolfCourseCollection } from '../../../utils/api/types';
+
 type CourseSelectProps = {
   onCourseSelection: (course: GolfCourse) => void;
+  golfCourseList: GolfCourseCollection | null;
 };
 
 type Option = {
@@ -18,21 +17,12 @@ type Option = {
 };
 
 function CourseSelect(props: CourseSelectProps) {
-  const { onCourseSelection } = props;
-  const { getCourses, coursesLoading, courses, responseCode } = useGetCourses();
-  useEffect(() => {
-    // Get the courses on the first mounting of the component
-    getCourses();
-  }, []);
-
+  const { onCourseSelection, golfCourseList } = props;
   const renderCourses = () => {
-    if (!courses) {
+    if (!golfCourseList) {
       return [];
     }
-    if (responseCode !== 200) {
-      return [];
-    }
-    return Object.values(courses).map((course) => ({
+    return Object.values(golfCourseList).map((course) => ({
       value: course.courseName,
       courseObj: course,
       label: (
@@ -43,22 +33,12 @@ function CourseSelect(props: CourseSelectProps) {
       ),
     }));
   };
-  if (coursesLoading || !courses || (responseCode && responseCode !== 200)) {
-    if (responseCode) {
-      console.log(`response code ${responseCode}`);
-      return <HandleAuthApiErrors responseCode={responseCode} />;
-    }
-    return (
-      <div style={{ width: '100%' }}>
-        <Select
-          isSearchable
-          styles={selectStyles}
-          placeholder="Loading courses..."
-          maxMenuHeight={207.5}
-        />
-      </div>
-    );
+  // Check if the courses list is null
+  if (golfCourseList === null) {
+    // TODO make an animation of a flashing while it is loading
+    return <div className="courseSelectWrapper courseSelectLoading" />;
   }
+  // The couse list is not null
   return (
     <div className="courseSelectWrapper">
       <Select
