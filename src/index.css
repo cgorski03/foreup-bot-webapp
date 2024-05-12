@@ -3,11 +3,11 @@
   --primary-color: #21252b;
   --secondary-color-light: #646a75;
   --secondary-color: #333842;
-  --secondary-color-dark: #1a1e22;
+  --secondary-color-dark: rgba(255, 255, 255, 0.03);
   --header-background-color: #101214;
   --accent-color: #e7c343;
   --text-color: #cccccc;
-  --background-color: #21252b;
+  --background-color: #1a1e22;
   /*Border Settings*/
   --border-radius-standard: 0.6rem;
 }
