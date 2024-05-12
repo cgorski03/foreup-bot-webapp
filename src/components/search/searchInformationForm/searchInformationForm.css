@@ -1,11 +1,13 @@
 .searchDetailsContainer {
-  box-shadow: 0px 9px 19px 8px rgba(26, 26, 26, 0.1);
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
   display: flex;
   flex-direction: row;
   background-color: var(--secondary-color-dark);
   width: 100%;
   aspect-ratio: 2/1;
-  border-radius: 3px;
+  border-radius: 0.8rem;
 }
 
 .leftHalfInfoBlock {

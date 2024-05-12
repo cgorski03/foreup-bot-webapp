@@ -60,7 +60,7 @@ function CourseSelect(props: CourseSelectProps) {
     );
   }
   return (
-    <div style={{ width: '100%' }}>
+    <div className="courseSelectWrapper">
       <Select
         options={renderCourses()}
         isSearchable
