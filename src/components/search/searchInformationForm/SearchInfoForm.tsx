@@ -22,6 +22,8 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   const [responseMessage, setResponseMessage] = useState<string>('');
   const { createSearch, isLoading, responseCode } = useCreateSearch();
   const { userInfo } = useContext(UserInformationContext);
+  const isDiscordConnected = userInfo?.channel_id !== undefined;
+
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
   };
@@ -40,7 +42,6 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   };
 
   const handleSearchEvent = async () => {
-    console.log(userInfo);
     console.log(isLoading);
     if (!course || selectedStartTime > selectedEndTime) {
       // early return if not all conditions are complete
@@ -94,13 +95,16 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
           <button
             className="start-search-button"
             onClick={handleSearchEvent}
-            disabled={false}
+            disabled={!isDiscordConnected}
             type="submit"
           >
             <span className="search-icon">
               <FaSearch />
             </span>
-            <span className="button-text"> Search</span>
+            <span className="button-text">
+              {' '}
+              {isDiscordConnected ? 'Search' : 'Connect Discord'}
+            </span>
           </button>
         </div>
       </div>
