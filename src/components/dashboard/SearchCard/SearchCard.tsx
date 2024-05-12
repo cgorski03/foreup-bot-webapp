@@ -26,23 +26,26 @@ type FoundTimeIconsProps = {
   teeTimes: string[][];
   startIndex: number;
 };
+
 function FoundTimeIcons(props: FoundTimeIconsProps) {
-  // Function renders 6 tee times starting at the nth index
   const { teeTimes, startIndex } = props;
   if (!teeTimes) {
     return null;
   }
+
   return (
-    <div className="d-flex availableTimesContainer">
-      {teeTimes.slice(startIndex, 6).map((teeTime) => (
-        <button
-          type="submit"
-          className="availableTeeTime"
+    <div className="tee-time-container">
+      {teeTimes.slice(startIndex, startIndex + 9).map((teeTime) => (
+        <div
+          className="tee-time-item"
           key={teeTime[0]}
         >
-          <p className="timeLabelTop">{convertTo12Hour(teeTime[0])}</p>
-          <p className="playerLabelBottom">{teeTime[1]}</p>
-        </button>
+          <span className="tee-time">{convertTo12Hour(teeTime[0])}</span>
+          <div className="player-count">
+            <span className="player-icon">&#x1F3CC;</span>
+            <span className="player-number">{teeTime[1]}</span>
+          </div>
+        </div>
       ))}
     </div>
   );
