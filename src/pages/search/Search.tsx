@@ -5,17 +5,42 @@ import SearchInfoForm from '../../components/search/searchInformationForm/Search
 import { GolfCourse } from '../../utils/api/types';
 import { useGetCourses } from '../../utils/api/requests';
 import CourseInformationCard from '../../components/search/SeelctedCourseInformation/CourseInformationCard';
+import useMediaQuery from '../../utils/hooks/useMediaQuery';
 
 function Search() {
   const [selectedCourse, setSelectedCourse] = useState<GolfCourse | null>(null);
   const { getCourses, courses } = useGetCourses();
   const userFavorites: number[] = [21372431, 125199369, 122392149];
+
   useEffect(() => {
     getCourses();
   }, []);
-  // Use some hook to only render the favorites if there is space
-  return (
-    <div id="homePageContainer">
+
+  // Render the favorites section of the page
+  // Logic is abstracted to this function to make the main return statement cleaner
+  // Handles the conditions for different screen sizes
+  const renderFavorites = () => {
+    const showFullCoursesBanner = !useMediaQuery('(max-width: 1800px)');
+    const showOneFavorite = !useMediaQuery('(max-width: 600px)');
+    // If the screen is too small, don't render ANY favorites
+    if (!showOneFavorite && !showFullCoursesBanner) {
+      return <div className="featuredCoursesBanner" />;
+    }
+    // If the screen is big enough to render one favorite, render the first favorite
+    if (showOneFavorite && !showFullCoursesBanner) {
+      return (
+        <div className="featuredCoursesBanner">
+          <CourseInformationCard
+            isSelected
+            // If selectedCourse is null, display the first favorite course
+            displayedCourse={selectedCourse || (courses && courses[userFavorites[0]])}
+            setSelectedCourse={setSelectedCourse}
+          />
+        </div>
+      );
+    }
+    // If the screen is big enough to render all favorites, render all favorites
+    return (
       <div className="featuredCoursesBanner">
         <CourseInformationCard
           isSelected={selectedCourse === null}
@@ -36,6 +61,12 @@ function Search() {
           setSelectedCourse={setSelectedCourse}
         />
       </div>
+    );
+  };
+
+  return (
+    <div id="homePageContainer">
+      {renderFavorites()}
       <div className="teeSearchFormContainer">
         <CourseSelect
           selectedCourse={selectedCourse}

@@ -1,8 +1,9 @@
 .featuredCoursesBanner {
   width: 75%;
+  height: 407px;
   display: flex;
   gap: 32px;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .teeSearchFormContainer {
