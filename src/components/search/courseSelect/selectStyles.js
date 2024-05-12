@@ -69,6 +69,7 @@ const selectStyles = {
       width: "0px",
       height: "0px",
     },
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)"
   }),
 
   input: (provided, state) => ({
