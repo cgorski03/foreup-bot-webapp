@@ -1,6 +1,10 @@
+.featuredCoursesBanner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .teeSearchFormContainer {
   width: min(calc(100% - 10px), 700px);
-  margin-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +12,8 @@
 }
 #homePageContainer {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 #courseDetailsContainer {

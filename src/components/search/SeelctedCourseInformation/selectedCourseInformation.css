@@ -1,0 +1,62 @@
+.courseInformationCardContainer {
+  display: flex;
+  box-sizing: border-box;
+  width: 600px;
+  height: 275px;
+  background-color: var(--secondary-color-dark);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 100px 0 32px 0;
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.notSelectedCourseContainer {
+  transform: scale(0.9);
+  opacity: 0.5;
+}
+
+.course-image-container {
+  position: relative;
+  width: 50%;
+  padding: 1.4rem;
+}
+
+.course-image-container img {
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.course-details {
+  flex: 1;
+  width: 50%;
+  padding: 16px;
+}
+
+.course-details h2 {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.course-location {
+  font-size: 1.2rem;
+  color: #bdbdbd;
+  margin-bottom: 0.5rem;
+}
+
+.course-stats {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.course-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #bdbdbd;
+  text-align: justify;
+}
