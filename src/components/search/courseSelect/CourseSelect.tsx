@@ -52,12 +52,16 @@ function CourseSelect(props: CourseSelectProps) {
   };
   // Check if the courses list is null
   if (golfCourseList === null) {
-    // TODO make an animation of a flashing while it is loading
-    return <div className="courseSelectWrapper courseSelectLoading" />;
+    // Return a skeleton loading element
+    return (
+      <div className="courseSelectLoading">
+        <div className="skeleton-text skeleton-text-title" />{' '}
+      </div>
+    );
   }
   // The couse list is not null
   return (
-    <div className="courseSelectWrapper">
+    <div className="courseSelectContainer">
       <Select
         options={renderCourses()}
         isSearchable
