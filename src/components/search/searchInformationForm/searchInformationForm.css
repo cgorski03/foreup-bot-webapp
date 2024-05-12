@@ -58,6 +58,50 @@
 .searchCriteriaContainer > .disabledButton:hover {
   cursor: default;
 }
+.start-search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.02);
+  color: var(--accent-color);
+
+  border: none;
+  border-radius: var(--border-radius-standard);
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  transition:
+    background-color 0.4s,
+    color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.start-search-button:hover {
+  background-color: var(--accent-color);
+  color: var(--secondary-color-dark);
+  cursor: pointer;
+}
+
+.start-search-button:disabled {
+  background-color: var(--secondary-color);
+  color: var(--text-color-disabled);
+  cursor: not-allowed;
+}
+
+.button-text {
+  margin-right: 8px;
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
 /* MOBILE STYLING */
 /* Check if the screen is too small for it to be displayed the box format, if so make it a column */
 @media (max-width: 700px) {

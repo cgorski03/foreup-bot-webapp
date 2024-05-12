@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
 import './searchInformationForm.css';
+import { FaSearch } from 'react-icons/fa';
 import Calendar from './calendar/Calendar';
 import PlayerSelect from './players/PlayerSelect';
 import TimePicker from './timePicker/TimePicker';
-import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
+// import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
 import { GolfCourse, CreateSearchInput } from '../../../utils/api/types';
 import { useCreateSearch } from '../../../utils/api/requests';
 import { StartSearchResponseMessage } from '../../login/message/ErrorMessage';
@@ -21,10 +22,6 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   const [responseMessage, setResponseMessage] = useState<string>('');
   const { createSearch, isLoading, responseCode } = useCreateSearch();
   const { userInfo } = useContext(UserInformationContext);
-
-  const handleButtonNoDiscord = () => {
-    setResponseMessage('noDiscord');
-  };
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
   };
@@ -43,6 +40,8 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   };
 
   const handleSearchEvent = async () => {
+    console.log(userInfo);
+    console.log(isLoading);
     if (!course || selectedStartTime > selectedEndTime) {
       // early return if not all conditions are complete
       if (!course) {
@@ -92,21 +91,17 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
           <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <StartSearchResponseMessage message={responseMessage} />
-          {userInfo?.channel_id ? (
-            <OutlinedButtonLoader
-              classOverride="searchButtonHomePage"
-              buttonText="Start Search"
-              onClick={handleSearchEvent}
-              loading={isLoading}
-            />
-          ) : (
-            <OutlinedButtonLoader
-              classOverride="searchButtonHomePage disabledButton"
-              buttonText="Connect Discord First"
-              onClick={handleButtonNoDiscord}
-              loading={false}
-            />
-          )}
+          <button
+            className="start-search-button"
+            onClick={handleSearchEvent}
+            disabled={false}
+            type="submit"
+          >
+            <span className="search-icon">
+              <FaSearch />
+            </span>
+            <span className="button-text"> Search</span>
+          </button>
         </div>
       </div>
     </div>
