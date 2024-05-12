@@ -4,6 +4,10 @@ export type GolfCourse = {
   courseLocation: string;
   maxBookingDays: number;
   image: string;
+  par: number;
+  yardage: number;
+  rating: number;
+  slope: number;
 };
 
 export type GolfCourseCollection = Record<number, GolfCourse>;

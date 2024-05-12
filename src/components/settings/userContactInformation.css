@@ -9,9 +9,7 @@
   color: var(--text-color);
   padding: 0 1rem;
   box-sizing: border-box;
-  box-shadow:
-    rgba(0, 0, 0, 0.19) 0px 10px 20px,
-    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .testMessageButton.loading {

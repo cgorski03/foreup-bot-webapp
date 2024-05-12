@@ -15,10 +15,11 @@ const selectStyles = {
     padding: 12,
     fontSize: 15,
     width: "100%",
+    transition: "background-color .08s ease",
     backgroundColor:
       state.isSelected || state.isFocused
-        ? "var(--secondary-color)"
-        : "var(--primary-color)",
+        ? "rgba(255,255,255,.04)"
+        : "var(--background-color)",
     ":active": {
       backgroundColor: "rgba(99, 106, 117, .18)",
     },
@@ -47,7 +48,7 @@ const selectStyles = {
   }),
   menu: (provided, state) => ({
     ...provided,
-    backgroundColor: "var(--primary-color)",
+    backgroundColor: "var(--background-color)",
     boxShadow: "0px 9px 19px 8px rgba(26,26,26,.2)",
     marginTop: 0,
     marginBottom: 0,

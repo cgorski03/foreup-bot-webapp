@@ -10,7 +10,7 @@
   display: flex;
   box-sizing: border-box;
   width: 600px;
-  height: 275px;
+  height: 250px;
   background-color: var(--secondary-color-dark);
   border-radius: 8px;
   overflow: hidden;
@@ -34,7 +34,7 @@
 .course-image-container {
   position: relative;
   width: 50%;
-  padding: 1.4rem;
+  padding: 1.2rem 1.2rem 1.2rem 0;
 }
 
 .course-image-container img {
@@ -44,11 +44,12 @@
   height: 100%;
   border-radius: 8px;
 }
-
 .course-details {
-  flex: 1;
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 16px;
+  width: 50%;
 }
 
 .course-details h2 {
@@ -58,26 +59,51 @@
 }
 
 .course-location {
+  font-size: 1.12rem;
+  color: #bdbdbd;
+  margin: 0 0 2rem 0;
+}
+/* Existing styles... */
+
+.course-stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 1.2rem;
+}
+
+.stat-row {
+  text-align: center;
+}
+
+.stat-value {
   font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.stat-label {
+  font-size: 0.9rem;
   color: #bdbdbd;
-  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+/* Existing styles... */
+
+.searches-container {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
 }
 
-.course-stats {
-  font-size: 1.1rem;
-  color: #e0e0e0;
-  margin-bottom: 1rem;
+.searchIcon {
+  color: var(--text-color);
+  margin-right: 0.5rem;
 }
 
-.course-description {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #bdbdbd;
-  text-align: justify;
+.searches-label {
+  font-size: 0.9rem;
+  color: var(--text-color);
 }
-
 /* Loading Skeleton Styles */
-/* ... previous styles ... */
 
 .skeleton-text {
   background-color: var(--secondary-color);
