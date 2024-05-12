@@ -21,16 +21,19 @@ function Search() {
           isSelected={selectedCourse === null}
           // Display the second favorite course
           displayedCourse={courses ? courses[userFavorites[1]] : null}
+          setSelectedCourse={setSelectedCourse}
         />
         <CourseInformationCard
           isSelected
           // If selectedCourse is null, display the first favorite course
           displayedCourse={selectedCourse || (courses && courses[userFavorites[0]])}
+          setSelectedCourse={setSelectedCourse}
         />
         <CourseInformationCard
           isSelected={selectedCourse === null}
           // Display the third favorite course
           displayedCourse={courses ? courses[userFavorites[2]] : null}
+          setSelectedCourse={setSelectedCourse}
         />
       </div>
       <div className="teeSearchFormContainer">
