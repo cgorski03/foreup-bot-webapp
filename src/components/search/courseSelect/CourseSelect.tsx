@@ -6,7 +6,8 @@ import CourseLabel from './CourseLabel';
 import { GolfCourse, GolfCourseCollection } from '../../../utils/api/types';
 
 type CourseSelectProps = {
-  onCourseSelection: (course: GolfCourse) => void;
+  selectedCourse: GolfCourse | null;
+  setSelectedCourse: (course: GolfCourse | null) => void;
   golfCourseList: GolfCourseCollection | null;
 };
 
@@ -17,7 +18,23 @@ type Option = {
 };
 
 function CourseSelect(props: CourseSelectProps) {
-  const { onCourseSelection, golfCourseList } = props;
+  const { selectedCourse, setSelectedCourse, golfCourseList } = props;
+  const getOptionFromCourse = (course: GolfCourse | null): Option | null => {
+    if (!course) {
+      return null;
+    }
+    return {
+      value: course.courseName,
+      courseObj: course,
+      label: (
+        <CourseLabel
+          courseName={course.courseName}
+          courseLocation={course.courseLocation}
+        />
+      ),
+    };
+  };
+
   const renderCourses = () => {
     if (!golfCourseList) {
       return [];
@@ -45,10 +62,9 @@ function CourseSelect(props: CourseSelectProps) {
         options={renderCourses()}
         isSearchable
         styles={selectStyles}
+        value={getOptionFromCourse(selectedCourse)}
         onChange={(option: Option | null) => {
-          if (option != null && option.courseObj) {
-            onCourseSelection(option.courseObj);
-          }
+          setSelectedCourse(option?.courseObj || null);
         }}
         placeholder="Where would you like to play?"
         maxMenuHeight={207.5}

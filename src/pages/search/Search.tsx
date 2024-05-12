@@ -13,9 +13,6 @@ function Search() {
   useEffect(() => {
     getCourses();
   }, []);
-  const handleCourseSelection = (course: GolfCourse): void => {
-    setSelectedCourse(course);
-  };
 
   return (
     <div id="homePageContainer">
@@ -38,7 +35,8 @@ function Search() {
       </div>
       <div className="teeSearchFormContainer">
         <CourseSelect
-          onCourseSelection={handleCourseSelection}
+          selectedCourse={selectedCourse}
+          setSelectedCourse={setSelectedCourse}
           golfCourseList={courses}
         />
         <SearchInfoForm course={selectedCourse} />

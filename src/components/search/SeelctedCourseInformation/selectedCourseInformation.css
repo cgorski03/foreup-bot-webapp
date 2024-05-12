@@ -7,13 +7,16 @@
   border-radius: 8px;
   overflow: hidden;
   margin: 100px 0 32px 0;
+  transition:
+    scale 0.3s,
+    opacity 0.3s;
   box-shadow:
     rgba(0, 0, 0, 0.19) 0px 10px 20px,
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 .notSelectedCourseContainer {
   transform: scale(0.9);
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .course-image-container {
