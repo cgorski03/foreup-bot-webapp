@@ -13,7 +13,7 @@ function Search() {
   useEffect(() => {
     getCourses();
   }, []);
-
+  // Use some hook to only render the favorites if there is space
   return (
     <div id="homePageContainer">
       <div className="featuredCoursesBanner">

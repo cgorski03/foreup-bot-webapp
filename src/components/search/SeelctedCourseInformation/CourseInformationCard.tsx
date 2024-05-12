@@ -5,14 +5,29 @@ import './selectedCourseInformation.css';
 type CourseInformationCardProps = {
   isSelected: boolean;
   displayedCourse: GolfCourse | null;
-  setSelectedCourse: (course: GolfCourse) => void;
+  setSelectedCourse: (course: GolfCourse | null) => void;
 };
 
-export default function CourseInformationCard(props: CourseInformationCardProps) {
+function CourseInformationCardSkeleton() {
+  return (
+    <div className="courseInformationCardContainer">
+      <div className="course-details">
+        <div className="skeleton-text skeleton-text-title" />
+        <div className="skeleton-text skeleton-text-subtitle" />
+        <div className="skeleton-text skeleton-text-stats" />
+      </div>
+      <div className="course-image-container">
+        <div className="skeleton-image" />
+      </div>
+    </div>
+  );
+}
+
+function CourseInformationCard(props: CourseInformationCardProps) {
   const { isSelected, displayedCourse, setSelectedCourse } = props;
   // If we have not loaded the courses yet, we want to return the placeholder object
   if (displayedCourse === null) {
-    return <div className="courseInformationCardContainer" />;
+    return <CourseInformationCardSkeleton />;
   }
   return (
     <button
@@ -40,3 +55,5 @@ export default function CourseInformationCard(props: CourseInformationCardProps)
     </button>
   );
 }
+
+export default CourseInformationCard;
