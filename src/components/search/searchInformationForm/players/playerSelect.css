@@ -1,39 +1,52 @@
 .playerCountSelectContainer {
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 42px;
-  width: 158px;
+  align-items: center;
+  height: 48px;
+  width: 180px;
+  background-color: var(--secondary-color-dark);
+  border-radius: var(--border-radius-standard);
+  padding: 0 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .playerCountButton {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--secondary-color-dark);
-
-  height: 39px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
   border-radius: var(--border-radius-standard);
-
-  font-size: 16.9px;
+  font-size: 18px;
   text-align: center;
   box-sizing: border-box;
-
   color: var(--text-color);
-  border: 1px solid var(--secondary-color);
+  outline: 2px solid var(--secondary-color-dark);
+  transition: background-color 0.2s ease;
+  margin: 0 2px;
 }
+
 .playerCountButton:hover {
   cursor: pointer;
+  background-color: var(--secondary-color-light);
 }
+
 .activePlayerCount {
+  background-color: var(--accent-color) !important;
+  color: var(--secondary-color-dark);
   border-color: var(--accent-color);
-  transition: border-color 0.2s ease;
 }
+
 .inputFieldLabel {
   color: var(--text-color);
   font-size: 14px;
   font-weight: normal;
+  margin-bottom: 8px;
 }
+
 .playerSelectComponentContainer {
   display: flex;
   flex-direction: column;
