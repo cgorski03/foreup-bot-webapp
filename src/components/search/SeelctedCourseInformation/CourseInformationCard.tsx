@@ -64,7 +64,8 @@ function CourseInformationCard(props: CourseInformationCardProps) {
           <div className="searches-container">
             <FaSearch className="searchIcon" />
             <span className="searches-label">
-              <span style={{ fontWeight: 'bold' }}>{courseSearches} </span> searches here
+              <span style={{ fontWeight: 'bold' }}>{courseSearches} </span> search
+              {courseSearches > 1 && 'es'} here
             </span>
           </div>
         </div>

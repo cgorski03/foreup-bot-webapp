@@ -42,6 +42,14 @@ function Search() {
         : topThreeCourseIds.concat(defaultFavorites);
     setUserFavorites(topThreeCourseIdsWithDefault.slice(0, 3));
   }, [history]);
+
+  const getCourseSearches = (courseInfoCard: number) => {
+    if (history === null || courses === null || userFavorites === null) return 0;
+    if (selectedCourse !== null && courseInfoCard === 0) {
+      return history[selectedCourse.course_id] || 0;
+    }
+    return history[userFavorites[courseInfoCard]] || 0;
+  };
   // Render the favorites section of the page
   // Logic is abstracted to this function to make the main return statement cleaner
   // Handles the conditions for different screen sizes
@@ -63,7 +71,7 @@ function Search() {
               selectedCourse || (courses && userFavorites && courses[userFavorites[0]])
             }
             setSelectedCourse={setSelectedCourse}
-            courseSearches={history && userFavorites ? history[userFavorites[1]] : 0}
+            courseSearches={getCourseSearches(0)}
           />
         </div>
       );
@@ -76,7 +84,7 @@ function Search() {
           // Display the second favorite course
           displayedCourse={courses && userFavorites ? courses[userFavorites[1]] : null}
           setSelectedCourse={setSelectedCourse}
-          courseSearches={history && userFavorites ? history[userFavorites[1]] : 0}
+          courseSearches={getCourseSearches(1)}
         />
         <CourseInformationCard
           isSelected
@@ -85,14 +93,14 @@ function Search() {
             selectedCourse || (courses && userFavorites && courses[userFavorites[0]])
           }
           setSelectedCourse={setSelectedCourse}
-          courseSearches={history && userFavorites ? history[userFavorites[0]] : 0}
+          courseSearches={getCourseSearches(0)}
         />
         <CourseInformationCard
           isSelected={selectedCourse === null}
           // Display the third favorite course
           displayedCourse={courses && userFavorites ? courses[userFavorites[2]] : null}
           setSelectedCourse={setSelectedCourse}
-          courseSearches={history && userFavorites ? history[userFavorites[2]] : 0}
+          courseSearches={getCourseSearches(2)}
         />
       </div>
     );
