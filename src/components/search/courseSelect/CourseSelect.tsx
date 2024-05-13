@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Select from 'react-select';
 // @ts-ignore
 import selectStyles from './selectStyles';
 import CourseLabel from './CourseLabel';
-import { useGetCourses } from '../../../utils/api/requests';
-import { GolfCourse } from '../../../utils/api/types';
-import HandleAuthApiErrors from '../../error/HandleFetchErrors';
-// This is some AWFUL code that i have to refactor when I get a chance holy
+import { GolfCourse, GolfCourseCollection } from '../../../utils/api/types';
+
 type CourseSelectProps = {
-  onCourseSelection: (course: GolfCourse) => void;
+  selectedCourse: GolfCourse | null;
+  setSelectedCourse: (course: GolfCourse | null) => void;
+  golfCourseList: GolfCourseCollection | null;
 };
 
 type Option = {
@@ -18,21 +18,28 @@ type Option = {
 };
 
 function CourseSelect(props: CourseSelectProps) {
-  const { onCourseSelection } = props;
-  const { getCourses, coursesLoading, courses, responseCode } = useGetCourses();
-  useEffect(() => {
-    // Get the courses on the first mounting of the component
-    getCourses();
-  }, []);
+  const { selectedCourse, setSelectedCourse, golfCourseList } = props;
+  const getOptionFromCourse = (course: GolfCourse | null): Option | null => {
+    if (!course) {
+      return null;
+    }
+    return {
+      value: course.courseName,
+      courseObj: course,
+      label: (
+        <CourseLabel
+          courseName={course.courseName}
+          courseLocation={course.courseLocation}
+        />
+      ),
+    };
+  };
 
   const renderCourses = () => {
-    if (!courses) {
+    if (!golfCourseList) {
       return [];
     }
-    if (responseCode !== 200) {
-      return [];
-    }
-    return Object.values(courses).map((course) => ({
+    return Object.values(golfCourseList).map((course) => ({
       value: course.courseName,
       courseObj: course,
       label: (
@@ -43,32 +50,25 @@ function CourseSelect(props: CourseSelectProps) {
       ),
     }));
   };
-  if (coursesLoading || !courses || (responseCode && responseCode !== 200)) {
-    if (responseCode) {
-      console.log(`response code ${responseCode}`);
-      return <HandleAuthApiErrors responseCode={responseCode} />;
-    }
+  // Check if the courses list is null
+  if (golfCourseList === null) {
+    // Return a skeleton loading element
     return (
-      <div style={{ width: '100%' }}>
-        <Select
-          isSearchable
-          styles={selectStyles}
-          placeholder="Loading courses..."
-          maxMenuHeight={207.5}
-        />
+      <div className="courseSelectLoading">
+        <div className="skeleton-text skeleton-text-title" />{' '}
       </div>
     );
   }
+  // The couse list is not null
   return (
-    <div style={{ width: '100%' }}>
+    <div className="courseSelectContainer">
       <Select
         options={renderCourses()}
         isSearchable
         styles={selectStyles}
+        value={getOptionFromCourse(selectedCourse)}
         onChange={(option: Option | null) => {
-          if (option != null && option.courseObj) {
-            onCourseSelection(option.courseObj);
-          }
+          setSelectedCourse(option?.courseObj || null);
         }}
         placeholder="Where would you like to play?"
         maxMenuHeight={207.5}

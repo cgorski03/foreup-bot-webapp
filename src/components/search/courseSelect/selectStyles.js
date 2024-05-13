@@ -15,10 +15,11 @@ const selectStyles = {
     padding: 12,
     fontSize: 15,
     width: "100%",
+    transition: "background-color .08s ease",
     backgroundColor:
       state.isSelected || state.isFocused
-        ? "var(--secondary-color)"
-        : "var(--primary-color)",
+        ? "rgba(255,255,255,.04)"
+        : "var(--background-color)",
     ":active": {
       backgroundColor: "rgba(99, 106, 117, .18)",
     },
@@ -33,36 +34,43 @@ const selectStyles = {
     backgroundColor: "var(--secondary-color-dark)",
     border: "none",
     overflow: "hidden",
-    borderTopLeftRadius: "7px",
-    borderTopRightRadius: "7px",
-    borderBottomRightRadius: "0px",
-    borderBottomLeftRadius: "0px",
+    borderTopLeftRadius: ".8rem",
+    borderTopRightRadius: ".8rem",
+    borderBottomRightRadius: ".8rem",
+    borderBottomLeftRadius: ".8rem",
     boxShadow: "0px 9px 19px 8px rgba(26,26,26,.1)",
     ":hover": {
       cursor: "text",
     },
-    ":focus": {},
+    ":focus": {
+      
+    },
   }),
   menu: (provided, state) => ({
     ...provided,
-    backgroundColor: "var(--primary-color)",
+    backgroundColor: "var(--background-color)",
     boxShadow: "0px 9px 19px 8px rgba(26,26,26,.2)",
     marginTop: 0,
     marginBottom: 0,
-    borderBottomLeftRadius: 7,
-    borderBottomRightRadius: 7,
+    borderTopLeftRadius: ".8rem",
+    borderTopRightRadius: ".8rem",
+    borderBottomRightRadius: ".8rem",
+    borderBottomLeftRadius: ".8rem",
     boxSizing: "border-box",
   }),
   menuList: (provided, state) => ({
     ...provided,
     paddingTop: 0,
     paddingBottom: 0,
-    borderBottomLeftRadius: 7,
-    borderBottomRightRadius: 7,
+    borderTopLeftRadius: ".8rem",
+    borderTopRightRadius: ".8rem",
+    borderBottomRightRadius: ".8rem",
+    borderBottomLeftRadius: ".8rem",
     "::-webkit-scrollbar": {
       width: "0px",
       height: "0px",
     },
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)"
   }),
 
   input: (provided, state) => ({

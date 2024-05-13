@@ -1,4 +1,4 @@
-import type { CreateSearchInput, GolfCourseCollection, UserSearchInfo, DeleteSearchInput, VerificationCode } from './types';
+import type { CreateSearchInput, GolfCourseCollection, UserSearchInfo, DeleteSearchInput, VerificationCode, UserSearchHistory } from './types';
 import useFetch, { getEndpointUrl } from './useFetch';
 
 export const useGetCourses = () => {
@@ -11,8 +11,22 @@ export const useGetCourses = () => {
   });
 
   const getCourses = (input?: undefined) => commonFetch({ input });
+  const refreshCourses = (input?: undefined) => commonFetch({ input, cacheOverride: true });
+  return { getCourses, coursesLoading, courses, responseCode, refreshCourses };
+};
 
-  return { getCourses, coursesLoading, courses, responseCode };
+export const useGetHistory = () => {
+  const { commonFetch,
+    isLoading: historyLoading,
+    data: history,
+    responseCode } = useFetch<UserSearchHistory>({
+    endpoint: '/favorites',
+    method: 'GET',
+  });
+
+  const getHistory = (input?: undefined) => commonFetch({ input });
+  const refreshHistory = (input?: undefined) => commonFetch({ input, cacheOverride: true });
+  return { getHistory, historyLoading, history, responseCode, refreshHistory };
 };
 
 export const useGetSearches = () => {

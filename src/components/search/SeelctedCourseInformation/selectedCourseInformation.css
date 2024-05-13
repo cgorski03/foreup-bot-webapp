@@ -1,0 +1,146 @@
+.noStyleButtonWrapper {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  outline: inherit;
+}
+.courseInformationCardContainer {
+  display: flex;
+  box-sizing: border-box;
+  width: 600px;
+  height: 250px;
+  background-color: var(--secondary-color-dark);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 100px 0 32px 0;
+  transition: transform 0.3s;
+  box-shadow:
+    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.courseInformationCardContainer:hover {
+  transform: scale(1.02);
+}
+.notSelectedCourseContainer {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+.notSelectedCourseContainer:hover {
+  transform: scale(0.92);
+}
+
+.course-image-container {
+  position: relative;
+  width: 50%;
+  padding: 1.2rem 1.2rem 1.2rem 0;
+}
+
+.course-image-container img {
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.course-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  width: 50%;
+}
+
+.course-details h2 {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.course-location {
+  font-size: 1.12rem;
+  color: #bdbdbd;
+  margin: 0 0 2rem 0;
+}
+/* Existing styles... */
+
+.course-stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 1.2rem;
+}
+
+.stat-row {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #bdbdbd;
+  text-transform: uppercase;
+}
+/* Existing styles... */
+
+.searches-container {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.searchIcon {
+  color: var(--text-color);
+  margin-right: 0.5rem;
+}
+
+.searches-label {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+/* Loading Skeleton Styles */
+
+.skeleton-text {
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  animation: skeleton-loading 1s infinite alternate;
+}
+
+.skeleton-text-title {
+  width: 70%;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.skeleton-text-subtitle {
+  width: 50%;
+  height: 18px;
+  margin-bottom: 8px;
+}
+
+.skeleton-text-stats {
+  width: 80%;
+  height: 18px;
+}
+
+.skeleton-image {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  animation: skeleton-loading 0.8s infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

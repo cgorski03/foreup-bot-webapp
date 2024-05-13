@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
 import './searchInformationForm.css';
+import { FaSearch } from 'react-icons/fa';
 import Calendar from './calendar/Calendar';
 import PlayerSelect from './players/PlayerSelect';
 import TimePicker from './timePicker/TimePicker';
-import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
+// @ts-ignore
+import { ReactComponent as Loader } from './spinner.svg';
 import { GolfCourse, CreateSearchInput } from '../../../utils/api/types';
 import { useCreateSearch } from '../../../utils/api/requests';
 import { StartSearchResponseMessage } from '../../login/message/ErrorMessage';
@@ -21,10 +23,8 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   const [responseMessage, setResponseMessage] = useState<string>('');
   const { createSearch, isLoading, responseCode } = useCreateSearch();
   const { userInfo } = useContext(UserInformationContext);
+  const isDiscordConnected = userInfo?.channel_id !== undefined;
 
-  const handleButtonNoDiscord = () => {
-    setResponseMessage('noDiscord');
-  };
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
   };
@@ -92,21 +92,28 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
           <TimePicker onTimeChange={handleTimeChange} />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <StartSearchResponseMessage message={responseMessage} />
-          {userInfo?.channel_id ? (
-            <OutlinedButtonLoader
-              classOverride="searchButtonHomePage"
-              buttonText="Start Search"
-              onClick={handleSearchEvent}
-              loading={isLoading}
-            />
-          ) : (
-            <OutlinedButtonLoader
-              classOverride="searchButtonHomePage disabledButton"
-              buttonText="Connect Discord First"
-              onClick={handleButtonNoDiscord}
-              loading={false}
-            />
-          )}
+          <button
+            className="start-search-button"
+            onClick={handleSearchEvent}
+            disabled={!isDiscordConnected}
+            type="submit"
+          >
+            {isLoading ? (
+              <span className="seachIconLoaderWrapper">
+                <Loader />
+              </span>
+            ) : (
+              <span className="button-text-wrapper">
+                <span className="search-loading-icon">
+                  <FaSearch />
+                </span>
+                <span className="button-text">
+                  {' '}
+                  {isDiscordConnected ? 'Search' : 'Connect Discord'}
+                </span>
+              </span>
+            )}
+          </button>
         </div>
       </div>
     </div>

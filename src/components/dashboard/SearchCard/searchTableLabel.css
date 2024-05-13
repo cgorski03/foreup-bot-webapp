@@ -10,8 +10,8 @@
   transition:
     background-color,
     filter 0.1s linear;
-  background-color: rgba(0, 0, 0, 0.5);
-  filter: brightness(20%);
+  background-color: rgba(0, 0, 0, 0.25);
+  filter: brightness(25%);
   z-index: 1;
   pointer-events: none;
 }
@@ -82,11 +82,15 @@
   height: 18rem;
   display: flex;
   flex-direction: row;
+  background-color: var(--secondary-color-dark);
+  border-radius: 0 0 0.8rem 0.8rem;
 }
 .searchCardBodyMobile {
   height: 14rem;
   display: flex;
   flex-direction: column;
+  background-color: var(--secondary-color-dark);
+  border-radius: 0 0 0.8rem 0.8rem;
 }
 
 .golfCourseImagePreview {
@@ -158,42 +162,42 @@
   justify-content: space-between;
   align-items: flex-end;
 }
-.availableTimesContainer {
-  width: 70%;
-  flex-wrap: wrap;
-}
-.availableTeeTime {
+.tee-time-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 5rem;
-  width: 7.4rem;
-  background-color: var(--primary-color);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: auto;
+  margin-left: 1.2rem;
+}
+
+.tee-time-item {
+  background-color: rgba(255, 255, 255, 0.02);
   color: var(--text-color);
   border-radius: 0.8rem;
-  margin: 0 0.8rem;
-  padding: 0;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.availableTeeTime > p {
-  /* Apply styles to both top and bottom element of label */
-  box-sizing: border-box;
-
-  margin: 0;
+.tee-time {
   font-weight: bold;
-  font-size: 0.96rem;
+  margin-right: 0.5rem;
 }
-.timeLabelTop {
-  background-color: var(--header-background-color);
-  padding: 0.6rem 0;
-  border-radius: 0.8rem 0.8rem 0 0;
-  width: 100%;
+
+.player-count {
+  display: flex;
+  align-items: center;
 }
-.playerLabelBottom {
-  padding: 0.6rem 0;
-  background-color: var(--secondary-color-dark);
-  width: 100%;
-  border-radius: 0 0 0.8rem 0.8rem;
+
+.player-icon {
+  font-size: 1rem;
+  margin-right: 0.25rem;
+}
+
+.player-number {
+  font-weight: bold;
 }
 .searchActionIcons {
   width: 30%;
@@ -214,7 +218,8 @@
   height: 2.88rem;
   width: 2.88rem;
   border-radius: 0.8rem;
-  background-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.01);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
   color: var(--secondary-color-light);
   transition: background-color 0.2s linear;
 }

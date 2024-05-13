@@ -25,13 +25,13 @@
 .react-datepicker__day {
   color: var(--text-color);
   /* Initially set outline to be transparent to acheive opacity fade in */
-  border-radius: 3px !important;
-  outline: solid 1px transparent;
-  transition: outline 0.2s ease;
+  border-radius: 8px !important;
+  outline: none;
+  transition: background-color 0.2s ease;
 }
 .react-datepicker__day:hover {
-  background-color: var(--secondary-color-dark);
-  outline-color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.05);
+  outline: none;
 }
 
 .react-datepicker__day--disabled {
