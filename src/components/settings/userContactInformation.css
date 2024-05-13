@@ -13,7 +13,6 @@
 }
 
 .testMessageButton.loading {
-  cursor: not-allowed;
 }
 .settingsFieldContainer {
   display: flex;
@@ -60,4 +59,20 @@
   font-size: 1.5rem;
   margin-right: 0.5rem;
   color: #fff;
+}
+
+.NagMeButton {
+  background-color: #da7289;
+}
+.NagMeButton:hover {
+  background-color: #bc5f73;
+  animation: spin_around 2s infinite;
+}
+@keyframes spin_around {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
