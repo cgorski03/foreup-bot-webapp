@@ -6,6 +6,7 @@ import './selectedCourseInformation.css';
 type CourseInformationCardProps = {
   isSelected: boolean;
   displayedCourse: GolfCourse | null;
+  courseSearches: number;
   setSelectedCourse: (course: GolfCourse | null) => void;
 };
 
@@ -25,7 +26,7 @@ function CourseInformationCardSkeleton() {
 }
 
 function CourseInformationCard(props: CourseInformationCardProps) {
-  const { isSelected, displayedCourse, setSelectedCourse } = props;
+  const { isSelected, displayedCourse, setSelectedCourse, courseSearches } = props;
   // If we have not loaded the courses yet, we want to return the placeholder object
   if (displayedCourse === null) {
     return <CourseInformationCardSkeleton />;
@@ -44,26 +45,26 @@ function CourseInformationCard(props: CourseInformationCardProps) {
           <p className="course-location">{displayedCourse?.courseLocation}</p>
           <div className="course-stats-container">
             <div className="stat-row">
-              <div className="stat-value">{displayedCourse.par}</div>
+              <div className="stat-value">{displayedCourse?.par}</div>
               <div className="stat-label">PAR</div>
             </div>
             <div className="stat-row">
-              <div className="stat-value">{displayedCourse.yardage}</div>
+              <div className="stat-value">{displayedCourse?.yardage}</div>
               <div className="stat-label">YARDS</div>
             </div>
             <div className="stat-row">
-              <div className="stat-value">{displayedCourse.rating}</div>
+              <div className="stat-value">{displayedCourse?.rating}</div>
               <div className="stat-label">RATING</div>
             </div>
             <div className="stat-row">
-              <div className="stat-value">{displayedCourse.slope}</div>
+              <div className="stat-value">{displayedCourse?.slope}</div>
               <div className="stat-label">SLOPE</div>
             </div>
           </div>
           <div className="searches-container">
             <FaSearch className="searchIcon" />
             <span className="searches-label">
-              <span style={{ fontWeight: 'bold' }}>15 </span> searches here
+              <span style={{ fontWeight: 'bold' }}>{courseSearches} </span> searches here
             </span>
           </div>
         </div>

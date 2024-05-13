@@ -11,6 +11,9 @@ export type GolfCourse = {
 };
 
 export type GolfCourseCollection = Record<number, GolfCourse>;
+// This is returned in a form of a courseid
+// mapped to the number of searches a user has done on that course
+export type UserSearchHistory = Record<number, number>;
 
 export type CreateSearchInput = {
   course_id: number;
