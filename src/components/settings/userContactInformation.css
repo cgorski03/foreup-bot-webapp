@@ -66,13 +66,18 @@
 }
 .NagMeButton:hover {
   background-color: #bc5f73;
-  animation: spin_around 2s infinite;
 }
-@keyframes spin_around {
-  from {
-    transform: rotate(0deg);
+
+/* Animation */
+.NagMeButton:hover {
+  animation: runAway 3s ease-out forwards;
+}
+
+@keyframes runAway {
+  0% {
+    transform: translate(0, 0);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: translate(calc(100vw - 100px - 50%), calc(100vh - 100px - 50%));
   }
 }

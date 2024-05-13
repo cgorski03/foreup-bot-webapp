@@ -4,7 +4,8 @@ import { FaSearch } from 'react-icons/fa';
 import Calendar from './calendar/Calendar';
 import PlayerSelect from './players/PlayerSelect';
 import TimePicker from './timePicker/TimePicker';
-// import OutlinedButtonLoader from '../../buttons/OutlinedButtonLoader';
+// @ts-ignore
+import { ReactComponent as Loader } from './spinner.svg';
 import { GolfCourse, CreateSearchInput } from '../../../utils/api/types';
 import { useCreateSearch } from '../../../utils/api/requests';
 import { StartSearchResponseMessage } from '../../login/message/ErrorMessage';
@@ -42,7 +43,6 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
   };
 
   const handleSearchEvent = async () => {
-    console.log(isLoading);
     if (!course || selectedStartTime > selectedEndTime) {
       // early return if not all conditions are complete
       if (!course) {
@@ -98,13 +98,21 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
             disabled={!isDiscordConnected}
             type="submit"
           >
-            <span className="search-icon">
-              <FaSearch />
-            </span>
-            <span className="button-text">
-              {' '}
-              {isDiscordConnected ? 'Search' : 'Connect Discord'}
-            </span>
+            {isLoading ? (
+              <span className="seachIconLoaderWrapper">
+                <Loader />
+              </span>
+            ) : (
+              <span className="button-text-wrapper">
+                <span className="search-loading-icon">
+                  <FaSearch />
+                </span>
+                <span className="button-text">
+                  {' '}
+                  {isDiscordConnected ? 'Search' : 'Connect Discord'}
+                </span>
+              </span>
+            )}
           </button>
         </div>
       </div>

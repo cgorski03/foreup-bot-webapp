@@ -65,7 +65,7 @@ function CourseInformationCard(props: CourseInformationCardProps) {
             <FaSearch className="searchIcon" />
             <span className="searches-label">
               <span style={{ fontWeight: 'bold' }}>{courseSearches} </span> search
-              {courseSearches > 1 && 'es'} here
+              {courseSearches !== 1 && 'es'} here
             </span>
           </div>
         </div>
