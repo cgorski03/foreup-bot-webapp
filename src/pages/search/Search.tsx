@@ -44,10 +44,17 @@ function Search() {
   }, [history]);
 
   const getCourseSearches = (courseInfoCard: number) => {
+    // courseInfoCard number is the nth favorite course
+    // The middle card is the main selected course or the most favorite course
+    // Thus is accessed by 0
+    // The left card is the second most favorite course, 1
+    // If the history has not loaded, return 0
     if (history === null || courses === null || userFavorites === null) return 0;
+    // If a course is selected, return the search count for that course
     if (selectedCourse !== null && courseInfoCard === 0) {
       return history[selectedCourse.course_id] || 0;
     }
+    // If a course is not selected, return the search count for the course in the info card
     return history[userFavorites[courseInfoCard]] || 0;
   };
   // Render the favorites section of the page
