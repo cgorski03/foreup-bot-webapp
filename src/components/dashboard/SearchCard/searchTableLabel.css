@@ -89,6 +89,8 @@
   height: 14rem;
   display: flex;
   flex-direction: column;
+  background-color: var(--secondary-color-dark);
+  border-radius: 0 0 0.8rem 0.8rem;
 }
 
 .golfCourseImagePreview {

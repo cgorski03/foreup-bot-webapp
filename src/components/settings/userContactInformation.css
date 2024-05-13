@@ -63,21 +63,11 @@
 
 .NagMeButton {
   background-color: #da7289;
+  transition:
+    left 0.2s ease,
+    top 0.2s ease;
 }
+
 .NagMeButton:hover {
   background-color: #bc5f73;
-}
-
-/* Animation */
-.NagMeButton:hover {
-  animation: runAway 3s ease-out forwards;
-}
-
-@keyframes runAway {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(calc(100vw - 100px - 50%), calc(100vh - 100px - 50%));
-  }
 }
