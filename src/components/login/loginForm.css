@@ -5,6 +5,11 @@
   margin: 35px;
 }
 .textField {
+  padding: 1.2rem;
+  border-radius: 0.8rem;
+  background-color: var(--secondary-color-dark);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -31,11 +31,15 @@ function CourseInformationCard(props: CourseInformationCardProps) {
   if (displayedCourse === null) {
     return <CourseInformationCardSkeleton />;
   }
+  const handleSelectCourse = () => {
+    // TODO Add something to nullify when yoiu select the course that is already selected
+    setSelectedCourse(displayedCourse);
+  };
   return (
     <button
       className="noStyleButtonWrapper"
       type="submit"
-      onClick={() => setSelectedCourse(displayedCourse)}
+      onClick={handleSelectCourse}
     >
       <div
         className={`courseInformationCardContainer ${isSelected ? 'selectedCourseContainer' : 'notSelectedCourseContainer'}`}
