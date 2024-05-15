@@ -43,30 +43,32 @@ function CourseInformationCard(props: CourseInformationCardProps) {
         <div className="course-details">
           <h2>{displayedCourse?.courseName}</h2>
           <p className="course-location">{displayedCourse?.courseLocation}</p>
-          <div className="course-stats-container">
-            <div className="stat-row">
-              <div className="stat-value">{displayedCourse?.par}</div>
-              <div className="stat-label">PAR</div>
+          <div>
+            <div className="course-stats-container">
+              <div className="stat-row">
+                <div className="stat-value">{displayedCourse?.par}</div>
+                <div className="stat-label">PAR</div>
+              </div>
+              <div className="stat-row">
+                <div className="stat-value">{displayedCourse?.yardage}</div>
+                <div className="stat-label">YARDS</div>
+              </div>
+              <div className="stat-row">
+                <div className="stat-value">{displayedCourse?.rating}</div>
+                <div className="stat-label">RATING</div>
+              </div>
+              <div className="stat-row">
+                <div className="stat-value">{displayedCourse?.slope}</div>
+                <div className="stat-label">SLOPE</div>
+              </div>
             </div>
-            <div className="stat-row">
-              <div className="stat-value">{displayedCourse?.yardage}</div>
-              <div className="stat-label">YARDS</div>
+            <div className="searches-container">
+              <FaSearch className="searchIcon" />
+              <span className="searches-label">
+                <span style={{ fontWeight: 'bold' }}>{courseSearches} </span> search
+                {courseSearches !== 1 && 'es'} here
+              </span>
             </div>
-            <div className="stat-row">
-              <div className="stat-value">{displayedCourse?.rating}</div>
-              <div className="stat-label">RATING</div>
-            </div>
-            <div className="stat-row">
-              <div className="stat-value">{displayedCourse?.slope}</div>
-              <div className="stat-label">SLOPE</div>
-            </div>
-          </div>
-          <div className="searches-container">
-            <FaSearch className="searchIcon" />
-            <span className="searches-label">
-              <span style={{ fontWeight: 'bold' }}>{courseSearches} </span> search
-              {courseSearches !== 1 && 'es'} here
-            </span>
           </div>
         </div>
         <div className="course-image-container">
