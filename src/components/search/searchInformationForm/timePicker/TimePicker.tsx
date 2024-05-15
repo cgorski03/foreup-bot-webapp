@@ -1,31 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './timePicker.css';
 
 type TimePickerProps = {
-  onTimeChange: (timeID: number, time: string) => void;
+  selectedStartTime: string;
+  setSelectedStartTime: (time: string) => void;
+  selectedEndTime: string;
+  setSelectedEndTime: (time: string) => void;
 };
 function TimePicker(props: TimePickerProps) {
-  const { onTimeChange } = props;
-  const [selectedStartTime, setSelectedStartTime] = useState<string>('06:00');
-  const [selectedEndTime, setSelectedEndTime] = useState<string>('22:00');
-
-  const handleStartTimeSelection = (
-    time: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
-    // notify the parent component
-    // will prevent constant rerendering of dom by not having the state attached
-    setSelectedStartTime(time.target.value);
-    onTimeChange(0, time.target.value);
-  };
-  const handleEndTimeSelection = (
-    time: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
-    // notify the parent component
-    // will prevent constant rerendering of dom by not having the state attached
-    setSelectedEndTime(time.target.value);
-    onTimeChange(1, time.target.value);
-  };
-
+  const { selectedStartTime, setSelectedStartTime, selectedEndTime, setSelectedEndTime } =
+    props;
   return (
     <div className="playerSelectComponentContainer">
       <h1 className="inputFieldLabel">Time Range:</h1>
@@ -34,14 +18,16 @@ function TimePicker(props: TimePickerProps) {
           className="timePickerInput startTimeInputBox"
           type="time"
           value={selectedStartTime}
-          onChange={handleStartTimeSelection}
+          onChange={(time: React.ChangeEvent<HTMLInputElement>) =>
+            setSelectedStartTime(time.target.value)}
         />
         -
         <input
           className="timePickerInput endTimeInputBox"
           type="time"
           value={selectedEndTime}
-          onChange={handleEndTimeSelection}
+          onChange={(time: React.ChangeEvent<HTMLInputElement>) =>
+            setSelectedEndTime(time.target.value)}
         />
       </div>
     </div>

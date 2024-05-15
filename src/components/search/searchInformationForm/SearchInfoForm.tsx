@@ -17,7 +17,7 @@ type SearchInfoFormProps = {
 
 function SearchInfoForm({ course }: SearchInfoFormProps) {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [selectedStartTime, setSelectedStartTime] = useState<string>('08:00');
+  const [selectedStartTime, setSelectedStartTime] = useState<string>('06:00');
   const [selectedEndTime, setSelectedEndTime] = useState<string>('22:00');
   const [selectedPlayerCount, setSelectedPlayerCount] = useState<number>(4);
   const [responseMessage, setResponseMessage] = useState<string>('');
@@ -27,15 +27,6 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
 
   const handleDateSelection = (date: Date): void => {
     setSelectedDate(date);
-  };
-
-  const handleTimeChange = (timeID: number, time: string): void => {
-    // start time will have timeid of 0
-    if (!timeID) {
-      setSelectedStartTime(time);
-    } else {
-      setSelectedEndTime(time);
-    }
   };
 
   const handlePlayerSelectChange = (players: number): void => {
@@ -89,7 +80,12 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
       </div>
       <div className="halfWidthInfoBlock rightHalfInfoBlock">
         <div className="searchCriteriaContainer">
-          <TimePicker onTimeChange={handleTimeChange} />
+          <TimePicker
+            setSelectedEndTime={setSelectedEndTime}
+            selectedEndTime={selectedEndTime}
+            setSelectedStartTime={setSelectedStartTime}
+            selectedStartTime={selectedStartTime}
+          />
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <StartSearchResponseMessage message={responseMessage} />
           <button

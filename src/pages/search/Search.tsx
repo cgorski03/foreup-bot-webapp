@@ -61,7 +61,7 @@ function Search() {
   // Logic is abstracted to this function to make the main return statement cleaner
   // Handles the conditions for different screen sizes
   const renderFavorites = () => {
-    const showFullCoursesBanner = !useMediaQuery('(max-width: 1800px)');
+    const showFullCoursesBanner = !useMediaQuery('(max-width: 1650px)');
     const showOneFavorite = !useMediaQuery('(max-width: 600px)');
     // If the screen is too small, don't render ANY favorites
     if (!showOneFavorite && !showFullCoursesBanner) {
