@@ -35,14 +35,15 @@ Connecting your account to discord will allow you to be notified when tee times 
 
 2. **Open a Private Chat with the Bot**:
    - Click on `TTimeBot` from the right sidebar to open a private chat.
-   - Send a message to the bot to create a private chat. The content of the first message can be anything.
+   - Send a message to the bot to create a private chat. The content of the first message can be anything. Your inital message will be typed in here.
+     ![Inital Message Sample](InitialMessageExample.png)
 
 ## Step 3: Generate and Use the Verification Code
 
 1. **Generate Code**:
 
    - Go back to the ForeAdvantage settings menu.
-   - Click the "Generate Code" button in the connect to Discord settings section.
+   - Click the "Generate Code" button in the discord pop-up menu.
 
 2. **Copy the Code**:
 
@@ -53,6 +54,7 @@ Connecting your account to discord will allow you to be notified when tee times 
    - Type `/verify` in the chat. The command should autocomplete.
    - Paste your copied code after the `/verify` command.
    - Send the message. If successful, you should receive a confirmation response from the bot.
+     ![Verify Command Sample](VerifyCommandSample.png)
 
 ## Step 4: Finalize the Connection
 
