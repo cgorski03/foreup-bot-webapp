@@ -7,12 +7,14 @@
   box-sizing: border-box;
   width: 250px;
   max-height: 39px;
-  margin-bottom: 18px;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.1s ease;
 }
-
+.verify-password-instructions {
+  font-size: 12px;
+  color: var(--text-color);
+}
 .inputField:hover,
 .inputField:focus {
   background-color: rgba(255, 255, 255, 0.06);

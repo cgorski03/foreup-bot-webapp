@@ -12,7 +12,10 @@ export function AuthorizationErrorMessage({ error }: { error: string }) {
 
       case 'Incorrect username or password.':
         return 'The username or password is incorrect';
-
+      case 'NOMATCH':
+        return 'The passwords do not match';
+      case 'BADPASSWORD':
+        return 'Ensure your password meets the requirements';
       default:
         return 'An error occurred during authorization.';
     }

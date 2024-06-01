@@ -89,7 +89,7 @@ function SearchInfoForm({ course }: SearchInfoFormProps) {
           <PlayerSelect onPlayerSelectChange={handlePlayerSelectChange} />
           <StartSearchResponseMessage message={responseMessage} />
           <button
-            className="start-search-button"
+            className="d-button-style"
             onClick={handleSearchEvent}
             disabled={!isDiscordConnected}
             type="submit"
