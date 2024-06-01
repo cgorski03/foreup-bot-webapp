@@ -80,13 +80,27 @@ export default function DiscordVerificationPopup({
             <h1 className="discordIconHeaderFormatting">
               <FaDiscord />
             </h1>
+            <a
+              href="https://discord.gg/HcSbFT2tzM"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Join Discord Server"
+              style={{}}
+            >
+              <p
+                className="verifyInstructionsText"
+                style={{ fontSize: 13 }}
+              >
+                Instructions can be found here
+              </p>
+            </a>
             <h1 className="verifyInstructionsText">Join the server</h1>
             <a
               href="https://discord.gg/HcSbFT2tzM"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join Discord Server"
-              style={{ textDecoration: 'none' }} // Add this styl
+              style={{ textDecoration: 'none' }}
             >
               <button
                 className="d-button-style discordPopupButtonStyles"

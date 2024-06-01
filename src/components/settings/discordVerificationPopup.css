@@ -68,6 +68,7 @@ a > .connectDiscordButton {
 .verifyInstructionsText {
   text-align: center;
   font-size: 1.2rem;
+  color: var(--text-color);
 }
 .verificationCodeDisplayAndButtons {
   display: flex;
