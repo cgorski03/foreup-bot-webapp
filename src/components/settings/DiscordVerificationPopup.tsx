@@ -81,7 +81,7 @@ export default function DiscordVerificationPopup({
               <FaDiscord />
             </h1>
             <a
-              href="https://discord.gg/HcSbFT2tzM"
+              href="https://github.com/cgorski03/foreup-bot-webapp/blob/main/instructions/connect_discord.md"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join Discord Server"
