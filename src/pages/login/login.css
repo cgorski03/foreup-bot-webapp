@@ -9,6 +9,10 @@
   margin-top: 30vh;
   flex-direction: column;
 }
+.loginPageContainer {
+  display: flex;
+  justify-content: center;
+}
 .mainLoginPageLoader {
   justify-content: center;
   margin-top: 30vh;

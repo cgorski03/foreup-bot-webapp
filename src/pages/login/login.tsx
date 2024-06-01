@@ -29,7 +29,7 @@ function Login() {
     );
   }
   return (
-    <div>
+    <div className="loginPageContainer">
       <LoginForm onAuthentication={handleOnAuthentication} />
     </div>
   );

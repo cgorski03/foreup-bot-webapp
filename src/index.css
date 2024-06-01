@@ -42,3 +42,8 @@ button:hover {
 .d-flex {
   display: flex;
 }
+.flex-c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -56,15 +56,14 @@
 }
 
 .searchCriteriaContainer > .disabledButton:hover {
-  cursor: default;
 }
-.start-search-button {
+.d-button-style {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.02);
   color: var(--accent-color);
-  width: 10rem;
+  min-width: 10rem;
   border: none;
   border-radius: var(--border-radius-standard);
   padding: 12px 20px;
@@ -84,19 +83,18 @@
   align-items: center;
   justify-content: center;
 }
-.start-search-button:hover {
+.d-button-style:hover {
   background-color: var(--accent-color);
   color: var(--secondary-color-dark);
   cursor: pointer;
 }
 
-.start-search-button:disabled {
+.d-button-style:disabled {
   background-color: rgba(255, 255, 255, 0.02);
-  cursor: default;
+  pointer-events: none;
 }
 
 .button-text {
-  margin-right: 8px;
 }
 
 .search-loading-icon {
