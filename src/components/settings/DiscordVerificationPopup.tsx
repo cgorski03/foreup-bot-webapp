@@ -4,7 +4,8 @@ import { FaTimes, FaDiscord, FaCopy, FaCheck } from 'react-icons/fa';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import IconLabeledButton from '../buttons/IconLabeledButton';
 import { useCreateVerificationCode } from '../../utils/api/requests';
-import OutlinedButtonLoader from '../buttons/OutlinedButtonLoader';
+// @ts-ignore
+import { ReactComponent as Loader } from '../login/spinner.svg';
 
 function VerificationCodeChar(props: { char: string }) {
   const { char } = props;
@@ -75,41 +76,59 @@ export default function DiscordVerificationPopup({
           loading={false}
         />
         <div className="discordVerificationPopupContent">
-          <h1 className="discordIconHeaderFormatting">
-            <FaDiscord />
-          </h1>
-          <h1 className="verifyInstructionsText">Join the server</h1>
-          <a
-            href="https://discord.gg/HcSbFT2tzM"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Join Discord Server"
-          >
-            <OutlinedButtonLoader
-              onClick={() => {}}
-              loading={false}
-              buttonText="Join"
-              classOverride="connectDiscordButton"
-            />
-          </a>
-          <h1 className="verifyInstructionsText">Direct message TTimeBot using /verify</h1>
+          <div className="flex-c">
+            <h1 className="discordIconHeaderFormatting">
+              <FaDiscord />
+            </h1>
+            <h1 className="verifyInstructionsText">Join the server</h1>
+            <a
+              href="https://discord.gg/HcSbFT2tzM"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Join Discord Server"
+              style={{ textDecoration: 'none' }} // Add this styl
+            >
+              <button
+                className="d-button-style discordPopupButtonStyles"
+                onClick={() => {}}
+                type="submit"
+              >
+                Join Server
+              </button>
+            </a>
+          </div>
           <div className="verificationCodeDisplayAndButtons">
+            <h1
+              className="verifyInstructionsText"
+              style={{ margin: 0 }}
+            >
+              Your Verification Code:
+            </h1>
             <VerificationCodeDisplay verificationCode={displayedVerificationCode} />
             <div className="generateAndCopyButtonContainer">
-              <OutlinedButtonLoader
+              <button
+                className="d-button-style discordPopupButtonStyles"
                 onClick={handleGenerateVerificationCode}
-                loading={verificationCodeLoading}
-                buttonText="Generate Verification Code"
-                classOverride="connectDiscordButton"
-              />
+                type="submit"
+                style={{ flex: '1' }}
+              >
+                {verificationCodeLoading ? (
+                  <span className="seachIconLoaderWrapper">
+                    <Loader />
+                  </span>
+                ) : (
+                  'Generate'
+                )}
+              </button>
+
               <CopyToClipboard text={displayedVerificationCode}>
-                <OutlinedButtonLoader
+                <button
+                  className="d-button-style copyVerificationCodeButtonStyles"
                   onClick={handleVerificationCodeCopy}
-                  loading={false}
-                  // Want to show that the verificaiton code has been copied
-                  buttonText={verificationCodeClipboard ? <FaCheck /> : <FaCopy />}
-                  classOverride="connectDiscordButton"
-                />
+                  type="submit"
+                >
+                  {verificationCodeClipboard ? <FaCheck /> : <FaCopy />}
+                </button>
               </CopyToClipboard>
             </div>
           </div>
