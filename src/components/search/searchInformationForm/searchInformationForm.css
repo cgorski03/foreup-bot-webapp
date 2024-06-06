@@ -111,6 +111,9 @@
     flex-direction: column;
     align-items: center;
     padding-top: 50px;
+    height: min(80vh, 600px);
+    /* background-color: transparent;
+    box-shadow: none; */
   }
   .halfWidthInfoBlock {
     width: 100%;
