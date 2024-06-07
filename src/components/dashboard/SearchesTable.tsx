@@ -60,6 +60,28 @@ function SearchesTable(props: SearchesTableProps) {
       setSearchStartIndex(searchStartIndex - 5);
     }
   };
+  const renderLoadingCards = (amount: number) => {
+    const loadingCards = [];
+    for (let i = 0; i < amount; i += 1) {
+      loadingCards.push(
+        <div className="searchTableLoading">
+          <div className="searchCardHeader">
+            <div className="skeleton-text skeleton-text-title" />
+          </div>
+          <div className="searchCardBody">
+            <div className="loadingBodyItems">
+              <div className="skeleton-image" />
+              <div className="skeleton-text" />
+              <div className="skeleton-text" />
+              <div className="skeleton-text" />
+              <div className="skeleton-text" />
+            </div>
+          </div>
+        </div>,
+      );
+    }
+    return loadingCards;
+  };
   const renderSearchCards = (startIndex: number) => {
     const searchFilterParsing = (searchActive: Boolean) => {
       switch (searchFilter) {
@@ -95,8 +117,7 @@ function SearchesTable(props: SearchesTableProps) {
     }
     return null;
   };
-  if (loading && searches == null) {
-    // If the searches are still loading, still show the menu
+  if (loading) {
     return (
       <div className="searchTableContainer">
         <div className="searchTableHeader">
@@ -115,6 +136,7 @@ function SearchesTable(props: SearchesTableProps) {
           />
         </div>
         <hr className="headerDividerLine" />
+        {renderLoadingCards(5)}
       </div>
     );
   }

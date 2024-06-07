@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './searchTableLabel.css';
 import { FaCalendar, FaClock } from 'react-icons/fa';
 import { MdPerson, MdEdit, MdDelete } from 'react-icons/md';
@@ -53,15 +53,13 @@ function FoundTimeIcons(props: FoundTimeIconsProps) {
 
 function SearchCard(props: SearchCardProps) {
   const { search, image } = props;
-  const { setSearches, refreshLoading } = useContext(DashboardContext);
+  const { setSearches } = useContext(DashboardContext);
   const { updateCache } = useGetSearches();
   const { deleteSearch, deleteLoading, deleteResponse, updatedSeaches } = useDeleteSearch();
   const { cancelSearch, cancelLoading, cancelResponse, cancelledSearches } =
     useCancelSearch();
-  const [searchDying, setSearchDying] = useState(false);
   useEffect(() => {
     if (updatedSeaches != null) {
-      setSearchDying(true);
       // Update the users cache with the new info
       updateCache(updatedSeaches);
       // Update the searches shown on the users screen
@@ -71,7 +69,6 @@ function SearchCard(props: SearchCardProps) {
 
   useEffect(() => {
     if (cancelledSearches != null) {
-      setSearchDying(true);
       // Update the users cache with the new info
       updateCache(cancelledSearches);
       // Update the searches shown on the users screen
@@ -97,9 +94,7 @@ function SearchCard(props: SearchCardProps) {
   };
 
   return (
-    <div
-      className={`searchCardContainer ${searchDying && 'fadeOut'} ${refreshLoading && 'cardRefreshLoading'}`}
-    >
+    <div className="searchCardContainer">
       <SearchCardHeader
         active={search.active}
         lastSearchCheck={search.heartbeat}
