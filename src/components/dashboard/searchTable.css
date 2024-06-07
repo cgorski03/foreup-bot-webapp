@@ -105,6 +105,33 @@
   font-size: 1.12rem;
   padding: 1px 0;
 }
+.searchTableLoading {
+  width: 1000px;
+  padding: auto;
+  margin-bottom: 1.2rem;
+}
+.searchTableLoading > .searchCardBody {
+}
+.searchCardBody > .loadingBodyItems {
+  margin: auto 1.2rem;
+  display: flex;
+}
+.searchCardHeader > div.skeleton-text-title {
+  margin: 1.2rem;
+  width: 250px;
+}
+.searchTableLoading > .searchCardHeader {
+  height: 89px;
+}
+.searchCardBody > div > div.skeleton-text {
+  margin-left: 1.2rem;
+  width: 100px;
+  height: 2rem;
+}
+.searchCardBody > div > .skeleton-image {
+  width: 340px;
+  height: 224px;
+}
 @media (max-width: 1000px) {
   .dashboardHeaderButton {
     width: fit-content;
@@ -114,6 +141,7 @@
   .dashboardHeaderButton:hover {
     background-color: rgba(255, 255, 255, 0);
   }
+  .searchTableLoading,
   .searchTableContainer {
     width: 90%;
   }
